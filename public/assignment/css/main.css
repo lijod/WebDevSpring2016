@@ -1,4 +1,18 @@
-@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css);
-span.glyphicon {
+span.glyphicon.tableicon {
     font-size: 1.2em;
+}
+
+.formtable {
+    margin-left: 14px;
+}
+
+.formtab {
+    width: 101%;
+}
+
+.field-container {
+    border: 1px solid #DDDDDD;
+    margin: 10px;
+    overflow: auto;
+    padding: 10px;
 }
