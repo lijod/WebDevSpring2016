@@ -12,7 +12,7 @@ span.glyphicon.tableicon-lg {
 
 .field-container {
     border: 1px solid #DDDDDD;
-    margin: 10px;
+    margin-left: 15px;
     overflow: auto;
     padding-bottom: 10px;
 }
