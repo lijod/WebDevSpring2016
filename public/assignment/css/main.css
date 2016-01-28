@@ -1,5 +1,9 @@
 span.glyphicon.tableicon-lg {
-    font-size: 1.5em;
+    font-size: 1.2em;
+}
+
+i.glyphicon.tableicon-lg {
+    font-size: 1.2em;
 }
 
 .formtable {
