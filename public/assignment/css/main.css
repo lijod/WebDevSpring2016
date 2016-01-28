@@ -1,8 +1,4 @@
-span.glyphicon.tableicon-lg {
-    font-size: 1.2em;
-}
-
-i.glyphicon.tableicon-lg {
+.glyphicon.tableicon-lg {
     font-size: 1.2em;
 }
 
@@ -27,4 +23,24 @@ i.glyphicon.tableicon-lg {
 
 .form-horizontal .control-label.text-left{
     text-align: left!important;
+}
+
+.glyphicon.glyphicon-remove {
+    color: red;
+}
+
+.glyphicon.glyphicon-pencil {
+    color: darkslategrey;
+}
+
+.glyphicon.glyphicon-plus {
+    color: orange;
+}
+
+.glyphicon.glyphicon-ok {
+    color: green;
+}
+
+.glyphicon.glyphicon-align-justify {
+    color: aquamarine;
 }
