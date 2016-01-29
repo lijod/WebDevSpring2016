@@ -44,15 +44,3 @@
 .glyphicon.glyphicon-align-justify {
     color: aquamarine;
 }
-
-@media (max-width: 768px){
-    li.hidden-menu {
-        position: relative;
-        display: block;
-    }
-}
-@media (min-width: 768px) {
-    li.hidden-menu {
-        display: none;
-    }
-}
