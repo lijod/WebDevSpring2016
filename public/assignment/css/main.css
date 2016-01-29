@@ -46,14 +46,13 @@
 }
 
 @media (max-width: 768px){
-    .hidden-menu {
+    li.hidden-menu {
         position: relative;
         display: block;
     }
 }
-
-@media (min-width: 768px){
-    .hidden-menu {
+@media (min-width: 768px) {
+    li.hidden-menu {
         display: none;
     }
 }
