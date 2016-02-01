@@ -21,7 +21,7 @@
 }
 
 .glyphicon.glyphicon-remove {
-    color: red;
+    color: #C9302C;
 }
 
 .glyphicon.glyphicon-pencil {
@@ -29,15 +29,15 @@
 }
 
 .glyphicon.glyphicon-plus {
-    color: orange;
+    color: #eea236;
 }
 
 .glyphicon.glyphicon-ok {
-    color: green;
+    color: #73AD21;
 }
 
 .glyphicon.glyphicon-align-justify {
-    color: aquamarine;
+    color: #738BA4;
 }
 
 .form-action{
@@ -47,4 +47,8 @@
 .form-table-container {
     border: 1px solid #DDD;
     padding: 15px 15px 0px 15px;
+}
+
+.no-visibility {
+    visibility: hidden;
 }
