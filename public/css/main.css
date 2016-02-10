@@ -232,6 +232,12 @@ bt {
     color: #1abc9c;
 }
 
-.right {
-    float: right;
+#footer a.contact-icon {
+    color: white;
+    font-size: 30px;
+    padding: 10px;
+}
+
+#footer a.contact-icon i{
+    margin-top: 40px;
 }
