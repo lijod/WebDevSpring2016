@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,8 @@
     <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+    <link href="../../css/dashboard.css" rel="stylesheet">
+    <link href="../../css/style.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><!--<script src="../../assets/js/ie8-responsive-file-warning.js"></script>--><![endif]-->
@@ -47,13 +49,13 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">{{username}}</a></li>
-                <li class="visible-xs-block"><a href="home.html">HOME</a></li>
-                <li class="visible-xs-block"><a href="profile.html">PROFILE</a></li>
-                <li class="visible-xs-block"><a href="admin.html">ADMIN</a></li>
-                <li class="visible-xs-block"><a href="forms.html">FORM</a></li>
+                <li class="visible-xs-block"><a href="../home/home.view.html">HOME</a></li>
+                <li class="visible-xs-block"><a href="../users/profile.view.html">PROFILE</a></li>
+                <li class="visible-xs-block"><a href="../admin/admin.view.html">ADMIN</a></li>
+                <li class="visible-xs-block"><a href="forms.view.html">FORM</a></li>
                 <li class="visible-xs-block"><hr/></li>
-                <!--<li><a href="register.html">REGISTER</a></li>-->
-                <!--<li><a href="login.html">LOGIN</a></li>-->
+                <!--<li><a href="register.view.html">REGISTER</a></li>-->
+                <!--<li><a href="login.view.html">LOGIN</a></li>-->
                 <li><a href="#">LOGOUT</a></li>
             </ul>
             <!--<form class="navbar-form navbar-right">-->
@@ -67,62 +69,66 @@
     <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
-                <li><a href="home.html">HOME</a></li>
-                <li class="active"><a href="profile.html">PROFILE</a></li>
-                <li><a href="admin.html">ADMIN</a></li>
-                <li><a href="forms.html">FORM</a></li>
+                <li><a href="../home/home.view.html">HOME</a></li>
+                <li><a href="../users/profile.view.html">PROFILE</a></li>
+                <li><a href="../admin/admin.view.html">ADMIN</a></li>
+                <li class="active"><a href="forms.view.html">FORM</a></li>
             </ul>
         </div>
 
         <!-- Content goes here-->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
             <div id="legend">
-                <legend>Profile</legend>
+                <legend class="">Forms</legend>
             </div>
-            <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="userName" class="col-sm-2 text-left">Username</label>
-                    <div class="col-sm-10">
-                        <input type="text" id="username" class="form-control" placeholder="Username" autofocus>
-                    </div>
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="forms.view.html">Forms</a></li>
+                <li><a href="fields.view.html">Fields</a></li>
+            </ul>
+            <div class="form-table-container">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th><i class="caret"></i> Form Name</th>
+                            <th class="form-action">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><input type="text" class="form-control" placeholder="name"></td>
+                            <td>
+                                <a href="#"><span class="glyphicon glyphicon-plus tableicon-lg"></span></a>&nbsp;
+                                <a href="#"><span class="glyphicon glyphicon-ok tableicon-lg pull-right"></span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="fields.view.html">Registration Form</a></td>
+                            <td>
+                                <a href="#"><span class="glyphicon glyphicon-remove tableicon-lg"></span></a>&nbsp;
+                                <a href="#"><span class="glyphicon glyphicon-pencil tableicon-lg pull-right"></span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="fields.view.html">Contact List</a></td>
+                            <td>
+                                <a href="#"><span class="glyphicon glyphicon-remove tableicon-lg"></span></a>&nbsp;
+                                <a href="#"><span class="glyphicon glyphicon-pencil tableicon-lg pull-right"></span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="fields.view.html">To Do List</a></td>
+                            <td>
+                                <a href="#"><span class="glyphicon glyphicon-remove tableicon-lg"></span></a>&nbsp;
+                                <a href="#"><span class="glyphicon glyphicon-pencil tableicon-lg pull-right"></span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="form-group">
-                    <label for="password" class="col-sm-2">Password</label>
-                    <div class="col-sm-10">
-                        <input type="password" id="password" class="form-control" placeholder="Password">
-                    </div>
-                </div>
-                <!--<div class="form-group">-->
-                    <!--<label for="verifyPassword" class="col-sm-2 control-label">Verify Password</label>-->
-                    <!--<div class="col-sm-10">-->
-                        <!--<input type="password" id="verifyPassword" class="form-control" placeholder="Verify Password">-->
-                    <!--</div>-->
-                <!--</div>-->
-                <div class="form-group">
-                    <label for="firstName" class="col-sm-2">First Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" id="firstName" class="form-control" placeholder="First Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="lastName" class="col-sm-2">Last Name</label>
-                    <div class="col-sm-10">
-                        <input type="text" id="lastName" class="form-control" placeholder="Last Name">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="email" class="col-sm-2">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" id="email" class="form-control" placeholder="Email">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <a href="profile.html" class="btn btn-default btn-block">Update</a>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
+
     </div>
 </div>
 
