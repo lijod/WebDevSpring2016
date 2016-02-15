@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <!--<link rel="icon" href="../../favicon.ico">-->
 
-    <title>Form Maker</title>
+    <title>GadgetGuru.com</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
@@ -34,11 +34,6 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!--<li><a href="#">{{username}}</a></li>-->
-                    <li class="visible-xs-block"><a href="home.view.html">HOME</a></li>
-                    <li class="visible-xs-block"><a href="../users/profile.view.html">PROFILE</a></li>
-                    <li class="visible-xs-block"><a href="../admin/admin.view.html">ADMIN</a></li>
-                    <li class="visible-xs-block"><a href="../forms/forms.view.html">FORM</a></li>
-                    <li class="visible-xs-block"><hr/></li>
                     <li><a href="../users/register.view.html">REGISTER</a></li>
                     <li><a href="../users/login.view.html">LOGIN</a></li>
                     <!--<li><a href="#">LOGOUT</a></li>-->
@@ -48,10 +43,23 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar text-center">
+                    <li>
+                        <img style="margin-bottom: 9px;" width="190px" src="../../img/avatar_na.png">
+                    </li>
+                    <li><a href="">EDIT PROFILE</a></li>
+                    <li class="active"><a href="">REVIEW</a></li>
+                    <li><a href="">FOLLOWERS</a></li>
+                    <li><a href="">FOLLOWING</a></li>
+                    <li><a href="">LIKES</a></li>
+                    <li><a href="">DISLIKES</a></li>
+                </ul>
+            </div>
             <!-- Content goes here-->
-            <div class="col-xs-12">
+            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
                 <div id="legend">
-                    <legend class="">Profile</legend>
+                    <legend class="">Review</legend>
                 </div>
             </div>
         </div>
