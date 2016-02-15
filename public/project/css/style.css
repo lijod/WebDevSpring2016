@@ -1,0 +1,86 @@
+html, body {
+    height: 100%;
+}
+
+.glyphicon.tableicon-lg {
+    font-size: 1.2em;
+}
+
+.formtab {
+    width: 101%;
+}
+
+.field-container {
+    border: 1px solid #DDDDDD;
+    overflow: auto;
+    padding-bottom: 10px;
+}
+
+.form-row{
+    margin-top: 5px;
+}
+
+.form-horizontal .control-label.text-left{
+    text-align: left!important;
+}
+
+.glyphicon.glyphicon-remove {
+    color: #C9302C;
+}
+
+.glyphicon.glyphicon-pencil {
+    color: darkslategrey;
+}
+
+.glyphicon.glyphicon-plus {
+    color: #eea236;
+}
+
+.glyphicon.glyphicon-ok {
+    color: #73AD21;
+}
+
+.glyphicon.glyphicon-align-justify {
+    color: #4578C0;
+}
+
+.form-action{
+    width: 100px;
+}
+
+.form-table-container {
+    border: 1px solid #DDD;
+    padding: 15px 15px 0px 15px;
+}
+
+.no-visibility {
+    visibility: hidden;
+}
+
+footer {
+    background-color: #2f2f2f;
+    color: #ffffff;
+    padding-bottom: 1px;
+    /*padding-top: 30px;*/
+    /*height: 40px;*/
+}
+
+/*.wrapper {*/
+    /*min-height: 100%;*/
+    /*height: auto !important;*/
+    /*height: 100%;*/
+    /*margin: 0 auto -40px; !* the bottom margin is the negative value of the footer's height *!*/
+/*}*/
+
+.login-container-border {
+    box-shadow: 1px 1px 5px 5px #888888;
+    transform: translateY(40%);
+    border-radius: 10px;
+}
+
+.register-container-border {
+    box-shadow: 1px 1px 5px 5px #888888;
+    transform: translateY(10%);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
