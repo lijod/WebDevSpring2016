@@ -95,10 +95,16 @@ footer {
     /*padding: 20px;*/
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #222222;
+    background-color: #EEEEEE;
     /*border-right: 1px solid #eee;*/
 }
 
 .nav-sidebar-mobile-menu {
     list-style: none;
+}
+
+.profile-icon {
+    /*color: #ffffff;*/
+    font-size: 35px;
+    padding-top: 10px;
 }
