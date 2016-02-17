@@ -126,6 +126,12 @@ footer {
 .img-gadget-review {
     height: 100%;
     width: 100%;
+    max-width: 150px;
+    max-width: 150px;
+}
+
+.container-profile-review-img {
+    max-height: 30%;
 }
 
 .container-profile-review {
