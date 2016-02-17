@@ -139,3 +139,23 @@ footer {
     display : flex;
     align-items : center;
 }
+
+.profile-like-icon {
+    font-size: 25px;
+}
+
+.like-tab{
+    width: 50%;
+}
+
+.container-like {
+    margin-top: 5px;
+}
+
+.container-inner-like {
+
+}
+
+.container-like-list {
+    margin-top: 20px;
+}
