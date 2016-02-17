@@ -114,3 +114,22 @@ footer {
 .profile-img {
     margin-top: 5px;
 }
+
+.review-row {
+    height: 100%;
+}
+
+.review-row p{
+    /*margin-top: 10px;*/
+}
+
+.img-gadget-review {
+    height: 100%;
+    width: 100%;
+}
+
+.container-profile-review {
+    height: 100%;
+    display : flex;
+    align-items : center;
+}
