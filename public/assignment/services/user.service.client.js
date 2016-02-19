@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService() {
+    function UserService () {
 
         var users = [
             {        "_id":123, "firstName":"Alice",            "lastName":"Wonderland",
@@ -20,27 +20,76 @@
         ];
 
         var api = {
-            findUserByUsernameAndPassword : findUserByUsernameAndPassword
+            findUserByUsernameAndPassword : findUserByUsernameAndPassword,
+            findAllUsers : findAllUsers,
+            createUser : createUser,
+            deleteUserById : deleteUserById,
+            updateUser : updateUser
         };
 
         return api;
 
-        function findUserByUsernameAndPassword(username, password, callback) {
-            var user = null;
-
-            for (var i = 0; i < users.length; i++) {
-                if(validateUser(users[i], username, password)){
-                    user = users[i];
-                    break;
-                }
-            }
-
+        function findUserByUsernameAndPassword (username, password, callback) {
+            var user = getValidUser(username, password) ;
             callback(user);
-
         }
 
-        function validateUser(user, username, password) {
-            return (user.username === username && user.password === password)
+        function findAllUsers (callback) {
+            callback(users);
+        }
+
+        function createUser (user, callback) {
+            var id = (new Date).getTime();
+            var newUser = {
+                "_id" : id,
+                "firstName" : "",
+                "lastName" : "",
+                "username" : user.username,
+                "password" : user.password,
+                "roles" : []
+            }
+            users.push(newUser);
+            callback(newUser);
+        }
+
+        function deleteUserById (userId, callback) {
+            var userIndex = getUserIndexById(userId);
+            users.splice(userIndex, 1);
+            callback(users);
+        }
+
+        function updateUser (userId, user, callback) {
+            var userIndex = getUserIndexById(userId);
+            users[userIndex] = {
+                "_id" : user._id,
+                "firstName" : user.firstName,
+                "lastName" : user.lastName,
+                "username" : user.username,
+                "password" : user.password,
+                "roles" : user.roles
+            }
+            callback(users[userIndex]);
+        }
+
+
+        function getUserIndexById (userId) {
+            var index = 0;
+            for (var i = 0; i < users.length; i++) {
+                if(users[i]._id === userId){
+                    return index;
+                }
+                index++;
+            }
+        }
+
+        function getValidUser (username, password) {
+            var user = null;
+            for (var i = 0; i < users.length; i++) {
+                if(users[i].username === username && users[i].password === password){
+                    user =  users[i]
+                }
+            }
+            return user;
         }
 
     }
