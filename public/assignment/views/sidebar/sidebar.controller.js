@@ -1,3 +1,11 @@
-/**
- * Created by lijodaniel on 2/12/16.
- */
+(function() {
+
+    angular
+        .module("FormBuilderApp")
+        .controller("SidebarController", SidebarController);
+
+    function SidebarController($scope, $location){
+
+    }
+
+})();
