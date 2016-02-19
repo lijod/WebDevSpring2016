@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>Form Maker</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assignment/css/dashboard.css" rel="stylesheet">
+    <link href="css/dashboard.css" rel="stylesheet">
 </head>
-<body>
 
+
+<body ng-controller="MainController">
     <ng-include src="'views/header/header.view.html'"></ng-include>
 
     <div class="container-fluid">
@@ -27,8 +28,9 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
     <script src="app.js"></script>
     <script src="config.js"></script>
+    <script src="views/main/main.controller.js"></script>
 </body>
 </html>
