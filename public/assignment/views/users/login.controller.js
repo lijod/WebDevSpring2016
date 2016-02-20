@@ -13,7 +13,7 @@
         }
 
         function redirectUserToProfileIfValid(user) {
-            console.log("User found: " + user);
+            console.log("Redirecting user: ");
             console.log(user);
             if(user != null){
                 $rootScope.user = user;
