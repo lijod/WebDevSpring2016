@@ -46,6 +46,7 @@
                 "lastName" : "",
                 "username" : user.username,
                 "password" : user.password,
+                "email" : user.email,
                 "roles" : []
             }
             users.push(newUser);
@@ -59,6 +60,7 @@
         }
 
         function updateUser (userId, user, callback) {
+            console.log(user);
             var userIndex = getUserIndexById(userId);
             users[userIndex] = {
                 "_id" : user._id,
@@ -66,7 +68,8 @@
                 "lastName" : user.lastName,
                 "username" : user.username,
                 "password" : user.password,
-                "roles" : user.roles
+                "roles" : user.roles,
+                "email" : user.email
             }
             callback(users[userIndex]);
         }
