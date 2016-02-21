@@ -24,7 +24,16 @@
                 templateUrl: "views/home/home.view.html"
             })
             .when("/forms", {
-                templateUrl: "views/forms/forms.view.html"
+                templateUrl: "views/forms/forms.view.html",
+                controller: "FormController"
+            })
+            .when("/header", {
+                templateUrl: "views/header/header.view.html",
+                controller: "HeaderController"
+            })
+            .when("/sidebar", {
+                templateUrl: "views/sidebar/sidebar.view.html",
+                controller: "SidebarController"
             })
             .otherwise({
                 redirectTo : "/home"

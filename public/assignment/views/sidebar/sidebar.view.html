@@ -1,8 +1,8 @@
 <div class="col-sm-3 col-md-2 sidebar" ng-controller="SidebarController">
     <ul class="nav nav-sidebar">
-        <li class="active"><a href="#/home">HOME</a></li>
-        <li><a href="#/profile">PROFILE</a></li>
-        <li><a href="#/admin">ADMIN</a></li>
-        <li><a href="#/forms">FORM</a></li>
+        <li ng-class="{'active': $location.url() == '/home'}"><a href="#/home">HOME</a></li>
+        <li ng-class="{'active': $location.url() == '/profile'}"><a href="#/profile">PROFILE</a></li>
+        <li ng-class="{'active': $location.url() == '/admin'}"><a href="#/admin">ADMIN</a></li>
+        <li ng-class="{'active': $location.url() == '/forms'}"><a href="#/forms">FORM</a></li>
     </ul>
 </div>

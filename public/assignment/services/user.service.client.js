@@ -74,7 +74,6 @@
             callback(users[userIndex]);
         }
 
-
         function getUserIndexById (userId) {
             var index = 0;
             for (var i = 0; i < users.length; i++) {

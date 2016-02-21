@@ -52,3 +52,7 @@
 .no-visibility {
     visibility: hidden;
 }
+
+.selected-form {
+    background-color: #D9E4EC!important;
+}
