@@ -12,10 +12,22 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="isLoggedIn()"><a>USERNAME</a></li>
-                <li class="visible-xs-block"><a href="#/home">HOME</a></li>
-                <li class="visible-xs-block"><a href="#/profile">PROFILE</a></li>
-                <li class="visible-xs-block"><a href="#/admin">ADMIN</a></li>
-                <li class="visible-xs-block"><a href="#/forms">FORM</a></li>
+                <li ng-class="{'active': $location.url() == '/home'}"
+                    class="visible-xs-block">
+                    <a href="#/home">HOME</a>
+                </li>
+                <li ng-class="{'active': $location.url() == '/profile'}"
+                    class="visible-xs-block">
+                    <a href="#/profile">PROFILE</a>
+                </li>
+                <li ng-class="{'active': $location.url() == '/admin'}"
+                    class="visible-xs-block">
+                    <a href="#/admin">ADMIN</a>
+                </li>
+                <li ng-class="{'active': $location.url() == '/form'}"
+                    class="visible-xs-block">
+                    <a href="#/forms">FORM</a>
+                </li>
                 <li class="visible-xs-block"><hr/></li>
                 <li ng-class="{'active': $location.url() == '/register'}"
                     ng-hide="isLoggedIn()" >
