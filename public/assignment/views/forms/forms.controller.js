@@ -21,6 +21,9 @@
 
 
         function addForm(form) {
+            if(form == undefined || !form.hasOwnProperty("title") || form.title.trim() === "") {
+                return;
+            }
             FormService.createFormForUser(userId, form, function(newForm) {
                 console.log("Form added:");
                 console.log(form);
