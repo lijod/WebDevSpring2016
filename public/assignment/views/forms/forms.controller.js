@@ -38,9 +38,9 @@
             FormService.updateFormById(form._id, form, function(newForm) {
                 console.log("Form Updated:");
                 console.log(form);
+                $scope.forms[$scope.selected] = newForm;
                 $scope.selected = -1;
                 $scope.form = {};
-                updateFormsForCurrentUser();
             });
         }
 
