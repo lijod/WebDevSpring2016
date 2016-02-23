@@ -21,7 +21,7 @@
         ];
 
         var api = {
-            findUserByUsernameAndPassword : findUserByUsernameAndPassword,
+            findUserByCredentials : findUserByCredentials,
             findAllUsers : findAllUsers,
             createUser : createUser,
             deleteUserById : deleteUserById,
@@ -30,7 +30,7 @@
 
         return api;
 
-        function findUserByUsernameAndPassword (username, password, callback) {
+        function findUserByCredentials (username, password, callback) {
             var user = getValidUser(username, password) ;
             callback(user);
         }

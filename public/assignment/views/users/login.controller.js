@@ -10,7 +10,7 @@
 
         function login(username, password) {
             console.log("login... " + username)
-            UserService.findUserByUsernameAndPassword(username, password, redirectUserToProfileIfValid);
+            UserService.findUserByCredentials(username, password, redirectUserToProfileIfValid);
         }
 
         function redirectUserToProfileIfValid(user) {
