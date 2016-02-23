@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="user"><a>USERNAME</a></li>
+                <li ng-show="user"><a>{{user.username}}</a></li>
                 <li ng-class="{'active': $location.url() == '/home'}"
                     class="visible-xs-block">
                     <a href="#/home">HOME</a>
@@ -40,7 +40,10 @@
                     ng-show="user === undefined">
                     <a href="#/login">LOGIN</a>
                 </li>
-                <li ng-show="user"><a href="#/home">LOGOUT</a></li>
+                <li ng-show="user"
+                    ng-click="logOut()">
+                    <a href="javascript:void(0)">LOGOUT</a>
+                </li>
             </ul>
             <!--<form class="navbar-form navbar-right">-->
             <!--<input type="text" class="form-control" placeholder="Search...">-->

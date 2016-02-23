@@ -5,11 +5,12 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($scope, $location){
+    function HeaderController($scope, $rootScope, $location){
 
-        $scope.isLoggedIn = isLoggedIn;
-        function isLoggedIn() {
-            return ($location.url() != '/home' && $location.url() != '/login' && $location.url() != '/register');
+        $scope.logOut = logOut;
+        function logOut() {
+            delete $rootScope.user;
+            $location.url("/home");
         }
 
     }

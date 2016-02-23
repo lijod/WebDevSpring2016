@@ -35,6 +35,11 @@
         }
 
         function updateForm(form) {
+            if(form == undefined || !form.hasOwnProperty("title") || form.title.trim() === "") {
+                $scope.selected = -1;
+                $scope.form = {};
+                return;
+            }
             FormService.updateFormById(form._id, form, function(newForm) {
                 console.log("Form Updated:");
                 console.log(form);
@@ -48,6 +53,8 @@
             FormService.deleteFormById(formId, function(udpatedForms) {
                 console.log("Form Deleted:");
                 console.log(formId);
+                $scope.selected = -1;
+                $scope.form = {};
                 updateFormsForCurrentUser();
             });
         }
