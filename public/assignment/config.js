@@ -36,6 +36,10 @@
                 templateUrl: "views/sidebar/sidebar.view.html",
                 controller: "SidebarController"
             })
+            .when("/admin", {
+                templateUrl: "views/admin/admin.view.html",
+                controller: "AdminController"
+            })
             .otherwise({
                 redirectTo : "/home"
             })

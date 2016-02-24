@@ -4,12 +4,15 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($scope, $rootScope, FormService){
+    function FormController($scope, $rootScope, $location, FormService){
 
         var loggedInUser = $rootScope.user;
         var userId = -1;
 
-        if(loggedInUser != undefined) {
+        if(loggedInUser === undefined) {
+            $location.url("/home");
+            return;
+        } else {
             userId = loggedInUser._id;
             updateFormsForCurrentUser();
         }

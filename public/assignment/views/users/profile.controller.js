@@ -4,9 +4,16 @@
         .module("FormBuilderApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($scope, $rootScope, UserService) {
+    function ProfileController($scope, $rootScope, $location, UserService) {
 
-        $scope.user = $rootScope.user;
+        var loggedInUser = $rootScope.user;
+
+        if(loggedInUser === undefined) {
+            $location.url("/home");
+            return;
+        }
+
+        $scope.user = loggedInUser;
 
         $scope.update = update;
 
