@@ -52,14 +52,16 @@
             });
         }
 
-        function deleteForm(formId) {
-            FormService.deleteFormById(formId, function(udpatedForms) {
-                console.log("Form Deleted:");
-                console.log(formId);
-                $scope.selected = -1;
-                $scope.form = {};
-                updateFormsForCurrentUser();
-            });
+        function deleteForm(index) {
+            FormService.deleteFormById(
+                $scope.forms[index]._id,
+                function(udpatedForms) {
+                    console.log("Form Deleted:");
+                    console.log(index);
+                    $scope.selected = -1;
+                    $scope.form = {};
+                    updateFormsForCurrentUser();
+                });
         }
 
         function selectForm(index) {

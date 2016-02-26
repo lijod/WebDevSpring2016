@@ -11,7 +11,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="user"><a>{{user.username}}</a></li>
+                <li ng-show="user"><a href="#/profile">{{user.username}}</a></li>
                 <li ng-class="{'active': $location.url() == '/home'}"
                     class="visible-xs-block">
                     <a href="#/home">HOME</a>
