@@ -10,11 +10,13 @@
         $stateProvider
             .state('profile', {
                 url: '/profile',
-                templateUrl: 'views/user/profile/profile.view.html'
+                templateUrl: 'views/user/profile/profile.view.html',
+                controller: 'ProfileController'
             })
             .state('profile.review', {
                 url: '/review',
-                templateUrl: 'views/user/profile/review.view.html'
+                templateUrl: 'views/user/profile/review.view.html',
+                controller: "ReviewController"
             })
             .state('profile.like-main', {
                 url: '/like-main',
@@ -40,9 +42,19 @@
                 url: '/following',
                 templateUrl: 'views/user/profile/following.view.html'
             })
+            .state('search', {
+                url: '/search',
+                templateUrl: 'views/search/search.view.html',
+                controller: "SearchController"
+            })
+            .state('search-result', {
+                url: '/search-result/:productId',
+                templateUrl: 'views/search/search-result.view.html',
+                controller: "SearchResultController"
+            })
             .state('home', {
-            url: '/home',
-            template: 'I could sure use a drink right now.'
-        })
+                url: '/home',
+                template: 'I could sure use a drink right now.'
+            })
     }
 })();

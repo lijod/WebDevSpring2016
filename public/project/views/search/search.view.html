@@ -1,0 +1,12 @@
+<div class="container-fluid">
+
+    <input type="text" class="form-control" ng-model="gadgetName"/>
+    <a href="javascript:void(0)" ng-click="search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>
+
+    <div class="col-md-6" ng-repeat="gadget in gadgets">
+        <a href="#/search-result/{{gadget.productId}}"><img ng-src={{gadget.image}} />
+        <span>{{gadget.name}}</span></a>
+    </div>
+
+
+</div>
