@@ -24,6 +24,11 @@
                 templateUrl: 'views/user/profile/profile.view.html',
                 controller: 'ProfileController'
             })
+           .state('profile.edit', {
+                url: '/edit',
+                templateUrl: 'views/user/profile/edit-profile.view.html',
+                controller: 'EditProfileController'
+            })
             .state('profile.review', {
                 url: '/review',
                 templateUrl: 'views/user/profile/review.view.html'

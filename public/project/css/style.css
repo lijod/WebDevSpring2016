@@ -113,6 +113,7 @@ footer {
 
 .profile-img {
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .review-row {
@@ -159,3 +160,8 @@ footer {
 .container-like-list {
     margin-top: 20px;
 }
+
+.edit-profile-container {
+    margin-top: 20px;
+}
+
