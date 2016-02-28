@@ -6,8 +6,19 @@
 
     function configuration($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.when('/profile', '/profile/review');
 
         $stateProvider
+            .state('home', {
+                url: '/home',
+                templateUrl: 'views/search/search.view.html',
+                controller: "SearchController"
+            })
+            .state('search-result', {
+                url: '/search-result/:productId',
+                templateUrl: 'views/search/search-result.view.html',
+                controller: "SearchResultController"
+            })
             .state('profile', {
                 url: '/profile',
                 templateUrl: 'views/user/profile/profile.view.html',
@@ -15,8 +26,7 @@
             })
             .state('profile.review', {
                 url: '/review',
-                templateUrl: 'views/user/profile/review.view.html',
-                controller: "ReviewController"
+                templateUrl: 'views/user/profile/review.view.html'
             })
             .state('profile.like-main', {
                 url: '/like-main',
@@ -42,19 +52,17 @@
                 url: '/following',
                 templateUrl: 'views/user/profile/following.view.html'
             })
-            .state('search', {
-                url: '/search',
-                templateUrl: 'views/search/search.view.html',
-                controller: "SearchController"
+            .state('login', {
+                url: '/login',
+                templateUrl: 'views/user/login.view.html',
+                controller: "LoginController"
             })
-            .state('search-result', {
-                url: '/search-result/:productId',
-                templateUrl: 'views/search/search-result.view.html',
-                controller: "SearchResultController"
-            })
-            .state('home', {
-                url: '/home',
-                template: 'I could sure use a drink right now.'
-            })
+            .state('register', {
+                url: '/register',
+                templateUrl: 'views/user/register.view.html',
+                controller: "RegisterController"
+            });
+
+        $urlRouterProvider.when("/profile", "/profile/review");
     }
 })();

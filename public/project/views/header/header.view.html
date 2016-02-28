@@ -12,14 +12,18 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">{{username}}</a></li>-->
-                <li class="visible-xs-block"><a href="">HOME</a></li>
-                <li class="visible-xs-block"><a href="">PROFILE</a></li>
-                <li class="visible-xs-block"><a href="">ADMIN</a></li>
-                <li class="visible-xs-block"><a href="">FORM</a></li>
-                <li class="visible-xs-block"><hr/></li>
-                <li><a href="">REGISTER</a></li>
-                <li><a href="">LOGIN</a></li>
-                <li><a href="">LOGOUT</a></li>
+                <li ui-sref-active="active">
+                    <a ui-sref="profile">PROFILE</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="register">REGISTER</a>
+                </li>
+                <li ui-sref-active="active">
+                    <a ui-sref="login">LOGIN</a>
+                </li>
+                <li>
+                    <a ui-sref="home">LOGOUT</a>
+                </li>
             </ul>
         </div>
     </div>
