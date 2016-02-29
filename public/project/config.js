@@ -9,7 +9,6 @@
         $urlRouterProvider.when('/profile', '/profile/review');
         $urlMatcherFactoryProvider.strictMode(false);
 
-
         $stateProvider
             .state('home', {
                 url: '/home',
@@ -70,6 +69,5 @@
                 controller: "RegisterController"
             });
 
-        $urlRouterProvider.when("/profile", "/profile/review");
     }
 })();
