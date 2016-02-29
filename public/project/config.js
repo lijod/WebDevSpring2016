@@ -4,9 +4,11 @@
         .module("GadgetGuruApp")
         .config(configuration);
 
-    function configuration($stateProvider, $urlRouterProvider) {
+    function configuration($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
         $urlRouterProvider.otherwise('/home');
         $urlRouterProvider.when('/profile', '/profile/review');
+        $urlMatcherFactoryProvider.strictMode(false);
+
 
         $stateProvider
             .state('home', {
