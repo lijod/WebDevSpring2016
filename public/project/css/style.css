@@ -97,6 +97,7 @@ footer {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: #EEEEEE;
     /*border-right: 1px solid #eee;*/
+    padding: 0px!important;
 }
 
 .nav-sidebar-mobile-menu {
@@ -112,8 +113,7 @@ footer {
 }
 
 .profile-img {
-    margin-top: 5px;
-    margin-bottom: 5px;
+    padding: 5px;
 }
 
 .review-row {
@@ -165,3 +165,16 @@ footer {
     margin-top: 20px;
 }
 
+.mobile-profile-sidebar-controller li:hover
+{
+    /*text-decoration:none;*/
+    background-color: lightgray;
+}
+
+.mobile-profile-sidebar-icon-selected {
+    background-color: lightgray;
+}
+
+li.mobile-profile-sidebar-icon-selected:hover {
+
+}

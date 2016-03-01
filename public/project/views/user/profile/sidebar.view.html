@@ -10,11 +10,19 @@
     </ul>
 </div>
 
-<div class="nav-sidebar-mobile col-xs-2 visible-xs-block text-center">
+<div class="nav-sidebar-mobile col-xs-2 visible-xs-block text-center" ng-controller="SidebarController">
     <img class="img-responsive profile-img" ng-src="/project/img/user.jpg" />
-    <a href="" style="">Edit</a> <br/>
-    <!--<img class="img-responsive " src="../../img/review-blue1.png">-->
-    <i class="glyphicon glyphicon-comment profile-icon"></i> <br/>
-    <i class="glyphicon glyphicon-thumbs-up profile-icon"></i> <br/>
-    <i class="fa fa-users profile-icon"></i>
+    <ul class="nav text-center mobile-profile-sidebar-controller">
+        <li><a ui-sref=".edit">Edit</a></li>
+        <!--<img class="img-responsive " src="../../img/review-blue1.png">-->
+        <li ui-sref-active="mobile-profile-sidebar-icon-selected">
+            <a ui-sref=".review"><i class="glyphicon glyphicon-comment profile-icon"></i></a>
+        </li>
+        <li ng-class="{'mobile-profile-sidebar-icon-selected': state.includes('follow-main')}">
+            <a ui-sref=".follow-main.follower"><i class="fa fa-users profile-icon"></i></a>
+        </li>
+        <li ng-class="{'mobile-profile-sidebar-icon-selected': state.includes('like-main')}">
+            <a ui-sref=".like-main.like"><i class="glyphicon glyphicon-thumbs-up profile-icon"></i></a>
+        </li>
+    </ul>
 </div>

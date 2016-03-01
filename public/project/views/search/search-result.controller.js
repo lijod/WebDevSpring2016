@@ -4,10 +4,13 @@
         .module("GadgetGuruApp")
         .controller("SearchResultController", SearchResultController);
 
-    function SearchResultController($http, $scope, $stateParams) {
+    function SearchResultController($http, $scope, $state, $stateParams) {
         console.log("SearchResultController");
         $scope.gadget = {};
-        var url = "http://api.bestbuy.com/v1/products(productId=" + $stateParams.productId + ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn"
+        var productId = $stateParams.productId;
+
+        console.log("productId:", productId);
+        var url = "http://api.bestbuy.com/v1/products(productId=" + productId + ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn"
         console.log(url);
 
         $http.get(url)
