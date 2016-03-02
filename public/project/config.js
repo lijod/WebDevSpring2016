@@ -67,6 +67,11 @@
                 url: '/register',
                 templateUrl: 'views/user/register.view.html',
                 controller: "RegisterController"
+            })
+            .state('admin-user', {
+                url: '/admin-user',
+                templateUrl: 'views/admin/user.view.html',
+                controller: "UserController"
             });
 
     }
