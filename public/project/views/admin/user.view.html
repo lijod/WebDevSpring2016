@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table" ng-controller="UserController">
     <thead>
     <tr>
         <th>Username</th>
@@ -16,9 +16,9 @@
         <th><input ng-model="user.lastName" type="text" class="form-control"/></th>
         <th><input ng-model="user.email" type="email" class="form-control"/></th>
         <th>
-            <select ng-model="user.role" class="form-control">
-                <option value="user">user</option>
-                <option value="admin">admin</option>
+            <select ng-model="user.role" class="form-control"
+                    ng-options="role.value as role.name for role in roles">
+
             </select>
         </th>
         <th>

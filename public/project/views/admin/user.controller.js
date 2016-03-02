@@ -8,6 +8,13 @@
 
         updateUsers();
 
+        $scope.roles = [
+            {name: "user", value: "user"},
+            {name: "admin", value: "admin"}
+        ];
+
+        $scope.user = {role : $scope.roles[0].value};
+
         $scope.addUser = addUser;
         $scope.updateUser = updateUser;
         $scope.deleteUser = deleteUser;
@@ -16,9 +23,9 @@
 
 
         function addUser(user) {
-            //if(user == undefined || user.username.trim() === "") {
-            //    return;
-            //}
+            if(!isUserValid(user)) {
+                return;
+            }
             console.log(user);
             UserService.createUser(user, function(newUser) {
                 console.log("User added:");
@@ -30,11 +37,9 @@
         }
 
         function updateUser(user) {
-            //if(form == undefined || !form.hasOwnProperty("title") || form.title.trim() === "") {
-            //    $scope.selected = -1;
-            //    $scope.form = {};
-            //    return;
-            //}
+            if(!isUserValid(user)) {
+                return;
+            }
             UserService.updateUserById(user._id, user, function(newUser) {
                 console.log("User Updated:");
                 console.log(user);
@@ -74,6 +79,12 @@
             UserService.findAllUsers(function (userList) {
                 $scope.users = userList;
             });
+        }
+
+        function isUserValid(user) {
+            return user != undefined && user.username.trim() !== "" && user.password.trim() !== "" &&
+                user.firstName.trim() !== "" && user.lastName.trim() !== "" && user.email.trim() !== "" &&
+                user.role.trim() !== "";
         }
     }
 
