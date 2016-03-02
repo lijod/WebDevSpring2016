@@ -13,7 +13,7 @@
             {name: "admin", value: "admin"}
         ];
 
-        $scope.user = {role : $scope.roles[0].value};
+        //$scope.user = {role : $scope.roles[0].value};
 
         $scope.addUser = addUser;
         $scope.updateUser = updateUser;
