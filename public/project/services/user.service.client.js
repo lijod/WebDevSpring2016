@@ -2,22 +2,22 @@
 (function(){
 
     angular
-        .module("FormBuilderApp")
+        .module("GadgetGuruApp")
         .factory("UserService", UserService);
 
     function UserService () {
 
         var users = [
             {        "_id":123, "firstName":"Alice",            "lastName":"Wonderland",
-                "username":"alice",  "password":"alice",   "roles": ["student"]                },
+                "username":"alice",  "password":"alice",   "role": "user", "email": "123@abc.com"                },
             {        "_id":234, "firstName":"Bob",              "lastName":"Hope",
-                "username":"bob",    "password":"bob",     "roles": ["admin"]                },
+                "username":"bob",    "password":"bob",     "role": "admin" , "email": "234@abc.com"               },
             {        "_id":345, "firstName":"Charlie",          "lastName":"Brown",
-                "username":"charlie","password":"charlie", "roles": ["faculty"]                },
+                "username":"charlie","password":"charlie", "role": "user", "email": "345@abc.com"                },
             {        "_id":456, "firstName":"Dan",              "lastName":"Craig",
-                "username":"dan",    "password":"dan",     "roles": ["faculty", "admin"]},
+                "username":"dan",    "password":"dan",     "role": "user" , "email": "456@abc.com"},
             {        "_id":567, "firstName":"Edward",           "lastName":"Norton",
-                "username":"ed",     "password":"ed",      "roles": ["student"]                }
+                "username":"ed",     "password":"ed",      "role": "user", "email": "567@abc.com"                }
         ];
 
         var api = {
@@ -25,7 +25,7 @@
             findAllUsers : findAllUsers,
             createUser : createUser,
             deleteUserById : deleteUserById,
-            updateUser : updateUser
+            updateUserById : updateUserById
         };
 
         return api;
@@ -43,12 +43,12 @@
             var id = (new Date).getTime();
             var newUser = {
                 "_id" : id,
-                "firstName" : "",
-                "lastName" : "",
                 "username" : user.username,
+                "firstName" : user.firstName,
+                "lastName" : user.lastName,
                 "password" : user.password,
                 "email" : user.email,
-                "roles" : []
+                "role" : user.role
             }
             users.push(newUser);
             callback(newUser);
@@ -60,7 +60,7 @@
             callback(users);
         }
 
-        function updateUser (userId, user, callback) {
+        function updateUserById (userId, user, callback) {
             console.log(user);
             var userIndex = getUserIndexById(userId);
             users[userIndex] = {
@@ -69,7 +69,7 @@
                 "lastName" : user.lastName,
                 "username" : user.username,
                 "password" : user.password,
-                "roles" : user.roles,
+                "role" : user.role,
                 "email" : user.email
             }
             callback(users[userIndex]);
