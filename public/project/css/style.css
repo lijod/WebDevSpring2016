@@ -182,3 +182,8 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .td-admin-user {
     width: 155px;
 }
+
+.no-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+}

@@ -7,6 +7,7 @@
     function configuration($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
         $urlRouterProvider.otherwise('/home');
         $urlRouterProvider.when('/profile', '/profile/review');
+        $urlRouterProvider.when('/search-result/{productId}', '/search-result/{productId}/feature');
         $urlMatcherFactoryProvider.strictMode(false);
 
         $stateProvider
@@ -21,6 +22,18 @@
                 templateUrl: 'views/search/search-detail.view.html',
                 controller: "SearchResultController",
                 controllerAs: "model"
+            })
+            .state('search-result.feature', {
+                url: '/feature',
+                templateUrl: 'views/search/features.view.html'
+            })
+            .state('search-result.review', {
+                url: '/review',
+                templateUrl: 'views/search/review.view.html'
+            })
+            .state('search-result.spec', {
+                url: '/spec',
+                templateUrl: 'views/search/spec.view.html'
             })
             .state('profile', {
                 url: '/profile',
