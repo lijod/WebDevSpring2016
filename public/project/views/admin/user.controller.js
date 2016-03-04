@@ -43,15 +43,15 @@
             UserService.updateUserById(user._id, user, function(newUser) {
                 console.log("User Updated:");
                 console.log(user);
-                $scope.user[$scope.selected] = newUser;
+                $scope.users[$scope.selected] = newUser;
                 $scope.selected = -1;
                 $scope.user = {};
             });
         }
 
-        function deleteUser(user) {
+        function deleteUser(userId) {
             UserService.deleteUserById(
-                user._id,
+                userId,
                 function(udpatedUsers) {
                     console.log("User Deleted:");
                     console.log(user);
@@ -83,7 +83,7 @@
 
         function isUserValid(user) {
             return user != undefined && user.username.trim() !== "" && user.password.trim() !== "" &&
-                user.firstName.trim() !== "" && user.lastName.trim() !== "" && user.email.trim() !== "" &&
+                user.firstName.trim() !== "" && user.lastName.trim() !== "" && user.email && user.email.trim() !== "" &&
                 user.role.trim() !== "";
         }
     }
