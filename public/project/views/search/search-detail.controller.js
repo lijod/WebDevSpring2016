@@ -4,29 +4,29 @@
         .module("GadgetGuruApp")
         .controller("SearchResultController", SearchResultController);
 
-    function SearchResultController($http, $scope, $state, $stateParams) {
+    function SearchResultController($http, $scope, $state, $stateParams, GadgetService) {
         console.log("SearchResultController");
-        $scope.gadget = {};
-        var productId = $stateParams.productId;
 
-        console.log("productId:", productId);
-        var url = "http://api.bestbuy.com/v1/products(productId=" + productId + ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn"
-        console.log(url);
+        var vm = this;
+        vm.gadget = {};
+        function init() {
+            var productId = $stateParams.productId;
+            console.log("productId:", productId);
+            if(productId && productId.trim() !== "") {
+                GadgetService.getGadgetDetail(productId)
+                    .then(function (response) {
+                        console.log(response);
+                        vm.gadget = response.data.products[0];
+                        //deferred.resolve(response);
+                    }, function () {
+                        console.log("Error while getting details for product: " + productId);
+                        //deferred.reject(error);
+                    });
+            } else {
+                vm.gadget = {};
+            }
+        }
 
-        $http.get(url)
-            .success(function (response) {
-                console.log(response);
-                $scope.gadget = response.products[0];
-                //deferred.resolve(response);
-            })
-            .error(function(error){
-                console.log("error inside searchservice searchevent from http get ---" + error);
-                //deferred.reject(error);
-            })
-            .finally(function () {
-                console.log("inside finally for first api call");
-            });
-
+        init();
     }
-
 })();

@@ -1,12 +1,12 @@
 <div class="container">
-    <h3>{{gadget.name}}</h3><br/>
-    <img ng-src="{{gadget.largeFrontImage}}"/>
+    <h3>{{model.gadget.name}}</h3><br/>
+    <img ng-src="{{model.gadget.largeFrontImage}}"/>
     <div class="pull-right text-center">
-        <span>Market Price: {{gadget.regularPrice}}</span><br/>
-        <span>Average Rating: {{gadget.customerReviewAverage}}</span>
+        <span>Market Price: {{model.gadget.regularPrice}}</span><br/>
+        <span>Average Rating: {{model.gadget.customerReviewAverage}}</span>
     </div>
     <hr/>
-    {{gadget.longDescription}}
+    {{model.gadget.longDescription}}
 
 
     <!--<h4>User Review:</h4>-->

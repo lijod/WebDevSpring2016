@@ -19,7 +19,8 @@
             .state('search-result', {
                 url: '/search-result/:productId',
                 templateUrl: 'views/search/search-detail.view.html',
-                controller: "SearchResultController"
+                controller: "SearchResultController",
+                controllerAs: "model"
             })
             .state('profile', {
                 url: '/profile',
