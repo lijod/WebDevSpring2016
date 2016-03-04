@@ -3,9 +3,9 @@
 
     angular
         .module("GadgetGuruApp")
-        .factory("SearchService", SearchService);
+        .factory("GadgetService", GadgetService);
 
-    function SearchService($http){
+    function GadgetService($http){
         var url = "http://api.bestbuy.com/v1/products(name=(KEYWORD)*&type!=Music&type!=Movie&type!=BlackTie&type!=Software)?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn"
 
         var api = {

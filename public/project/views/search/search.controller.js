@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("SearchController", SearchController);
 
-    function SearchController($http, $scope, SearchService){
+    function SearchController($http, $scope, GadgetService){
         console.log("SearchController");
         var vm = this;
         vm.search = search;
@@ -15,7 +15,7 @@
 
         function search(keyword){
             console.log("Keyword:" + keyword);
-            SearchService
+            GadgetService
                 .getGadgetsByKeyword(keyword)
                 .then(function(response) {
                     console.log("response");
