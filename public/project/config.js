@@ -13,11 +13,12 @@
             .state('home', {
                 url: '/home',
                 templateUrl: 'views/search/search.view.html',
-                controller: "SearchController"
+                controller: "SearchController",
+                controllerAs: "model"
             })
             .state('search-result', {
                 url: '/search-result/:productId',
-                templateUrl: 'views/search/search-result.view.html',
+                templateUrl: 'views/search/search-detail.view.html',
                 controller: "SearchResultController"
             })
             .state('profile', {
