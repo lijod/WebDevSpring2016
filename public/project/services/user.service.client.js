@@ -89,7 +89,8 @@
             var user = null;
             for (var i = 0; i < users.length; i++) {
                 if(users[i].username === username && users[i].password === password){
-                    user =  users[i]
+                    user =  users[i];
+                    break;
                 }
             }
             return user;
