@@ -29,7 +29,8 @@
             })
             .state('search-result.review', {
                 url: '/review',
-                templateUrl: 'views/search/review.view.html'
+                templateUrl: 'views/search/review.view.html',
+                controller: "ReviewController"
             })
             .state('search-result.spec', {
                 url: '/spec',
