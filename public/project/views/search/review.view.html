@@ -95,11 +95,11 @@
         <div class="col-sm-12">
             <hr/>
             <div class="review-block">
-                <div class="row" ng-repeat="review in reviews">
+                <div class="row" ng-repeat="review in model.reviews">
                     <div class="col-sm-3">
                         <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
                         <div class="review-block-name"><a href="#">nktailor</a></div>
-                        <div class="review-block-date">January 29, 2016<br/>1 day ago</div>
+                        <div class="review-block-date">January 29, 2016</div>
                     </div>
                     <div class="col-sm-9">
                         <div class="review-block-rate">
@@ -122,8 +122,36 @@
                         <div class="review-block-title">{{review.title}}</div>
                         <div class="review-block-description">{{review.review}}</div>
                     </div>
+                    <hr/>
                 </div>
                 <hr/>
+                <div class="">
+                    <h4>Write a Review:</h4>
+                    <div class="review-block-rate">
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <form role="form" class="ng-pristine ng-valid">
+                        <div class="form-group">
+                            <input ng-model="model.review.title" class="form-control" type="text" />
+                            <textarea ng-model="model.review.review" class="form-control" rows="3"></textarea>
+                        </div>
+                        <a href="javascript:void(0)" ng-click="model.addReview(model.review)" class="btn btn-primary">Submit</a>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

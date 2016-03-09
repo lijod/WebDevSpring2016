@@ -30,7 +30,8 @@
             .state('search-result.review', {
                 url: '/review',
                 templateUrl: 'views/search/review.view.html',
-                controller: "ReviewController"
+                controller: "ReviewController",
+                controllerAs: "model"
             })
             .state('search-result.spec', {
                 url: '/spec',
