@@ -51,7 +51,19 @@
         }
 
         function updateReview(userId, productId, review) {
+            var index = getIndexByUserIdAndProductId(userId, productId);
+            reviews[index].title = review.title;
+            reviews[index].review = review.review;
 
+            return findAllReviewsForGadget(productId);
+        }
+
+        function getIndexByUserIdAndProductId(userId, productId) {
+            for(var index in reviews) {
+                if(reviews[index].gadgetId === productId && reviews[index].userId === userId) {
+                    return index;
+                }
+            }
         }
 
     }
