@@ -1,29 +1,35 @@
 <div class="container-fluid">
-    <h3>{{model.gadget.name}}</h3><br/>
-    <img ng-src="{{model.gadget.largeFrontImage}}"/>
-    <div class="pull-right text-center">
-        <span>Market Price: {{model.gadget.regularPrice}}</span><br/>
-        <span>Average Rating: {{model.gadget.customerReviewAverage}}</span>
+    <div class="row">
+        <h3>{{model.gadget.name}}</h3><br/>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <img class="img-responsive" ng-src="{{model.gadget.largeFrontImage}}"/>
+        </div>
+        <div class="col-sm-4 text-center">
+            <span>Market Price: {{model.gadget.regularPrice}}</span><br/>
+            <span>Average Rating: {{model.gadget.customerReviewAverage}}</span>
+        </div>
     </div>
     <hr/>
     {{model.gadget.longDescription}}
     <hr/>
-    <div class="container-fluid no-padding">
-        <ul class="nav nav-tabs">
-            <li ui-sref-active="active" role="presentation" class="text-center">
-                <a ui-sref=".feature">FEATURE</a>
-            </li>
-            <li ui-sref-active="active" role="presentation" class="text-center">
-                <a ui-sref=".review">REVIEWS</a>
-            </li>
-            <li ui-sref-active="active" role="presentation" class=" text-center">
-                <a ui-sref=".spec">SPECIFICATION</a>
-            </li>
-        </ul>
+    <div class="row">
+        <div class="container-fluid no-padding">
+            <ul class="nav nav-tabs">
+                <li ui-sref-active="active" role="presentation" class="text-center">
+                    <a ui-sref=".feature">FEATURE</a>
+                </li>
+                <li ui-sref-active="active" role="presentation" class="text-center">
+                    <a ui-sref=".review">REVIEWS</a>
+                </li>
+                <li ui-sref-active="active" role="presentation" class=" text-center">
+                    <a ui-sref=".spec">SPECIFICATION</a>
+                </li>
+            </ul>
 
-        <div ui-view></div>
+            <div ui-view></div>
 
+        </div>
     </div>
-
-
 </div>
