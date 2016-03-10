@@ -19,7 +19,7 @@
                 "userId" : 345,
                 "title": "This is a test title 2",
                 "review" : "This is a test review for macbook pro. Product ID: 1219696697139",
-                "rating": 4,
+                "rating": 3,
                 "gadgetId" : "1219696697139"}
         ];
 
@@ -47,7 +47,7 @@
                 "gadgetId": productId,
                 "title": review.title,
                 "review": review.review,
-                "rating": 4
+                "rating": review.rating
             };
 
             reviews.push(currReview);
@@ -59,6 +59,7 @@
             var index = getIndexByReviewId(reviewId);
             reviews[index].title = review.title;
             reviews[index].review = review.review;
+            reviews[index].rating = review.rating;
             return reviews[index];
         }
 

@@ -106,23 +106,26 @@
                         <!--<div class="review-block-date">January 29, 2016</div>-->
                     </div>
                     <div class="col-sm-9">
-                        <div class="review-block-rate">
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </button>
-                            <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            </button>
-                        </div>
+                        <!--<div class="review-block-rate">-->
+                            <!--<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">-->
+                                <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">-->
+                                <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">-->
+                                <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">-->
+                                <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                            <!--</button>-->
+                            <!--<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">-->
+                                <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                            <!--</button>-->
+                        <!--</div>-->
+                        <uib-rating ng-model="review.rating" max="5" read-only="false" on-hover=""
+                                    on-leave="overStar = null" titles="['one','two','three']"
+                                    aria-labelledby="default-rating"></uib-rating>
                         <div class="review-block-title">{{review.title}}</div>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.deleteReview($index)"><i class="glyphicon glyphicon-trash"></i></a>
@@ -134,25 +137,29 @@
                 <hr/>
                 <div class="">
                     <h4>Write a Review:</h4>
-                    <div class="review-block-rate">
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                        </button>
-                    </div>
+                    <!--<div class="review-block-rate">-->
+                        <!--<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">-->
+                            <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">-->
+                            <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">-->
+                            <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">-->
+                            <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                        <!--</button>-->
+                        <!--<button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">-->
+                            <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                        <!--</button>-->
+                    <!--</div>-->
+
                     <form role="form" class="ng-pristine ng-valid">
                         <div class="form-group">
+                            <uib-rating ng-model="model.review.rating" max="5" read-only="false" on-hover=""
+                                        on-leave="overStar = null" titles="['one','two','three']"
+                                        aria-labelledby="default-rating"></uib-rating>
                             <input ng-model="model.review.title" class="form-control" type="text" />
                             <textarea ng-model="model.review.review" class="search-review-text form-control" rows="3"></textarea>
                         </div>

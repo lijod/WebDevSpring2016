@@ -14,7 +14,8 @@
 
         vm.review = {
             review: "",
-            title: ""
+            title: "",
+            rating: 0
         };
 
         vm.isUpdate = false;
@@ -29,7 +30,8 @@
             vm.reviews = ReviewService.addReviewForUser(user._id, productId, review);
             vm.review = {
                 review: "",
-                title: ""
+                title: "",
+                rating: 0
             };
         }
 
@@ -41,7 +43,8 @@
                 "title": vm.reviews[index].title,
                 "review": vm.reviews[index].review,
                 "gadgetId": vm.reviews[index].gadgetId,
-                "userId": vm.reviews[index].userId
+                "userId": vm.reviews[index].userId,
+                "rating": vm.reviews[index].rating
             };
             vm.isUpdate = true;
         }
@@ -50,7 +53,8 @@
             vm.reviews[selectedIndex] = ReviewService.updateReview(review._id, review);
             vm.review = {
                 review: "",
-                title: ""
+                title: "",
+                rating: 0
             };
             vm.isUpdate = false;
         }
@@ -61,8 +65,6 @@
         }
 
         function getUserById(userId) {
-            console.log(userId)
-            console.log("getUserById:"+ UserService.getUserById(userId));
             return UserService.getUserById(userId);
         }
 
