@@ -152,8 +152,10 @@
                             <input ng-model="model.review.title" class="form-control" type="text" />
                             <textarea ng-model="model.review.review" class="form-control" rows="3"></textarea>
                         </div>
-                        <a href="javascript:void(0)" ng-click="model.addReview(model.review)" class="btn btn-primary">Submit</a>
-                        <a href="javascript:void(0)" ng-click="model.updateReview(model.review)" class="btn btn-primary">Update</a>
+                        <a href="javascript:void(0)" ng-click="model.addReview(model.review)"
+                           class="btn btn-primary" ng-if="!model.isUpdate">Submit</a>
+                        <a href="javascript:void(0)" ng-click="model.updateReview(model.review)"
+                           class="btn btn-primary" ng-if="model.isUpdate">Update</a>
                     </form>
                 </div>
             </div>

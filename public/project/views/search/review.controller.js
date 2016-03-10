@@ -17,6 +17,8 @@
             title: ""
         };
 
+        vm.isUpdate = false;
+
         vm.addReview = addReview;
         vm.selectReview = selectReview;
         vm.updateReview = updateReview;
@@ -40,6 +42,7 @@
                 "gadgetId": vm.reviews[index].gadgetId,
                 "userId": vm.reviews[index].userId
             };
+            vm.isUpdate = true;
         }
 
         function updateReview(review) {
@@ -48,10 +51,12 @@
                 review: "",
                 title: ""
             };
+            vm.isUpdate = false;
         }
 
         function deleteReview(index) {
             vm.reviews = ReviewService.deleteReview(vm.reviews[index]._id, vm.reviews[index], productId);
+            vm.isUpdate = false;
         }
 
     }
