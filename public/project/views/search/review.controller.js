@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController($scope, $stateParams, $rootScope, ReviewService) {
+    function ReviewController($scope, $stateParams, $rootScope, ReviewService, UserService) {
         var vm = this;
         console.log($rootScope.user);
         var user = $rootScope.user;
@@ -23,6 +23,7 @@
         vm.selectReview = selectReview;
         vm.updateReview = updateReview;
         vm.deleteReview = deleteReview;
+        vm.getUserById = getUserById;
 
         function addReview(review) {
             vm.reviews = ReviewService.addReviewForUser(user._id, productId, review);
@@ -57,6 +58,12 @@
         function deleteReview(index) {
             vm.reviews = ReviewService.deleteReview(vm.reviews[index]._id, vm.reviews[index], productId);
             vm.isUpdate = false;
+        }
+
+        function getUserById(userId) {
+            console.log(userId)
+            console.log("getUserById:"+ UserService.getUserById(userId));
+            return UserService.getUserById(userId);
         }
 
     }

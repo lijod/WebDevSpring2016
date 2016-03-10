@@ -25,7 +25,8 @@
             findAllUsers : findAllUsers,
             createUser : createUser,
             deleteUserById : deleteUserById,
-            updateUserById : updateUserById
+            updateUserById : updateUserById,
+            getUserById: getUserById
         };
 
         return api;
@@ -94,6 +95,16 @@
                 }
             }
             return user;
+        }
+
+        function getUserById(userId) {
+            var user = null;
+            for (var i = 0; i < users.length; i++) {
+                if(users[i]._id === userId){
+                    return  users[i];
+                }
+            }
+            return undefined;
         }
 
     }
