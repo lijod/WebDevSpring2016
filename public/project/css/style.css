@@ -187,3 +187,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
     padding-left: 0px;
     padding-right: 0px;
 }
+
+.search-review-text {
+    margin-top: 10px;
+}
