@@ -120,7 +120,10 @@
                             </button>
                         </div>
                         <div class="review-block-title">{{review.title}}</div>
+                        <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"><i class="glyphicon glyphicon-pencil"></i></a>
+                        <a class="pull-right" href="javascript:void(0)" ng-click="model.deleteReview($index)"><i class="glyphicon glyphicon-trash"></i></a>
                         <div class="review-block-description">{{review.review}}</div>
+
                     </div>
                     <hr/>
                 </div>
@@ -150,6 +153,7 @@
                             <textarea ng-model="model.review.review" class="form-control" rows="3"></textarea>
                         </div>
                         <a href="javascript:void(0)" ng-click="model.addReview(model.review)" class="btn btn-primary">Submit</a>
+                        <a href="javascript:void(0)" ng-click="model.updateReview(model.review)" class="btn btn-primary">Update</a>
                     </form>
                 </div>
             </div>
