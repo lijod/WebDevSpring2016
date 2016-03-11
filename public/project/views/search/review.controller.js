@@ -11,6 +11,12 @@
         var productId = $stateParams.productId;
         console.log(productId);
         vm.reviews =  ReviewService.findAllReviewsForGadget(productId);
+        vm.maxRating = 5;
+        vm.allRating = [0, 0, 0, 0, 0];
+        vm.avgRating = 4;
+        vm.totalRating = 0;
+        updateAllReview();
+
 
         vm.review = {
             review: "",
@@ -68,6 +74,11 @@
             return UserService.getUserById(userId);
         }
 
+        function updateAllReview() {
+            for(var reviewIndex in vm.reviews) {
+                vm.allRating[vm.reviews[reviewIndex].rating - 1]++;
+            }
+        }
     }
 
 })();
