@@ -3,22 +3,25 @@
         <div class="col-sm-3">
             <div class="rating-block">
                 <h4>Average user rating</h4>
-                <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
-                <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                </button>
+                <h2 class="bold padding-bottom-7">4 <small>/ 5</small></h2>
+                <!--<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">-->
+                    <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                <!--</button>-->
+                <!--<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">-->
+                    <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                <!--</button>-->
+                <!--<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">-->
+                    <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                <!--</button>-->
+                <!--<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">-->
+                    <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                <!--</button>-->
+                <!--<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">-->
+                    <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
+                <!--</button>-->
+                <uib-rating class="main-rating-container" ng-model="4" max="5" read-only="false"
+                            on-leave="overStar = null"
+                            aria-labelledby="default-rating"></uib-rating>
             </div>
         </div>
         <div class="col-sm-3">
@@ -123,8 +126,8 @@
                                 <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
                             <!--</button>-->
                         <!--</div>-->
-                        <uib-rating ng-model="review.rating" max="5" read-only="false" on-hover=""
-                                    on-leave="overStar = null" titles="['one','two','three']"
+                        <uib-rating class="rating-container" ng-model="review.rating" max="5" read-only="true"
+                                    on-leave="overStar = null"
                                     aria-labelledby="default-rating"></uib-rating>
                         <div class="review-block-title">{{review.title}}</div>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"><i class="glyphicon glyphicon-pencil"></i></a>
@@ -156,9 +159,9 @@
                     <!--</div>-->
 
                     <form role="form" class="ng-pristine ng-valid">
-                        <div class="form-group">
-                            <uib-rating ng-model="model.review.rating" max="5" read-only="false" on-hover=""
-                                        on-leave="overStar = null" titles="['one','two','three']"
+                        <div class="form-group rating-container">
+                            <uib-rating ng-model="model.review.rating" max="5" read-only="false"
+                                        on-leave="overStar = null"
                                         aria-labelledby="default-rating"></uib-rating>
                             <input ng-model="model.review.title" class="form-control" type="text" />
                             <textarea ng-model="model.review.review" class="search-review-text form-control" rows="3"></textarea>

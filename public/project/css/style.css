@@ -191,3 +191,13 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .search-review-text {
     margin-top: 10px;
 }
+
+.rating-container {
+    font-size: 1.5em;
+    color: #ec971f;
+}
+
+.main-rating-container {
+    font-size: 2em;
+    color: #ec971f;
+}
