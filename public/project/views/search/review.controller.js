@@ -6,16 +6,18 @@
 
     function ReviewController($scope, $stateParams, $rootScope, ReviewService, UserService) {
         var vm = this;
+        vm.Math = window.Math;
         console.log($rootScope.user);
         var user = $rootScope.user;
         var productId = $stateParams.productId;
         console.log(productId);
         vm.reviews =  ReviewService.findAllReviewsForGadget(productId);
         vm.maxRating = 5;
-        vm.allRating = [0, 0, 0, 0, 0];
-        vm.avgRating = 4;
+        vm.allRating = [0, 1, 1, 0, 0];
+        vm.avgPerRating = [0, 0, 0, 0, 0];
+        vm.avgRating = 0;
         vm.totalRating = 0;
-        updateAllReview();
+        updateAllRatings();
 
 
         vm.review = {
@@ -39,6 +41,7 @@
                 title: "",
                 rating: 0
             };
+            //updateAllRatings();
         }
 
         var selectedIndex = -1;
@@ -63,21 +66,32 @@
                 rating: 0
             };
             vm.isUpdate = false;
+            //updateAllRatings();
         }
 
         function deleteReview(index) {
             vm.reviews = ReviewService.deleteReview(vm.reviews[index]._id, vm.reviews[index], productId);
             vm.isUpdate = false;
+            //updateAllRatings();
         }
 
         function getUserById(userId) {
             return UserService.getUserById(userId);
         }
 
-        function updateAllReview() {
+        function updateAllRatings() {
+            vm.allRating = [0, 0, 0, 0, 0];
+            vm.avgPerRating = [0, 0, 0, 0, 0];
+            vm.totalRating = 0;
+            vm.avgRating = 0;
             for(var reviewIndex in vm.reviews) {
-                vm.allRating[vm.reviews[reviewIndex].rating - 1]++;
+                var ratingIndex = vm.reviews[reviewIndex].rating - 1;
+                vm.totalRating += vm.reviews[reviewIndex].rating;
+                vm.allRating[ratingIndex]++;
+                vm.avgPerRating[ratingIndex] =
+                    vm.allRating[ratingIndex] / vm.reviews.length * 100;
             }
+            vm.avgRating = vm.totalRating / vm.reviews.length;
         }
     }
 
