@@ -163,8 +163,10 @@
                             <uib-rating ng-model="model.review.rating" max="5" read-only="false"
                                         on-leave="overStar = null"
                                         aria-labelledby="default-rating"></uib-rating>
-                            <input ng-model="model.review.title" class="form-control" type="text" />
-                            <textarea ng-model="model.review.review" class="search-review-text form-control" rows="3"></textarea>
+                            <input ng-model="model.review.title" class="form-control" type="text"
+                                   placeholder="Please enter a title for your review"/>
+                            <textarea ng-model="model.review.review" class="search-review-text form-control"
+                                      placeholder="Please enter your review" rows="3"></textarea>
                         </div>
                         <a href="javascript:void(0)" ng-click="model.addReview(model.review)"
                            class="btn btn-primary" ng-if="!model.isUpdate">Submit</a>
