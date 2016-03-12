@@ -41,7 +41,7 @@
                 title: "",
                 rating: 0
             };
-            //updateAllRatings();
+            updateAllRatings();
         }
 
         var selectedIndex = -1;
@@ -66,13 +66,13 @@
                 rating: 0
             };
             vm.isUpdate = false;
-            //updateAllRatings();
+            updateAllRatings();
         }
 
         function deleteReview(index) {
             vm.reviews = ReviewService.deleteReview(vm.reviews[index]._id, vm.reviews[index], productId);
             vm.isUpdate = false;
-            //updateAllRatings();
+            updateAllRatings();
         }
 
         function getUserById(userId) {
