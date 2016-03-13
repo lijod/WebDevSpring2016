@@ -5,7 +5,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService ($rootScope) {
+    function UserService ($http, $rootScope) {
 
         var users = [
             {        "_id":123, "firstName":"Alice",            "lastName":"Wonderland",
@@ -39,42 +39,17 @@
             callback(user);
         }
 
-        function findUserByUsername(user, callback) {
-            console.log(user.username);
-            var currUser = null;
-            for (var i = 0; i < users.length; i++) {
-                if(users[i].username === user.username){
-                    currUser =  users[i];
-                    console.log(user.username + "user found");
-                }
-            }
-
-            if(currUser != null) {
-                console.log("Sending Null");
-                callback(null);
-            } else {
-                callback(user);
-            }
-
+        function findUserByUsername(username) {
+            return $http.get("/api/assignment/user?username=" + username);
         }
 
         function findAllUsers (callback) {
             callback(users);
         }
 
-        function createUser (user, callback) {
-            var id = (new Date).getTime();
-            var newUser = {
-                "_id" : id,
-                "firstName" : "",
-                "lastName" : "",
-                "username" : user.username,
-                "password" : user.password,
-                "email" : user.email,
-                "roles" : []
-            }
-            users.push(newUser);
-            callback(newUser);
+        function createUser (user) {
+            console.log(user);
+            return $http.post("/api/assignment/user", user);
         }
 
         function deleteUserById (userId, callback) {

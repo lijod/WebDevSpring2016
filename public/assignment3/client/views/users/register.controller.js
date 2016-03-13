@@ -15,21 +15,38 @@
         init();
 
         function register(user) {
-            console.log(user);
-            UserService.findUserByUsername(user, doRegister);
+            UserService.findUserByUsername(user.username)
+                .then(function(response){
+                    doRegister(user, response);
+                },
+                function() {
+                    console.log("error, User->register->findUserByUsername");
+                });
         }
 
-        function doRegister(user) {
-            if (user != null) {
-                console.log(user);
-                UserService.createUser(user, redirectUserToProfileIfValid);
-            } else {
+        function doRegister(currUser, response) {
+            var user = response.data;
+            console.log(user);
+            if (user) {
                 console.log("User Already Exists");
                 alert("User Already Exists");
+            } else {
+                UserService.createUser(currUser)
+                    .then(function(respose){
+                        UserService.findUserByUsername(currUser.username)
+                            .then(redirectUserToProfileIfValid,
+                            function() {
+                                console.log("error, User->register->findUserByUsername");
+                            });
+                    },
+                    function() {
+                        console.log("error, User->register->doRegister->createUser");
+                    });
             }
         }
 
-        function redirectUserToProfileIfValid(user) {
+        function redirectUserToProfileIfValid(response) {
+            var user = response.data;
             console.log("Redirecting user: ");
             console.log(user);
             if(user != null){
