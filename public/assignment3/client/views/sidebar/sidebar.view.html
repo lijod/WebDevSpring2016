@@ -4,16 +4,16 @@
     </li>
     <li
         ng-class="{'active': modelMainController.$location.url() == '/profile'}"
-        ng-show="user">
+        ng-show="currentUser">
         <a href="#/profile">PROFILE</a>
     </li>
-    <li ng-show="user && user.roles.indexOf('admin') >= 0"
+    <li ng-show="currentUser && currentUser.roles.indexOf('admin') >= 0"
         ng-class="{'active': modelMainController.$location.url() == '/admin'}">
         <a href="#/admin">ADMIN</a>
     </li>
     <li
         ng-class="{'active': modelMainController.$location.url() == '/forms'}"
-        ng-show="user">
+        ng-show="currentUser">
         <a href="#/forms">FORM</a>
     </li>
 </ul>

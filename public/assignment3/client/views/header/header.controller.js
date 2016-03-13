@@ -5,17 +5,19 @@
         .module("FormBuilderApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($rootScope, $location){
+    function HeaderController($location, UserService){
 
         var vm = this;
-        vm.logOut = logOut;
-        console.log("1");
+
+        function init() {
+            vm.logOut = logOut;
+        }
+
+        init();
 
         function logOut() {
-            console.log("2");
-            delete $rootScope.user;
+            UserService.invalidateCurrentSession();
             $location.url("/home");
-            console.log("3");
         }
 
     }

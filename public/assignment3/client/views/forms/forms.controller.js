@@ -4,25 +4,29 @@
         .module("FormBuilderApp")
         .controller("FormController", FormController);
 
-    function FormController($rootScope, $location, FormService){
+    function FormController($location, FormService, UserService){
 
         var vm = this;
-        var loggedInUser = $rootScope.user;
         var userId = -1;
 
-        if(loggedInUser === undefined) {
-            $location.url("/home");
-            return;
-        } else {
-            userId = loggedInUser._id;
-            updateFormsForCurrentUser();
+        function init() {
+            var loggedInUser = UserService.getCurrentUser();
+            if(loggedInUser === undefined) {
+                $location.url("/home");
+                return;
+            } else {
+                userId = loggedInUser._id;
+                updateFormsForCurrentUser();
+            }
+
+            vm.addForm = addForm;
+            vm.updateForm = updateForm;
+            vm.deleteForm = deleteForm;
+            vm.selectForm = selectForm;
+            vm.selected = -1;
         }
 
-        vm.addForm = addForm;
-        vm.updateForm = updateForm;
-        vm.deleteForm = deleteForm;
-        vm.selectForm = selectForm;
-        vm.selected = -1;
+        init();
 
         function addForm(form) {
             if(form == undefined || !form.hasOwnProperty("title") || form.title.trim() === "") {

@@ -11,36 +11,36 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li ng-show="user"><a href="#/profile">{{user.username}}</a></li>
+                <li ng-show="currentUser"><a href="#/profile">{{currentUser.username}}</a></li>
                 <li ng-class="{'active': modelMainController.$location.url() == '/home'}"
                     class="visible-xs-block">
                     <a href="#/home">HOME</a>
                 </li>
                 <li ng-class="{'active': modelMainController.$location.url() == '/profile'}"
-                    ng-show="user"
+                    ng-show="currentUser"
                     class="visible-xs-block">
                     <a href="#/profile">PROFILE</a>
                 </li>
                 <li ng-class="{'active': modelMainController.$location.url() == '/admin'}"
-                    ng-show="user && user.roles.indexOf('admin') >= 0"
+                    ng-show="currentUser && currentUser.roles.indexOf('admin') >= 0"
                     class="visible-xs-block">
                     <a href="#/admin">ADMIN</a>
                 </li>
                 <li ng-class="{'active': modelMainController.$location.url() == '/form'}"
-                    ng-show="user"
+                    ng-show="currentUser"
                     class="visible-xs-block">
                     <a href="#/forms">FORM</a>
                 </li>
                 <li class="visible-xs-block"><hr/></li>
                 <li ng-class="{'active': modelMainController.$location.url() == '/register'}"
-                    ng-show="user === undefined" >
+                    ng-hide="currentUser" >
                         <a href="#/register">REGISTER</a>
                 </li>
                 <li ng-class="{'active': modelMainController.$location.url() == '/login'}"
-                    ng-show="user === undefined">
+                    ng-hide="currentUser">
                     <a href="#/login">LOGIN</a>
                 </li>
-                <li ng-show="user" ng-click="model.logOut()">
+                <li ng-show="currentUser" ng-click="model.logOut()">
                     <a href="">LOGOUT</a>
                 </li>
             </ul>

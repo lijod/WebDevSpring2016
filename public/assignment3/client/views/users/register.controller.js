@@ -4,11 +4,15 @@
         .module("FormBuilderApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($scope, $rootScope, $location, UserService) {
+    function RegisterController($location, UserService) {
 
         var vm = this;
 
-        vm.register = register;
+        function init() {
+            vm.register = register;
+        }
+
+        init();
 
         function register(user) {
             console.log(user);
@@ -29,7 +33,7 @@
             console.log("Redirecting user: ");
             console.log(user);
             if(user != null){
-                $rootScope.user = user;
+                UserService.setCurrentUser(user);
                 $location.url("/profile")
             }
         }

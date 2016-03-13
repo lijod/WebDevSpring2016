@@ -4,10 +4,15 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($rootScope, $location, UserService) {
+    function LoginController($location, UserService) {
 
         var vm = this;
-        vm.login = login;
+
+        function init() {
+            vm.login = login;
+        }
+
+        init();
 
         function login(username, password) {
             console.log("login... " + username)
@@ -18,8 +23,8 @@
             console.log("Redirecting user: ");
             console.log(user);
             if(user != null){
-                $rootScope.user = user;
-                $location.url("/profile")
+                UserService.setCurrentUser(user);
+                $location.url("/profile");
             }
         }
     }

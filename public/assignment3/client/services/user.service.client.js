@@ -5,7 +5,7 @@
         .module("FormBuilderApp")
         .factory("UserService", UserService);
 
-    function UserService () {
+    function UserService ($rootScope) {
 
         var users = [
             {        "_id":123, "firstName":"Alice",            "lastName":"Wonderland",
@@ -26,7 +26,10 @@
             findAllUsers : findAllUsers,
             createUser : createUser,
             deleteUserById : deleteUserById,
-            updateUser : updateUser
+            updateUser : updateUser,
+            setCurrentUser : setCurrentUser,
+            getCurrentUser : getCurrentUser,
+            invalidateCurrentSession : invalidateCurrentSession
         };
 
         return api;
@@ -113,6 +116,18 @@
                 }
             }
             return user;
+        }
+
+        function getCurrentUser() {
+            return $rootScope.currentUser;
+        }
+
+        function setCurrentUser(user) {
+            $rootScope.currentUser = user;
+        }
+
+        function invalidateCurrentSession() {
+            delete $rootScope.currentUser;
         }
 
     }
