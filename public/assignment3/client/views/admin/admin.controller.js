@@ -4,13 +4,17 @@
         .module("FormBuilderApp")
         .controller("AdminController", AdminController);
 
-    function AdminController($scope, $rootScope, $location) {
-        var loggedInUser = $rootScope.user;
+    function AdminController($rootScope, $location) {
+        function init() {
+            var loggedInUser = $rootScope.user;
 
-        if(loggedInUser === undefined) {
-            $location.url("/home");
-            return;
+            if(loggedInUser === undefined) {
+                $location.url("/home");
+                return;
+            }
         }
+
+        init();
     }
 
 })();

@@ -16,17 +16,21 @@
             </thead>
             <tbody>
             <tr>
-                <td><input type="text" ng-model="form.title" class="form-control" placeholder="name"></td>
+                <td><input type="text" ng-model="model.form.title" class="form-control" placeholder="name"></td>
                 <td>
-                    <a ng-click="addForm(form)"><span class="glyphicon glyphicon-plus tableicon-lg"></span></a>&nbsp;
-                    <a ng-click="updateForm(form)"><span class="glyphicon glyphicon-ok tableicon-lg pull-right"></span></a>
+                    <a ng-click="model.addForm(model.form)">
+                        <span class="glyphicon glyphicon-plus tableicon-lg"></span>
+                    </a>&nbsp;
+                    <a ng-click="model.updateForm(model.form)">
+                        <span class="glyphicon glyphicon-ok tableicon-lg pull-right"></span>
+                    </a>
                 </td>
             </tr>
-            <tr ng-repeat="form in forms" ng-class="{'selected-form': $index == selected}">
+            <tr ng-repeat="form in model.forms" ng-class="{'selected-form': $index == model.selected}">
                 <td><a href="">{{form.title}}</a></td>
                 <td>
-                    <a ng-click="deleteForm($index)"><span class="glyphicon glyphicon-remove tableicon-lg"></span></a>&nbsp;
-                    <a ng-click="selectForm($index)"><span class="glyphicon glyphicon-pencil tableicon-lg pull-right"></span></a>
+                    <a ng-click="model.deleteForm($index)"><span class="glyphicon glyphicon-remove tableicon-lg"></span></a>&nbsp;
+                    <a ng-click="model.selectForm($index)"><span class="glyphicon glyphicon-pencil tableicon-lg pull-right"></span></a>
                 </td>
             </tr>
             </tbody>

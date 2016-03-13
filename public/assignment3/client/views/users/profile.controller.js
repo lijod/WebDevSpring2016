@@ -6,6 +6,8 @@
 
     function ProfileController($scope, $rootScope, $location, UserService) {
 
+        var vm = this;
+
         var loggedInUser = $rootScope.user;
 
         if(loggedInUser === undefined) {
@@ -13,9 +15,9 @@
             return;
         }
 
-        $scope.user = loggedInUser;
+        vm.user = loggedInUser;
 
-        $scope.update = update;
+        vm.update = update;
 
         function update(user) {
 

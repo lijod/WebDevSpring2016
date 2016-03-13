@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController">
+<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller="HeaderController as model">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -12,37 +12,36 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-show="user"><a href="#/profile">{{user.username}}</a></li>
-                <li ng-class="{'active': $location.url() == '/home'}"
+                <li ng-class="{'active': modelMainController.$location.url() == '/home'}"
                     class="visible-xs-block">
                     <a href="#/home">HOME</a>
                 </li>
-                <li ng-class="{'active': $location.url() == '/profile'}"
+                <li ng-class="{'active': modelMainController.$location.url() == '/profile'}"
                     ng-show="user"
                     class="visible-xs-block">
                     <a href="#/profile">PROFILE</a>
                 </li>
-                <li ng-class="{'active': $location.url() == '/admin'}"
+                <li ng-class="{'active': modelMainController.$location.url() == '/admin'}"
                     ng-show="user && user.roles.indexOf('admin') >= 0"
                     class="visible-xs-block">
                     <a href="#/admin">ADMIN</a>
                 </li>
-                <li ng-class="{'active': $location.url() == '/form'}"
+                <li ng-class="{'active': modelMainController.$location.url() == '/form'}"
                     ng-show="user"
                     class="visible-xs-block">
                     <a href="#/forms">FORM</a>
                 </li>
                 <li class="visible-xs-block"><hr/></li>
-                <li ng-class="{'active': $location.url() == '/register'}"
+                <li ng-class="{'active': modelMainController.$location.url() == '/register'}"
                     ng-show="user === undefined" >
                         <a href="#/register">REGISTER</a>
                 </li>
-                <li ng-class="{'active': $location.url() == '/login'}"
+                <li ng-class="{'active': modelMainController.$location.url() == '/login'}"
                     ng-show="user === undefined">
                     <a href="#/login">LOGIN</a>
                 </li>
-                <li ng-show="user"
-                    ng-click="logOut()">
-                    <a href="javascript:void(0)">LOGOUT</a>
+                <li ng-show="user" ng-click="model.logOut()">
+                    <a href="">LOGOUT</a>
                 </li>
             </ul>
             <!--<form class="navbar-form navbar-right">-->

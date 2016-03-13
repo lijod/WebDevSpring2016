@@ -4,9 +4,10 @@
         .module("FormBuilderApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, $rootScope, $location, UserService) {
+    function LoginController($rootScope, $location, UserService) {
 
-        $scope.login = login;
+        var vm = this;
+        vm.login = login;
 
         function login(username, password) {
             console.log("login... " + username)
