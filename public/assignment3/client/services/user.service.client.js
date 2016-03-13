@@ -34,9 +34,9 @@
 
         return api;
 
-        function findUserByCredentials (username, password, callback) {
-            var user = getValidUser(username, password) ;
-            callback(user);
+        function findUserByCredentials (username, password) {
+            //var user = getValidUser(username, password) ;
+            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
         }
 
         function findUserByUsername(username) {
