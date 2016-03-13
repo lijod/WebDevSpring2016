@@ -17,7 +17,7 @@ module.exports = function() {
 
     function findUserById (userId) {
         for(var u in users) {
-            if( users[u]._id === userId ) {
+            if( users[u]._id == userId ) {
                 return users[u];
             }
         }
@@ -65,7 +65,7 @@ module.exports = function() {
     function updateUser (userId, user) {
         var index = -1;
         for(var u in users) {
-            if(users[u]._id === userId) {
+            if(users[u]._id == userId) {
                 index = u;
                 break;
             }

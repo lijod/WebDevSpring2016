@@ -4,9 +4,12 @@
 
 console.log("Starting server...");
 console.time("Node startup time");
-var express = require('express');
+var express       = require('express');
 var bodyParser    = require('body-parser');
 var multer        = require('multer');
+var session       = require('express-session');
+var cookieParser  = require('cookie-parser');
+
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -16,6 +19,8 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
+app.use(session({ secret: "lijo_key" }));
+app.use(cookieParser())
 
 // Handles root request
 app.get('/', function(req, res){

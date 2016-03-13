@@ -11,10 +11,10 @@
 
         function init() {
             var loggedInUser = UserService.getCurrentUser();
-            if(loggedInUser === undefined) {
-                $location.url("/home");
-                return;
-            } else {
+            if(loggedInUser !== undefined) {
+            //    $location.url("/home");
+            //    return;
+            //} else {
                 userId = loggedInUser._id;
                 updateFormsForCurrentUser();
             }

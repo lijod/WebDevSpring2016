@@ -1,33 +1,24 @@
 module.exports = function(app, userModel) {
     app.post("/api/assignment/user", register);
-    app.get("/api/assignment/user", user);
     app.get("/api/assignment/user/:id", getUserById);
-    app.get("/api/assignment/user", user);
-    app.get("/api/assignment/user", user);
+    app.get("/api/assignment/user?[username=username&password=password]", login);
+    app.get("/api/assignment/user?[username=username]", getUserByUsername);
+    app.get("/api/assignment/userby", getUserByUsername);
+    app.get("/api/assignment/user", getAllUser);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUserById);
-
-    function user(req, res) {
-        var username = req.query.username;
-        var password = req.query.password;
-        if(username && password) {
-            res.json(login(username, password));
-            return;
-        } else if(username) {
-            res.json(getUserByUsername(username));
-        } else {
-            res.json(getAllUser());
-        }
-    }
-
+    app.get("/api/assignment/loggedin", loggedin);
+    app.post("/api/assignment/logout", logout);
+    
     function register(req, res) {
         var user = req.body;
-        userModel.createUser(user);
+        var user = userModel.createUser(user);
+        req.session.currentUser = user;
         res.json(userModel.findAllUsers());
     }
 
-    function getAllUser() {
-        return userModel.findAllUsers();
+    function getAllUser(req, res) {
+        res.json(userModel.findAllUsers());
     }
 
     function getUserById(req, res) {
@@ -35,22 +26,30 @@ module.exports = function(app, userModel) {
         res.json(userModel.findUserById(userId));
     }
 
-    function getUserByUsername(username) {
-        return userModel.findUserByUsername(username);
+    function getUserByUsername(req, res) {
+        var username = req.query.username;
+        console.log(username);
+        console.log("usernmanmasn")
+        res.json(userModel.findUserByUsername(username));
     }
 
-    function login(username, password) {
+    function login(req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
          var credentials = {
             "username": username,
             "password": password
         }
-        return userModel.findUserByCredentials(credentials);
+        var user = userModel.findUserByCredentials(credentials);
+        req.session.currentUser = user;
+        res.json(user);
     }
 
     function updateUser(req, res) {
         var userId = req.params.id;
         var user = req.body;
-        userModel.updateUser(userId, user);
+        user = userModel.updateUser(userId, user);
+        req.session.currentUser = user;
         res.json(userModel.findAllUsers());
     }
 
@@ -60,4 +59,13 @@ module.exports = function(app, userModel) {
         res.json(userModel.findAllUsers());
     }
 
+    function loggedin(req, res) {
+        res.json(req.session.currentUser);
+    }
+
+    function logout(req, res) {
+        console.log("Logged out")
+        req.session.destroy();
+        res.send(200);
+    }
 }
