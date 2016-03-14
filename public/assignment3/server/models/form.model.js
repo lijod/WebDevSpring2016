@@ -9,7 +9,8 @@ module.exports = function() {
         deleteFormById: deleteFormById,
         updateForm: updateForm,
         findFormByUserId: findFormByUserId,
-        findFormById: findFormById
+        findFormById: findFormById,
+        findFormByTitleForUser: findFormByTitleForUser
     };
 
     return api;
@@ -26,6 +27,15 @@ module.exports = function() {
     function findFormByTitle(title) {
         for(var f in forms) {
             if( forms[f].title === title ) {
+                return forms[f];
+            }
+        }
+        return null;
+    }
+
+    function findFormByTitleForUser(userId, title) {
+        for(var f in forms) {
+            if( forms[f].title === title && forms[f].userId == userId) {
                 return forms[f];
             }
         }

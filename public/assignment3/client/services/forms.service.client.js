@@ -7,17 +7,12 @@
 
     function FormService($http) {
 
-        //var forms = [
-        //    {"_id": "000", "title": "Contacts", "userId": 123},
-        //    {"_id": "010", "title": "ToDo",     "userId": 123},
-        //    {"_id": "020", "title": "CDs",      "userId": 234}
-        //];
-
         var api = {
             createFormForUser : createFormForUser,
             findAllFormsForUser : findAllFormsForUser,
             deleteFormById : deleteFormById,
-            updateFormById : updateFormById
+            updateFormById : updateFormById,
+            findFormByTitleForUser: findFormByTitleForUser
         };
 
         return api;
@@ -32,6 +27,10 @@
 
         function deleteFormById(formId) {
             return $http.delete("/api/assignment/form/" + formId);
+        }
+
+        function findFormByTitleForUser(userId, title) {
+            return $http.get("/api/assignment/user/" + userId + "/formbytitle/" + title);
         }
 
         function updateFormById(formId, newForm) {

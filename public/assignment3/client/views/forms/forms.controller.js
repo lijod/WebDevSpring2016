@@ -27,6 +27,7 @@
             vm.deleteForm = deleteForm;
             vm.selectForm = selectForm;
             vm.selected = -1;
+            vm.selectTitle = "";
         }
 
         init();
@@ -35,17 +36,21 @@
             if (form == undefined || !form.hasOwnProperty("title") || form.title.trim() === "") {
                 return;
             }
-            FormService.createFormForUser(userId, form)
-                .then(function (response) {
-                        console.log("Form added:");
-                        console.log(form);
-                        vm.forms = response.data;
-                        vm.selected = -1;
-                        vm.form = {};
-                    },
-                    function () {
-                        console.log("error forms->addForm->createFormForUser");
-                    });
+            getFormByTitleForUser(userId, form.title, function (formByTitle) {
+                if (!formByTitle) {
+                    FormService.createFormForUser(userId, form)
+                        .then(function (response) {
+                                console.log("Form added:");
+                                console.log(form);
+                                vm.forms = response.data;
+                                vm.selected = -1;
+                                vm.form = {};
+                            },
+                            function () {
+                                console.log("error forms->addForm->createFormForUser");
+                            });
+                }
+            });
         }
 
         function updateForm(form) {
@@ -54,17 +59,25 @@
                 vm.form = {};
                 return;
             }
-            FormService.updateFormById(form._id, form)
-                .then(function (response) {
-                        console.log("Form Updated:");
-                        console.log(form);
-                        vm.forms = response.data
-                        vm.selected = -1;
-                        vm.form = {};
-                    },
-                    function () {
-                        console.log("error forms->updateForm->updateFormById")
-                    });
+            if(form.title === vm.selectTitle){
+                return;
+            }
+            getFormByTitleForUser(userId, form.title, function (formByTitle) {
+                if (!formByTitle) {
+                    FormService.updateFormById(form._id, form)
+                        .then(function (response) {
+                                console.log("Form Updated:");
+                                console.log(form);
+                                vm.forms = response.data
+                                vm.selected = -1;
+                                vm.form = {};
+                                vm.selectTitle = "";
+                            },
+                            function () {
+                                console.log("error forms->updateForm->updateFormById")
+                            });
+                }
+            });
         }
 
         function deleteForm(index) {
@@ -89,6 +102,7 @@
             };
             vm.form = editForm;
             vm.selected = index;
+            vm.selectTitle = editForm.title;
         }
 
         function updateFormsForCurrentUser(userId) {
@@ -98,6 +112,16 @@
                     },
                     function () {
                         console.log("error forms->updateFormsForCurrentUser->findAllFormsForUser")
+                    });
+        }
+
+        function getFormByTitleForUser(userId, title, callback) {
+            FormService.findFormByTitleForUser(userId, title)
+                .then(function (response) {
+                        callback(response.data);
+                    },
+                    function () {
+                        console.log("error form->getFormByTitle->findFormByTitle")
                     });
         }
 
