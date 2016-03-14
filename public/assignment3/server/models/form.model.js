@@ -1,6 +1,6 @@
 var forms = require("./form.mock.json");
 
-module.exports = function(uuid) {
+module.exports = function (uuid) {
 
     var api = {
         findFormByTitle: findFormByTitle,
@@ -10,14 +10,20 @@ module.exports = function(uuid) {
         updateForm: updateForm,
         findFormByUserId: findFormByUserId,
         findFormById: findFormById,
-        findFormByTitleForUser: findFormByTitleForUser
+        findFormByTitleForUser: findFormByTitleForUser,
+        findAllFieldsForForm: findAllFieldsForForm,
+        findFieldForForm: findFieldForForm,
+        deleteFieldForForm: deleteFieldForForm,
+        createFieldForForm: createFieldForForm,
+        updateFieldForForm: updateFieldForForm
+
     };
 
     return api;
 
     function findFormById(formId) {
-        for(var f in forms) {
-            if( forms[f]._id == formId ) {
+        for (var f in forms) {
+            if (forms[f]._id == formId) {
                 return forms[f];
             }
         }
@@ -25,8 +31,8 @@ module.exports = function(uuid) {
     }
 
     function findFormByTitle(title) {
-        for(var f in forms) {
-            if( forms[f].title === title ) {
+        for (var f in forms) {
+            if (forms[f].title === title) {
                 return forms[f];
             }
         }
@@ -34,8 +40,8 @@ module.exports = function(uuid) {
     }
 
     function findFormByTitleForUser(userId, title) {
-        for(var f in forms) {
-            if( forms[f].title === title && forms[f].userId == userId) {
+        for (var f in forms) {
+            if (forms[f].title === title && forms[f].userId == userId) {
                 return forms[f];
             }
         }
@@ -55,14 +61,14 @@ module.exports = function(uuid) {
 
     function deleteFormById(formId) {
         var index = -1;
-        for(var f in forms) {
-            if(forms[f]._id == formId) {
+        for (var f in forms) {
+            if (forms[f]._id == formId) {
                 index = f;
                 break;
             }
         }
 
-        if(index > -1) {
+        if (index > -1) {
             var form = forms[index];
             forms.splice(index, 1);
             return form;
@@ -72,14 +78,14 @@ module.exports = function(uuid) {
 
     function updateForm(formId, form) {
         var index = -1;
-        for(var f in forms) {
-            if(forms[f]._id == formId) {
+        for (var f in forms) {
+            if (forms[f]._id == formId) {
                 index = f;
                 break;
             }
         }
 
-        if(index > -1) {
+        if (index > -1) {
             forms[index] = form;
             return form;
         }
@@ -88,12 +94,66 @@ module.exports = function(uuid) {
     }
 
     function findFormByUserId(userId) {
-        var formByUserId = forms.filter(function(form, index, arr) {
+        var formByUserId = forms.filter(function (form, index, arr) {
             return form.userId == userId;
         });
 
         return formByUserId;
     }
 
+    function findAllFieldsForForm(formId) {
+        for (var f in forms) {
+            if (forms[f]._id == formId) {
+                return forms[f].fields;
+            }
+        }
+        return [];
+    }
 
+    function findFieldForForm(formId, fieldId) {
+        var fields = findAllFieldsForForm(formId);
+        for (var f in fields) {
+            if (fields[f]._id == fieldId) {
+                return fields[f];
+            }
+        }
+        return null;
+    }
+
+    function deleteFieldForForm(formId, fieldId) {
+        var fields = findAllFieldsForForm(formId);
+        for (var f in fields) {
+            if (fields[f]._id == fieldId) {
+                var field = fields[f];
+                fields.splice(f, 1);
+                return field;
+            }
+        }
+        return null;
+    }
+
+    function createFieldForForm(formId, field) {
+        var fields = findAllFieldsForForm(formId);
+        field._id = uuid.v4();
+        fields.push(field);
+        return field;
+    }
+
+    function updateFieldForForm(formId, fieldId, field) {
+        var fields = findAllFieldsForForm(formId);
+        var index = -1;
+        for(var f in fields) {
+            if(fields[f]._id == fieldId) {
+                index = f;
+                break;
+            }
+        }
+
+        if(index > -1) {
+            fields[index] = field;
+            return field;
+        }
+
+        return null;
+    }
 }
