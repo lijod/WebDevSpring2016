@@ -28,8 +28,6 @@ module.exports = function(app, userModel) {
 
     function getUserByUsername(req, res) {
         var username = req.query.username;
-        console.log(username);
-        console.log("usernmanmasn")
         res.json(userModel.findUserByUsername(username));
     }
 
@@ -64,7 +62,6 @@ module.exports = function(app, userModel) {
     }
 
     function logout(req, res) {
-        console.log("Logged out")
         req.session.destroy();
         res.send(200);
     }

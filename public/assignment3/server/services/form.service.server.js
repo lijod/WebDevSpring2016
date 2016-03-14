@@ -33,7 +33,6 @@ module.exports = function(app, formModel) {
 
     function deleteFormById(req, res) {
         var formId = req.params.formId;
-        console.log(formId);
         var form = formModel.deleteFormById(formId);
         res.json(formModel.findFormByUserId(form.userId));
     }

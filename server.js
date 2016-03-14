@@ -9,7 +9,7 @@ var bodyParser    = require('body-parser');
 var multer        = require('multer');
 var session       = require('express-session');
 var cookieParser  = require('cookie-parser');
-
+var uuid = require('node-uuid');
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -30,11 +30,9 @@ app.get('/', function(req, res){
   res.send('hello world');
 });
 
-require("./public/assignment3/server/app.js")(app);
+require("./public/assignment3/server/app.js")(app, uuid);
 
 app.listen(port, ipaddress);
-
-
 
 console.log("Server started.");
 console.timeEnd("Node startup time"); 
