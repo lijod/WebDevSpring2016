@@ -7,11 +7,21 @@ module.exports = function() {
         findAllForms: findAllForms,
         createForm: createForm,
         deleteFormById: deleteFormById,
-        updateForm: updateForm
+        updateForm: updateForm,
+        findFormByUserId: findFormByUserId,
+        findFormById: findFormById
     };
 
     return api;
 
+    function findFormById(formId) {
+        for(var f in forms) {
+            if( forms[f]._id == formId ) {
+                return forms[f];
+            }
+        }
+        return null;
+    }
 
     function findFormByTitle(title) {
         for(var f in forms) {
@@ -26,17 +36,26 @@ module.exports = function() {
         return forms;
     }
 
-    function createForm(form) {
+    function createForm(userId, form) {
         form._id = "ID_" + (new Date()).getTime();
+        form.userId = userId;
         forms.push(form);
         return form;
     }
 
     function deleteFormById(formId) {
+        var index = -1;
         for(var f in forms) {
-            if( forms[f]._id === formId ) {
-                return forms[f];
+            if(forms[f]._id == formId) {
+                index = f;
+                break;
             }
+        }
+
+        if(index > -1) {
+            var form = forms[index];
+            forms.splice(index, 1);
+            return form;
         }
         return null;
     }
@@ -44,7 +63,7 @@ module.exports = function() {
     function updateForm(formId, form) {
         var index = -1;
         for(var f in forms) {
-            if(forms[f]._id === formId) {
+            if(forms[f]._id == formId) {
                 index = f;
                 break;
             }
@@ -56,6 +75,14 @@ module.exports = function() {
         }
 
         return null;
+    }
+
+    function findFormByUserId(userId) {
+        var formByUserId = forms.filter(function(form, index, arr) {
+            return form.userId == userId;
+        });
+
+        return formByUserId;
     }
 
 
