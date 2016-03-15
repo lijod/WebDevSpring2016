@@ -30,7 +30,7 @@ app.get('/', function(req, res){
   res.send('hello world');
 });
 
-require("./public/assignment3/server/app.js")(app, uuid);
+require("./public/assignment-node/server/app.js")(app, uuid);
 
 app.listen(port, ipaddress);
 
