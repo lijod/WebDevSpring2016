@@ -8,114 +8,38 @@
 <div class="container-fluid field-container">
 
     <div class="row" ng-repeat="field in model.fields" ng-switch on="field.type">
-        <div class="col-xs-12" ng-switch-when="TEXTAREA">
+        <div class="col-xs-12">
             <div class="row form-row">
                 <div class="col-md-3">
                     <label class="control-label">{{field.label}}</label>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-6 col-sm-7">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="TEXTAREA">
                     <textarea class="form-control" placeholder="{{field.placeholder}}">
                     </textarea>
                 </div>
-                <div class="col-xs-6 col-sm-5">
-                    <a href="#"><i class="glyphicon glyphicon-pencil tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-remove tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-align-justify tableicon-lg"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12" ng-switch-when="DATE">
-            <div class="row form-row">
-                <div class="col-md-3">
-                    <label class="control-label">{{field.label}}</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-7">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="DATE">
                     <input type="date" class="form-control">
                 </div>
-                <div class="col-xs-6 col-sm-5">
-                    <a href="#"><i class="glyphicon glyphicon-pencil tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-remove tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-align-justify tableicon-lg"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12" ng-switch-when="OPTIONS">
-            <div class="row form-row">
-                <div class="col-md-3">
-                    <label class="control-label">{{field.label}}</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-7">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="OPTIONS">
                     <select class="form-control">
                         <option ng-repeat="option in field.options" value="option.value">
                             {{option.label}}
                         </option>
                     </select>
                 </div>
-                <div class="col-xs-6 col-sm-5">
-                    <a href="#"><i class="glyphicon glyphicon-pencil tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-remove tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-align-justify tableicon-lg"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12" ng-switch-when="Checkboxes">
-            <div class="row form-row">
-                <div class="col-md-3">
-                    <label class="control-label">{{field.label}}</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-7">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="CHECKBOX">
                     <div class="checkbox" ng-repeat="option in field.options">
                         <label><input type="checkbox" value="{{option.value}}">{{option.label}}</label>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-5">
-                    <a href="#"><i class="glyphicon glyphicon-pencil tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-remove tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-align-justify tableicon-lg"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="col-xs-12" ng-switch-when="Radio Buttons">
-            <div class="row form-row">
-                <div class="col-md-3">
-                    <label class="control-label">{{field.label}}</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-7">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="RADIO">
                     <div class="radio" ng-repeat="option in field.options">
                         <label><input type="radio" value="{{option.value}}" name="optradio">{{option.label}}</label>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-5">
-                    <a href="#"><i class="glyphicon glyphicon-pencil tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-remove tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-align-justify tableicon-lg"></i></a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-xs-12" ng-switch-default>
-            <div class="row form-row">
-                <div class="col-md-3">
-                    <label class="control-label">{{field.label}}</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-7">
+                <div class="col-xs-6 col-sm-7" ng-switch-default>
                     <input type="text" class="form-control" placeholder="{{field.placeholder}}">
                 </div>
                 <div class="col-xs-6 col-sm-5">
@@ -144,10 +68,10 @@
             </select>
         </div>
         <div class="col-xs-6 col-sm-5">
-            <a href="#" class="no-visibility" ng-click="addField(model.fieldType)">
+            <a href="" class="no-visibility">
                 <i class="glyphicon glyphicon-pencil tableicon-lg"></i>
             </a>
-            <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
+            <a href="" ng-click="addField(model.fieldType)"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
         </div>
     </div>
 
