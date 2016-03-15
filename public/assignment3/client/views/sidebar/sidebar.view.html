@@ -12,7 +12,8 @@
         <a href="#/admin">ADMIN</a>
     </li>
     <li
-        ng-class="{'active': modelMainController.$location.url() == '/forms'}"
+        ng-class="{'active': modelMainController.$location.url() == '/forms'
+                            || modelMainController.$location.url().indexOf('/fields') > -1}"
         ng-show="currentUser">
         <a href="#/forms">FORM</a>
     </li>
