@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+</head>
+<body>
+
+    <div id="sort">
+        <div>TEXT1 <button class="btn">drag</button></div>
+        <div>TEXT2 <button class="btn">drag</button></div>
+        <div>TEXT3 <button class="btn">drag</button></div>
+        <div>TEXT4 <button class="btn">drag</button></div>
+    </div>
+    <script>
+        $("#sort").sortable({handle: ".btn", cancel: ''})
+    </script>
+</body>
+</html>

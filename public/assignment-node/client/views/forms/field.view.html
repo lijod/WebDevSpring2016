@@ -7,7 +7,7 @@
 </ul>
 <div class="container-fluid field-container">
 
-    <div class="row" ng-repeat="field in model.fields" ng-switch on="field.type">
+    <div class="row" ng-repeat="field in model.fields" ng-switch on="field.type" id="field-container">
         <div class="col-xs-12">
             <div class="row form-row">
                 <div class="col-md-3">
@@ -53,7 +53,7 @@
                     <a href=""  ng-click="model.removeField(field)">
                         <i class="glyphicon glyphicon-remove tableicon-lg"></i>
                     </a>
-                    <a href="">
+                    <a href="" class="drag-btn">
                         <i class="glyphicon glyphicon-align-justify tableicon-lg"></i>
                     </a>
                 </div>
@@ -125,3 +125,8 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $( "#field-container" ).sortable({handle: ".drag-btn", cancel: ''});
+</script>
