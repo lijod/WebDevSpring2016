@@ -55,6 +55,7 @@ module.exports = function (uuid) {
     function createForm(userId, form) {
         form._id = uuid.v4();
         form.userId = userId;
+        form.fields = [];
         forms.push(form);
         return form;
     }

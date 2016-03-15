@@ -9,6 +9,7 @@
         var vm = this;
 
         function init() {
+            vm.addField = addField;
             vm.fieldList = [
                 "Single Line Text",
                 "Multi Line Text",
@@ -18,19 +19,39 @@
                 "Radio Buttons"
             ];
 
-            var formId = $routeParams.formId;
+            vm.formId = $routeParams.formId;
 
-            FieldService.getFieldsForForm(formId)
-                .then(function(response) {
-                    vm.fields = response.data;
-                    console.log(vm.fields);
-                },
-                function() {
-                    console.log("error field->init->findAllFieldsForForm");
-                });
+            FieldService.getFieldsForForm(vm.formId)
+                .then(function (response) {
+                        vm.fields = response.data;
+                        console.log(vm.fields);
+                    },
+                    function () {
+                        console.log("error field->init->findAllFieldsForForm");
+                    });
         }
 
         init();
+
+        function addField(fieldType) {
+            console.log(fieldType);
+            var fieldTemplate = [
+                {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"},
+                {"_id": null, "label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"},
+                {"_id": null, "label": "New Date Field", "type": "DATE"},
+                {"_id": null, "label": "New Dropdown", "type": "OPTIONS", "options": []},
+                {"_id": null, "label": "New Checkboxes", "type": "CHECKBOXES", "options": []},
+                {"_id": null, "label": "New Radio Buttons", "type": "RADIOS", "options": []}
+            ];
+
+            FieldService.createFieldForForm(vm.formId, fieldTemplate[fieldType])
+                .then(function (response) {
+                        vm.fields = response.data;
+                    },
+                    function () {
+                        console.log("error field->addField->createFieldForForm")
+                    });
+        }
     }
 
 })();

@@ -29,12 +29,12 @@
                         </option>
                     </select>
                 </div>
-                <div class="col-xs-6 col-sm-7" ng-switch-when="CHECKBOX">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="CHECKBOXES">
                     <div class="checkbox" ng-repeat="option in field.options">
                         <label><input type="checkbox" value="{{option.value}}">{{option.label}}</label>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-7" ng-switch-when="RADIO">
+                <div class="col-xs-6 col-sm-7" ng-switch-when="RADIOS">
                     <div class="radio" ng-repeat="option in field.options">
                         <label><input type="radio" value="{{option.value}}" name="optradio">{{option.label}}</label>
                     </div>
@@ -43,10 +43,18 @@
                     <input type="text" class="form-control" placeholder="{{field.placeholder}}">
                 </div>
                 <div class="col-xs-6 col-sm-5">
-                    <a href="#"><i class="glyphicon glyphicon-pencil tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-remove tableicon-lg"></i></a>
-                    <a href="#"><i class="glyphicon glyphicon-align-justify tableicon-lg"></i></a>
+                    <a href="">
+                        <i class="glyphicon glyphicon-pencil tableicon-lg"></i>
+                    </a>
+                    <a href="">
+                        <i class="glyphicon glyphicon-plus tableicon-lg"></i>
+                    </a>
+                    <a href=""  ng-click="removeField(field)">
+                        <i class="glyphicon glyphicon-remove tableicon-lg"></i>
+                    </a>
+                    <a href="">
+                        <i class="glyphicon glyphicon-align-justify tableicon-lg"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -62,7 +70,7 @@
     <div class="row">
         <div class="col-xs-6 col-sm-7">
             <select class="form-control" id="newField" ng-model="model.fieldType">
-                <option ng-repeat="fieldName in model.fieldList">
+                <option ng-repeat="fieldName in model.fieldList" value="{{$index}}">
                     {{fieldName}}
                 </option>
             </select>
@@ -71,7 +79,7 @@
             <a href="" class="no-visibility">
                 <i class="glyphicon glyphicon-pencil tableicon-lg"></i>
             </a>
-            <a href="" ng-click="addField(model.fieldType)"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
+            <a href="" ng-click="model.addField(model.fieldType)"><i class="glyphicon glyphicon-plus tableicon-lg"></i></a>
         </div>
     </div>
 
