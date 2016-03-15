@@ -10,6 +10,7 @@
 
         function init() {
             vm.addField = addField;
+            vm.removeField = removeField;
             vm.fieldList = [
                 "Single Line Text",
                 "Multi Line Text",
@@ -49,8 +50,18 @@
                         vm.fields = response.data;
                     },
                     function () {
-                        console.log("error field->addField->createFieldForForm")
+                        console.log("error field->addField->createFieldForForm");
                     });
+        }
+
+        function removeField(field) {
+            FieldService.deleteFieldForForm(vm.formId, field._id)
+                .then(function(response) {
+                    vm.fields = response.data;
+                },
+                function() {
+                    console.log("error field->removeField->deleteFieldForForm");
+                });
         }
     }
 
