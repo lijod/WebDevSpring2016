@@ -40,6 +40,15 @@
                 }
 
             })
+            .when("/fields", {
+                templateUrl: "views/forms/field.view.html",
+                controller: "FormController",
+                controllerAs: "model",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
+
+            })
             .when("/admin", {
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",

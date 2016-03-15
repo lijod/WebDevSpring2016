@@ -3,9 +3,9 @@
 
     angular
         .module("FormBuilderApp")
-        .factory("FormService", FormService);
+        .factory("FieldService", FieldService);
 
-    function FormService($http) {
+    function FieldService($http) {
 
         var api = {
             createFieldForForm : createFieldForForm,
