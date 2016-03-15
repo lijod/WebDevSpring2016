@@ -13,6 +13,7 @@
             vm.removeField = removeField;
             vm.editField = editField;
             vm.updateField = updateField;
+            vm.cloneField = cloneField;
             vm.modalField = {
                 label: "",
                 placeholder: "",
@@ -42,6 +43,9 @@
         init();
 
         function addField(fieldType) {
+            if(!fieldType) {
+                return;
+            }
             console.log(fieldType);
             var fieldTemplate = [
                 {"_id": null, "label": "New Text Field", "type": "TEXT", "placeholder": "New Field"},
@@ -103,6 +107,10 @@
                 function() {
                     console.log("error field->updateField->updateField");
                 });
+        }
+
+        function cloneField(field) {
+
         }
 
         function setFieldOptions(options) {
