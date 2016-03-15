@@ -11,6 +11,13 @@
         function init() {
             vm.addField = addField;
             vm.removeField = removeField;
+            vm.editField = editField;
+            vm.updateField = updateField;
+            vm.modalField = {
+                label: "",
+                placeholder: "",
+                options: ""
+            };
             vm.fieldList = [
                 "Single Line Text",
                 "Multi Line Text",
@@ -62,6 +69,69 @@
                 function() {
                     console.log("error field->removeField->deleteFieldForForm");
                 });
+        }
+
+        function editField(field) {
+            vm.modalField = {
+                "_id": field._id,
+                "label": field.label,
+                "type": field.type
+            };
+            var type = field.type;
+            if(type == "TEXT" || type == "TEXTAREA") {
+                vm.hasPlaceholder = true;
+                vm.hasOptions = false;
+                vm.modalField.placeholder = field.placeholder;
+            } else if(type === "OPTIONS" || type === "CHECKBOXES" || type === "RADIOS") {
+                vm.hasOptions = true;
+                vm.hasPlaceholder = false;
+                setFieldOptions(field.options);
+            } else {
+                vm.hasOptions = false;
+                vm.hasPlaceholder = false;
+            }
+        }
+
+        function updateField(field) {
+            if(field.type === "OPTIONS" || field.type === "CHECKBOXES" || field.type === "RADIOS") {
+                field.options = getFieldOptions();
+            }
+            FieldService.updateField(vm.formId, field._id, field)
+                .then(function(response) {
+                    vm.fields = response.data;
+                },
+                function() {
+                    console.log("error field->updateField->updateField");
+                });
+        }
+
+        function setFieldOptions(options) {
+            var str = "";
+            var counter = 0;
+            for(var o in options) {
+                str += options[o].label + ":" + options[o].value;
+                if(counter < options.length - 1){
+                    str += "\n";
+                }
+                counter++;
+            }
+
+            vm.modalField.options = str;
+        }
+
+        function getFieldOptions() {
+            var optionArray = vm.modalField.options.split("\n");
+            var returnArray = [];
+            for(var o in optionArray) {
+                var option = optionArray[o].split(":");
+                if(option.length == 2) {
+                    returnArray.push({
+                       "label" : option[0],
+                       "value" : option[1]
+                    });
+                }
+            }
+            return returnArray;
         }
     }
 
