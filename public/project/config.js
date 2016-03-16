@@ -25,17 +25,17 @@
             })
             .state('search-result.feature', {
                 url: '/feature',
-                templateUrl: 'views/search/features.view.html'
+                templateUrl: 'views/search/feature/features.view.html'
             })
             .state('search-result.review', {
                 url: '/review',
-                templateUrl: 'views/search/review.view.html',
+                templateUrl: 'views/search/review/review.view.html',
                 controller: "ReviewController",
                 controllerAs: "model"
             })
             .state('search-result.spec', {
                 url: '/spec',
-                templateUrl: 'views/search/spec.view.html'
+                templateUrl: 'views/search/spec/spec.view.html'
             })
             .state('profile', {
                 url: '/profile',
@@ -49,31 +49,31 @@
             })
             .state('profile.review', {
                 url: '/review',
-                templateUrl: 'views/user/profile/review.view.html'
+                templateUrl: 'views/user/profile/review/review.view.html'
             })
             .state('profile.like-main', {
                 url: '/like-main',
-                templateUrl: 'views/user/profile/like.main.view.html'
+                templateUrl: 'views/user/profile/like/like.main.view.html'
             })
             .state('profile.like-main.like', {
                 url: '/like',
-                templateUrl: 'views/user/profile/like.view.html'
+                templateUrl: 'views/user/profile/like/like.view.html'
             })
             .state('profile.like-main.dislike', {
                 url: '/dislike',
-                templateUrl: 'views/user/profile/dislike.view.html'
+                templateUrl: 'views/user/profile/like/dislike.view.html'
             })
             .state('profile.follow-main', {
                 url: '/follow-main',
-                templateUrl: 'views/user/profile/follow.main.view.html'
+                templateUrl: 'views/user/profile/follower/follow.main.view.html'
             })
             .state('profile.follow-main.follower', {
                 url: '/follower',
-                templateUrl: 'views/user/profile/follower.view.html'
+                templateUrl: 'views/user/profile/follower/follower.view.html'
             })
             .state('profile.follow-main.following', {
                 url: '/following',
-                templateUrl: 'views/user/profile/following.view.html'
+                templateUrl: 'views/user/profile/follower/following.view.html'
             })
             .state('login', {
                 url: '/login',
