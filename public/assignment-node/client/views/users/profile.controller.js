@@ -35,6 +35,7 @@
                                 UserService.setCurrentUser(response.data);
                                 console.log("Updated:");
                                 console.log(response.data);
+                                alert("User updated!");
                             },
                             function() {
                                 console.log("error error profile->updateUser->findUserByUsername")

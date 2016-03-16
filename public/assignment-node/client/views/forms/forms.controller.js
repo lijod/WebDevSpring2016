@@ -49,6 +49,8 @@
                             function () {
                                 console.log("error forms->addForm->createFormForUser");
                             });
+                } else {
+                    alert("Form title already exists!")
                 }
             });
         }
