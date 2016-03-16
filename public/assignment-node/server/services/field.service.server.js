@@ -4,6 +4,7 @@ module.exports = function(app, formModel) {
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldForForm);
     app.post("/api/assignment/form/:formId/field", createFieldForForm);
     app.put("/api/assignment/form/:formId/field/:fieldId", updateFieldForForm);
+    app.put("/api/assignment/form/:formId/field/:pos1/:pos2", switchFieldIndexForForm);
 
     function getFormsByUserId(req, res) {
         var formId = req.params.formId;
@@ -38,4 +39,10 @@ module.exports = function(app, formModel) {
         res.json(formModel.findAllFieldsForForm(formId));
     }
 
+    function switchFieldIndexForForm(req, res) {
+        var formId = req.params.formId;
+        var pos1 = req.params.pos1;
+        var pos2 = req.params.pos2;
+        res.json(formModel.switchFieldIndexForForm(formId, pos1, pos2));
+    }
 }

@@ -12,7 +12,8 @@
             getFieldsForForm : getFieldsForForm,
             getFieldForForm : getFieldForForm,
             deleteFieldForForm : deleteFieldForForm,
-            updateField : updateField
+            updateField : updateField,
+            switchFieldIndexForForm: switchFieldIndexForForm
         };
 
         return api;
@@ -35,6 +36,10 @@
 
         function updateField(formId, fieldId, field) {
             return $http.put("/api/assignment/form/" + formId + "/field/" + fieldId, field);
+        }
+
+        function switchFieldIndexForForm(formId, pos1, pos2) {
+            return $http.put("/api/assignment/form/" + formId + "/field/" + pos1 + "/" + pos2);
         }
     }
 
