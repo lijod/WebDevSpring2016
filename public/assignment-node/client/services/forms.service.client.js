@@ -12,10 +12,15 @@
             findAllFormsForUser : findAllFormsForUser,
             deleteFormById : deleteFormById,
             updateFormById : updateFormById,
-            findFormByTitleForUser: findFormByTitleForUser
+            findFormByTitleForUser: findFormByTitleForUser,
+            findFormById: findFormById
         };
 
         return api;
+
+        function findFormById(formId) {
+            return $http.get("/api/assignment/form/" + formId);
+        }
 
         function createFormForUser(userId, form) {
             return $http.post("/api/assignment/user/" + userId + "/form", form);

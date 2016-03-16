@@ -160,10 +160,8 @@ module.exports = function (uuid) {
 
     function switchFieldIndexForForm(formId, pos1, pos2) {
         var fields = findAllFieldsForForm(formId);
-        console.log(fields);
         var field = fields.splice(pos1, 1)[0];
         fields.splice(pos2, 0, field);
-        console.log(fields);
         return fields;
     }
 }

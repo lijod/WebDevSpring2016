@@ -4,7 +4,7 @@
         .module("FormBuilderApp")
         .controller("FieldController", FieldController);
 
-    function FieldController($routeParams, FieldService) {
+    function FieldController($routeParams, FormService, FieldService) {
 
         var vm = this;
 
@@ -28,16 +28,14 @@
                 "Radio Buttons"
             ];
 
+            vm.formTitle = "";
+
             vm.formId = $routeParams.formId;
 
-            FieldService.getFieldsForForm(vm.formId)
-                .then(function (response) {
-                        vm.fields = response.data;
-                        console.log(vm.fields);
-                    },
-                    function () {
-                        console.log("error field->init->findAllFieldsForForm");
-                    });
+            updateFormName(vm.formId);
+
+            updateFields(vm.formId);
+
         }
 
         init();
@@ -158,6 +156,27 @@
                 }
             }
             return returnArray;
+        }
+
+        function updateFormName(formId) {
+            FormService.findFormById(formId)
+                .then(function(response) {
+                    vm.formTitle = response.data.title;
+                },
+                function() {
+                   console.log("error field->updateFormName->findFormById")
+                });
+        }
+
+        function updateFields(formId) {
+            FieldService.getFieldsForForm(formId)
+                .then(function (response) {
+                        vm.fields = response.data;
+                        console.log(vm.fields);
+                    },
+                    function () {
+                        console.log("error field->init->findAllFieldsForForm");
+                    });
         }
     }
 
