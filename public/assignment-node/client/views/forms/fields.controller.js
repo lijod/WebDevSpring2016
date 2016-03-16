@@ -110,7 +110,13 @@
         }
 
         function cloneField(field) {
-
+            FieldService.createFieldForForm(vm.formId, field)
+                .then(function (response) {
+                        vm.fields = response.data;
+                    },
+                    function () {
+                        console.log("error field->addField->createFieldForForm");
+                    });
         }
 
         function setFieldOptions(options) {
