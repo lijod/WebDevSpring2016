@@ -77,12 +77,12 @@
             })
             .state('login', {
                 url: '/login',
-                templateUrl: 'views/user/login.view.html',
+                templateUrl: 'views/user/login/login.view.html',
                 controller: "LoginController"
             })
             .state('register', {
                 url: '/register',
-                templateUrl: 'views/user/register.view.html',
+                templateUrl: 'views/user/register/register.view.html',
                 controller: "RegisterController"
             })
             .state('admin-user', {
