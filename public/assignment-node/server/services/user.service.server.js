@@ -1,14 +1,25 @@
 module.exports = function(app, userModel) {
     app.post("/api/assignment/user", register);
     app.get("/api/assignment/user/:id", getUserById);
-    app.get("/api/assignment/user?[username=username&password=password]", login);
-    app.get("/api/assignment/user?[username=username]", getUserByUsername);
+    app.get("/api/assignment/user", user);
     app.get("/api/assignment/userby", getUserByUsername);
-    app.get("/api/assignment/user", getAllUser);
     app.put("/api/assignment/user/:id", updateUser);
     app.delete("/api/assignment/user/:id", deleteUserById);
     app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/logout", logout);
+
+    function user(req, res) {
+        var username = req.query.username;
+        var password = req.query.password;
+
+        if(username && password) {
+            login(req, res);
+        } else if(username) {
+            getUserByUsername(req, res);
+        } else {
+            getAllUser(req, res);
+        }
+    }
     
     function register(req, res) {
         var user = req.body;
