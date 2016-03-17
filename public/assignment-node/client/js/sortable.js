@@ -20,7 +20,7 @@
                 stop: function(event, ui) {
                     end = ui.item.index();
                     var formId = scope.model.formId;
-                    FieldService.switchFieldIndexForForm(formId, start, end)
+                    FieldService.changeFieldIndexForForm(formId, start, end)
                         .then(function(response) {
                             console.log(response.data);
                             scope.model.fields = response.data;

@@ -16,7 +16,7 @@ module.exports = function (uuid) {
         deleteFieldForForm: deleteFieldForForm,
         createFieldForForm: createFieldForForm,
         updateFieldForForm: updateFieldForForm,
-        switchFieldIndexForForm: switchFieldIndexForForm
+        changeFieldIndexForForm: changeFieldIndexForForm
     };
 
     return api;
@@ -158,7 +158,7 @@ module.exports = function (uuid) {
         return null;
     }
 
-    function switchFieldIndexForForm(formId, pos1, pos2) {
+    function changeFieldIndexForForm(formId, pos1, pos2) {
         var fields = findAllFieldsForForm(formId);
         var field = fields.splice(pos1, 1)[0];
         fields.splice(pos2, 0, field);
