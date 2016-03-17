@@ -11,8 +11,10 @@
             var axis = attributes.axis;
             $(element).sortable({
                 axis: axis,
+                opacity: 0.6,
                 handle: ".drag-btn",
                 start: function(event, ui) {
+                    ui.placeholder.height(ui.item.height());
                     start = ui.item.index();
                 },
                 stop: function(event, ui) {
@@ -20,6 +22,7 @@
                     var formId = scope.model.formId;
                     FieldService.switchFieldIndexForForm(formId, start, end)
                         .then(function(response) {
+                            console.log(response.data);
                             scope.model.fields = response.data;
                         },
                         function() {
