@@ -1,4 +1,4 @@
-module.exports = function(app, formModel) {
+module.exports = function(app, fieldModel) {
     app.get("/api/assignment/form/:formId/field", getFormsByUserId);
     app.get("/api/assignment/form/:formId/field/:fieldId", getFieldForForm);
     app.delete("/api/assignment/form/:formId/field/:fieldId", deleteFieldForForm);
@@ -8,41 +8,41 @@ module.exports = function(app, formModel) {
 
     function getFormsByUserId(req, res) {
         var formId = req.params.formId;
-        res.json(formModel.findAllFieldsForForm(formId));
+        res.json(fieldModel.findAllFieldsForForm(formId));
     }
 
     function getFieldForForm(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        res.json(formModel.findFieldForForm(formId, fieldId));
+        res.json(fieldModel.findFieldForForm(formId, fieldId));
     }
 
     function deleteFieldForForm(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
-        formModel.deleteFieldForForm(formId, fieldId);
-        res.json(formModel.findAllFieldsForForm(formId));
+        fieldModel.deleteFieldForForm(formId, fieldId);
+        res.json(fieldModel.findAllFieldsForForm(formId));
     }
 
     function createFieldForForm(req, res) {
         var formId = req.params.formId;
         var field = req.body;
-        formModel.createFieldForForm(formId, field);
-        res.json(formModel.findAllFieldsForForm(formId));
+        fieldModel.createFieldForForm(formId, field);
+        res.json(fieldModel.findAllFieldsForForm(formId));
     }
 
     function updateFieldForForm(req, res) {
         var formId = req.params.formId;
         var fieldId = req.params.fieldId;
         var field = req.body;
-        formModel.updateFieldForForm(formId, fieldId, field);
-        res.json(formModel.findAllFieldsForForm(formId));
+        fieldModel.updateFieldForForm(formId, fieldId, field);
+        res.json(fieldModel.findAllFieldsForForm(formId));
     }
 
     function changeFieldIndexForForm(req, res) {
         var formId = req.params.formId;
         var pos1 = req.params.pos1;
         var pos2 = req.params.pos2;
-        res.json(formModel.changeFieldIndexForForm(formId, pos1, pos2));
+        res.json(fieldModel.changeFieldIndexForForm(formId, pos1, pos2));
     }
 }
