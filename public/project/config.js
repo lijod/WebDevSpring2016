@@ -5,10 +5,10 @@
         .config(configuration);
 
     function configuration($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
+        $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/home');
         $urlRouterProvider.when('/profile', '/profile/review');
-        $urlRouterProvider.when('/search-result/{productId}', '/search-result/{productId}/feature');
-        $urlMatcherFactoryProvider.strictMode(false);
+        $urlRouterProvider.when('/search-detail/{productId}', '/search-detail/{productId}/feature');
 
         $stateProvider
             .state('home', {
@@ -17,25 +17,25 @@
                 controller: "SearchController",
                 controllerAs: "model"
             })
-            .state('search-result', {
-                url: '/search-result/:productId',
-                templateUrl: 'views/search/search-detail.view.html',
+            .state('search-detail', {
+                url: '/search-detail/:productId',
+                templateUrl: 'views/search-detail/search-detail.view.html',
                 controller: "SearchResultController",
                 controllerAs: "model"
             })
-            .state('search-result.feature', {
+            .state('search-detail.feature', {
                 url: '/feature',
-                templateUrl: 'views/search/feature/features.view.html'
+                templateUrl: 'views/search-detail/feature/features.view.html'
             })
-            .state('search-result.review', {
+            .state('search-detail.review', {
                 url: '/review',
-                templateUrl: 'views/search/review/review.view.html',
+                templateUrl: 'views/search-detail/review/review.view.html',
                 controller: "ReviewController",
                 controllerAs: "model"
             })
-            .state('search-result.spec', {
+            .state('search-detail.spec', {
                 url: '/spec',
-                templateUrl: 'views/search/spec/spec.view.html'
+                templateUrl: 'views/search-detail/spec/spec.view.html'
             })
             .state('profile', {
                 url: '/profile',

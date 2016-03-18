@@ -4,7 +4,7 @@
     <a href="javascript:void(0)" ng-click="model.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>
 
     <div class="col-md-6" ng-repeat="gadget in model.gadgets">
-        <a ui-sref="search-result({productId: gadget.productId})">
+        <a ui-sref="search-detail({productId: gadget.productId})">
             <span>{{gadget.productId}}</span>
             <img class="img-responsive" ng-src={{gadget.image}} /> <br/>
             <span>{{gadget.name}}</span>
