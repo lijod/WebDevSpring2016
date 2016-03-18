@@ -107,8 +107,15 @@
         }
 
         function updateField(field) {
+            if(!field.label || field.label.trim() === "") {
+                return;
+            }
             if(field.type === "OPTIONS" || field.type === "CHECKBOXES" || field.type === "RADIOS") {
-                field.options = getFieldOptions();
+                var optionArray = getFieldOptions();
+                if(optionArray.length === 0) {
+                    return;
+                }
+                field.options = optionArray;
             }
             FieldService.updateField(vm.formId, field._id, field)
                 .then(function(response) {
@@ -144,11 +151,17 @@
         }
 
         function getFieldOptions() {
+            //if(vm.modalField.options || vm.modalField.options.trim() === "") {
+            //    return undefined;
+            //}
             var optionArray = vm.modalField.options.split("\n");
             var returnArray = [];
             for(var o in optionArray) {
                 var option = optionArray[o].split(":");
-                if(option.length == 2) {
+                if(option.length === 2) {
+                    if(option[0].trim() === "" || option[1].trim() === "") {
+                        return [];
+                    }
                     returnArray.push({
                        "label" : option[0],
                        "value" : option[1]
