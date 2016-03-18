@@ -27,6 +27,8 @@
             if(user != null){
                 UserService.setCurrentUser(user);
                 $location.url("/profile");
+            } else {
+                alert("Username and password doesn't exist!")
             }
         }
     }
