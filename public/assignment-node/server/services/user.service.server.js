@@ -1,3 +1,4 @@
+"use strict";
 module.exports = function(app, userModel) {
     app.post("/api/assignment/user", register);
     app.get("/api/assignment/user/:id", getUserById);

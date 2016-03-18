@@ -1,3 +1,4 @@
+"use strict";
 var forms = require("./form.mock.json");
 
 module.exports = function (uuid) {

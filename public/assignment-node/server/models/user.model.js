@@ -1,3 +1,4 @@
+"use strict";
 var users = require("./user.mock.json");
 
 module.exports = function(uuid) {

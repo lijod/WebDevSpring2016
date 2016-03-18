@@ -1,3 +1,4 @@
+"use strict";
 module.exports = function(app, uuid) {
     console.log("Assignment server loaded!");
 

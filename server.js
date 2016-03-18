@@ -1,7 +1,3 @@
-/**
- *
- */
-
 console.log("Starting server...");
 console.time("Node startup time");
 var express       = require('express');
@@ -19,9 +15,9 @@ var port = process.env.OPENSHIFT_NODEJS_PORT || 3000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-//app.use(session({ secret: "lijo_key" }));
+app.use(session({ secret: "lijo_key" }));
 console.log("Secret: ", process.env.PASSPORT_SECRET);
-app.use(session({ secret: process.env.PASSPORT_SECRET }));
+//app.use(session({ secret: process.env.PASSPORT_SECRET }));
 app.use(cookieParser())
 
 // Handles root request
