@@ -100,7 +100,8 @@
             var editForm = {
                 "_id": vm.forms[index]["_id"],
                 "userId": vm.forms[index]["userId"],
-                "title": vm.forms[index]["title"]
+                "title": vm.forms[index]["title"],
+                "fields": vm.forms[index]["fields"]
             };
             vm.form = editForm;
             vm.selected = index;
