@@ -18,7 +18,8 @@
         vm.avgRating = 0;
         vm.totalRating = 0;
         updateAllRatings();
-
+        $scope.searchDetailModel.avgRating=vm.avgRating;
+        $scope.searchDetailModel.maxRating=vm.maxRating;
 
         vm.review = {
             review: "",

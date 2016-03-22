@@ -3,7 +3,7 @@
         <div class="col-sm-3">
             <div class="rating-block">
                 <h4>Average user rating</h4>
-                <h2 class="bold padding-bottom-7">{{model.Math.round(model.avgRating)}} <small>/ 5</small></h2>
+                <h2 class="bold padding-bottom-7">{{model.Math.round(model.avgRating * 2) / 2}} <small>/ 5</small></h2>
                 <!--<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">-->
                     <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
                 <!--</button>-->
@@ -19,8 +19,9 @@
                 <!--<button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">-->
                     <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
                 <!--</button>-->
-                <uib-rating class="main-rating-container" ng-model="model.avgRating" max="model.maxRating" read-only="true"
-                            aria-labelledby="default-rating"></uib-rating>
+                <!--<uib-rating class="main-rating-container" ng-model="model.avgRating" max="model.maxRating" read-only="true"-->
+                            <!--aria-labelledby="default-rating"></uib-rating>-->
+                <ng-rating ng-model="model.avgRating" editable="false" stars-count="model.maxRating"></ng-rating>
             </div>
         </div>
         <div class="col-sm-3">
@@ -128,8 +129,9 @@
                                 <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
                             <!--</button>-->
                         <!--</div>-->
-                        <uib-rating class="rating-container" ng-model="review.rating" max="model.maxRating" read-only="true"
-                                    aria-labelledby="default-rating"></uib-rating>
+                        <!--<uib-rating class="rating-container" ng-model="review.rating" max="model.maxRating" read-only="true"-->
+                                    <!--aria-labelledby="default-rating"></uib-rating>-->
+                        <ng-rating ng-model="review.rating" editable="false" stars-count="model.maxRating"></ng-rating>
                         <div class="review-block-title">{{review.title}}</div>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"><i class="glyphicon glyphicon-pencil"></i></a>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.deleteReview($index)"><i class="glyphicon glyphicon-trash"></i></a>
@@ -161,8 +163,10 @@
 
                     <form role="form" class="ng-pristine ng-valid">
                         <div class="form-group rating-container">
-                            <uib-rating ng-model="model.review.rating" max="model.maxRating" read-only="false"
-                                        aria-labelledby="default-rating"></uib-rating>
+                            <!--<uib-rating ng-model="model.review.rating" max="model.maxRating" read-only="false"-->
+                                        <!--aria-labelledby="default-rating"></uib-rating>-->
+                            <ng-rating ng-model="model.review.rating" editable="true" stars-count="model.maxRating">
+                            </ng-rating>
                             <input ng-model="model.review.title" class="form-control" type="text"
                                    placeholder="Please enter a title for your review"/>
                             <textarea ng-model="model.review.review" class="search-review-text form-control"

@@ -1,18 +1,22 @@
 <div class="container-fluid">
     <div class="row">
-        <h3>{{model.gadget.name}}</h3><br/>
+        <h3>{{searchDetailModel.gadget.name}}</h3><br/>
     </div>
     <div class="row">
         <div class="col-sm-8">
-            <img class="img-responsive" ng-src="{{model.gadget.largeFrontImage}}"/>
+            <img class="img-responsive" ng-src="{{searchDetailModel.gadget.largeFrontImage}}"/>
         </div>
         <div class="col-sm-4 text-center">
-            <span>Market Price: {{model.gadget.regularPrice}}</span><br/>
-            <span>Average Rating: {{model.gadget.customerReviewAverage}}</span>
+            <!--<uib-rating class="main-rating-container" ng-model="searchDetailModel.avgRating"-->
+                        <!--max="searchDetailModel.maxRating" read-only="true"-->
+                        <!--aria-labelledby="default-rating"></uib-rating>-->
+            <ng-rating ng-model="searchDetailModel.avgRating" editable="false" stars-count="model.maxRating"></ng-rating>
+            <br/>
+            <h4><b>Market Price:</b> {{searchDetailModel.gadget.regularPrice}}</h4><br/>
         </div>
     </div>
     <hr/>
-    {{model.gadget.longDescription}}
+    {{searchDetailModel.gadget.longDescription}}
     <hr/>
     <div class="row">
         <div class="container-fluid no-padding">

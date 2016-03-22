@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("SearchResultController", SearchResultController);
 
-    function SearchResultController($http, $scope, $state, $stateParams, GadgetService) {
+    function SearchResultController($stateParams, GadgetService) {
         console.log("SearchResultController");
 
         var vm = this;

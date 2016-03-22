@@ -1,5 +1,5 @@
 "use strict";
 (function(){
     angular
-        .module("GadgetGuruApp", ["ngRoute", "ui.router", 'ngAnimate', 'ui.bootstrap']);
+        .module("GadgetGuruApp", ["ngRoute", "ui.router", 'ngRating']);
 })();

@@ -21,7 +21,7 @@
                 url: '/search-detail/:productId',
                 templateUrl: 'views/search-detail/search-detail.view.html',
                 controller: "SearchResultController",
-                controllerAs: "model"
+                controllerAs: "searchDetailModel"
             })
             .state('search-detail.feature', {
                 url: '/feature',
