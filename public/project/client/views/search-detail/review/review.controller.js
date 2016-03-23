@@ -76,9 +76,9 @@
             updateAllRatings();
         }
 
-        function getUserById(userId) {
-            return UserService.getUserById(userId);
-        }
+        //function getUserById(userId) {
+        //    return UserService.getUserById(userId);
+        //}
 
         function updateAllRatings() {
             vm.allRating = [0, 0, 0, 0, 0];

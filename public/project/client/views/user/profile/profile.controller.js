@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($http, $scope, $state) {
+    function ProfileController($scope, $state) {
         $scope.$state = $state;
     }
 })();
