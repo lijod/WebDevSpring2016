@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, $rootScope, $location, UserService) {
+    function LoginController($scope, $rootScope, $state, UserService) {
         $scope.login = login;
 
         function login(username, password) {
@@ -14,16 +14,18 @@
                         redirectUserToProfileIfValid(response.data);
                     },
                     function () {
-                        console.log("error LoginCOntroller->login->findUserByCredentials")
+                        console.log("error LoginController->login->findUserByCredentials")
                     });
         }
 
         function redirectUserToProfileIfValid(user) {
-            console.log(user);
             console.log("Redirecting user: ");
-            if (user != null) {
-                $rootScope.user = user;
-                $location.url("/profile");
+            console.log(user);
+            if(user != null){
+                UserService.setCurrentUser(user);
+                $state.go("profile");
+            } else {
+                alert("Username and password doesn't exist!")
             }
         }
     }

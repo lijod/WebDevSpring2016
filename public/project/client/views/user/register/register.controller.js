@@ -4,11 +4,12 @@
         .module("GadgetGuruApp")
         .controller("RegisterController", RegisterController);
 
-    function RegisterController($location, UserService) {
+    function RegisterController($state, UserService, $rootScope) {
         var vm = this;
 
         function init() {
             vm.register = register;
+            console.log($rootScope.currentUser);
         }
 
         init();
@@ -48,11 +49,11 @@
 
         function redirectUserToProfileIfValid(response) {
             var user = response.data;
-            console.log("Redirecting user: ");
             console.log(user);
             if(user != null){
+                console.log("Redirecting user: ");
                 UserService.setCurrentUser(user);
-                $location.url("/profile")
+                $state.go("profile")
             }
         }
     }
