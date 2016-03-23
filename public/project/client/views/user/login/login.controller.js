@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     angular
         .module("GadgetGuruApp")
@@ -9,13 +9,19 @@
 
         function login(username, password) {
             console.log("login... " + username);
-            UserService.findUserByCredentials(username, password, redirectUserToProfileIfValid);
+            UserService.findUserByCredentials(username, password)
+                .then(function (response) {
+                        redirectUserToProfileIfValid(response.data);
+                    },
+                    function () {
+                        console.log("error LoginCOntroller->login->findUserByCredentials")
+                    });
         }
 
         function redirectUserToProfileIfValid(user) {
-            console.log("Redirecting user: ");
             console.log(user);
-            if(user != null){
+            console.log("Redirecting user: ");
+            if (user != null) {
                 $rootScope.user = user;
                 $location.url("/profile");
             }

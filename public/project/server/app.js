@@ -2,8 +2,8 @@
 module.exports = function(app, uuid) {
     console.log("Assignment server loaded!");
 
-    var userModel = require("./models/user.model.js")(uuid);
+    var userModel = require("./model/user.model.js")(uuid);
 
-    require("./services/user.service.server.js") (app, userModel);
+    require("./service/user.service.server.js") (app, userModel);
 
 };
