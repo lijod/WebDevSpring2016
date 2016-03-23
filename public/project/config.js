@@ -8,7 +8,7 @@
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/home');
         $urlRouterProvider.when('/profile', '/profile/review');
-        $urlRouterProvider.when('/search-detail/{productId}', '/search-detail/{productId}/feature');
+        $urlRouterProvider.when('/search-detail/{productId}', '/search-detail/{productId}/review');
 
         $stateProvider
             .state('home', {
