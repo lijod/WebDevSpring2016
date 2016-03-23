@@ -5,7 +5,7 @@
         .module("GadgetGuruApp")
         .controller("HeaderController", HeaderController);
 
-    function HeaderController($state) {
+    function HeaderController($state, UserService) {
         var vm = this;
 
         function init() {
@@ -16,7 +16,7 @@
 
         function logOut() {
             UserService.invalidateCurrentSession();
-            $state.go("/home");
+            $state.go("home");
         }
     }
 })();
