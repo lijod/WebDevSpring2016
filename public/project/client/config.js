@@ -83,7 +83,8 @@
             .state('register', {
                 url: '/register',
                 templateUrl: 'views/user/register/register.view.html',
-                controller: "RegisterController"
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .state('admin-user', {
                 url: '/admin-user',
