@@ -4,22 +4,29 @@
         .module("GadgetGuruApp")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController($scope, $stateParams, $rootScope, ReviewService, UserService) {
+    function ReviewController($scope, $stateParams, $rootScope, ReviewService) {
         var vm = this;
         vm.Math = window.Math;
         console.log($rootScope.user);
-        var user = $rootScope.user;
+        var user = $rootScope.currentUser;
         var productId = $stateParams.productId;
         console.log(productId);
-        vm.reviews =  ReviewService.findAllReviewsForGadget(productId);
-        vm.maxRating = 5;
-        vm.allRating = [0, 1, 1, 0, 0];
-        vm.avgPerRating = [0, 0, 0, 0, 0];
-        vm.avgRating = 0;
-        vm.totalRating = 0;
-        updateAllRatings();
-        $scope.searchDetailModel.avgRating=vm.avgRating;
-        $scope.searchDetailModel.maxRating=vm.maxRating;
+        ReviewService.findAllReviewsForGadget(productId)
+            .then(function (response) {
+                    console.log(response.data);
+                    vm.reviews = response.data;
+                    vm.maxRating = 5;
+                    vm.allRating = [0, 1, 1, 0, 0];
+                    vm.avgPerRating = [0, 0, 0, 0, 0];
+                    vm.avgRating = 0;
+                    vm.totalRating = 0;
+                    updateAllRatings();
+                    $scope.searchDetailModel.avgRating=vm.avgRating;
+                    $scope.searchDetailModel.maxRating=vm.maxRating;
+                },
+                function () {
+                    console.log("error ReviewController->findAllReviewsForGadget");
+                });
 
         vm.review = {
             review: "",
@@ -33,16 +40,22 @@
         vm.selectReview = selectReview;
         vm.updateReview = updateReview;
         vm.deleteReview = deleteReview;
-        vm.getUserById = getUserById;
+        //vm.getUserById = getUserById;
 
         function addReview(review) {
-            vm.reviews = ReviewService.addReviewForUser(user._id, productId, review);
-            vm.review = {
-                review: "",
-                title: "",
-                rating: 0
-            };
-            updateAllRatings();
+            ReviewService.addReviewForUser(user._id, productId, review)
+                .then(function (response) {
+                        vm.reviews = response.data;
+                        vm.review = {
+                            review: "",
+                            title: "",
+                            rating: 0
+                        };
+                        updateAllRatings();
+                    },
+                    function () {
+                        console.log("error ReviewController->addReview->addReviewForUser");
+                    });
         }
 
         var selectedIndex = -1;
@@ -60,20 +73,32 @@
         }
 
         function updateReview(review) {
-            vm.reviews[selectedIndex] = ReviewService.updateReview(review._id, review);
-            vm.review = {
-                review: "",
-                title: "",
-                rating: 0
-            };
-            vm.isUpdate = false;
-            updateAllRatings();
+            ReviewService.updateReview(review._id, review)
+                .then(function(response) {
+                    vm.reviews[selectedIndex] = response.data;
+                    vm.review = {
+                        review: "",
+                        title: "",
+                        rating: 0
+                    };
+                    vm.isUpdate = false;
+                    updateAllRatings();
+                }, function() {
+                    console.log("error ReviewController->updateReview->updateReview");
+                });
         }
 
         function deleteReview(index) {
-            vm.reviews = ReviewService.deleteReview(vm.reviews[index]._id, vm.reviews[index], productId);
-            vm.isUpdate = false;
-            updateAllRatings();
+            ReviewService.deleteReview(vm.reviews[index]._id, productId)
+                .then(function (response) {
+                        console.log(response);
+                        vm.reviews = response.data;
+                        vm.isUpdate = false;
+                        updateAllRatings();
+                    },
+                    function () {
+                        console.log("error ReviewController->deleteReview->deleteReview")
+                    });
         }
 
         //function getUserById(userId) {
