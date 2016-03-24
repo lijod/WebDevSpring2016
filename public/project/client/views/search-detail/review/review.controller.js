@@ -4,19 +4,19 @@
         .module("GadgetGuruApp")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController($scope, $stateParams, $rootScope, ReviewService) {
+    function ReviewController($scope, $stateParams, $rootScope, ReviewService, UserService) {
         var vm = this;
         vm.Math = window.Math;
         console.log($rootScope.user);
         var user = $rootScope.currentUser;
-        var productId = $stateParams.productId;
+            var productId = $stateParams.productId;
         console.log(productId);
         ReviewService.findAllReviewsForGadget(productId)
             .then(function (response) {
                     console.log(response.data);
                     vm.reviews = response.data;
                     vm.maxRating = 5;
-                    vm.allRating = [0, 1, 1, 0, 0];
+                    vm.allRating = [0, 0, 0, 0, 0];
                     vm.avgPerRating = [0, 0, 0, 0, 0];
                     vm.avgRating = 0;
                     vm.totalRating = 0;
@@ -106,6 +106,9 @@
         //}
 
         function updateAllRatings() {
+            if(!vm.reviews || vm.reviews.length === 0) {
+                return;
+            }
             vm.allRating = [0, 0, 0, 0, 0];
             vm.avgPerRating = [0, 0, 0, 0, 0];
             vm.totalRating = 0;
