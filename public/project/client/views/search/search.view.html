@@ -2,13 +2,16 @@
 
     <input type="text" class="form-control" ng-model="gadgetName"/>
     <a href="javascript:void(0)" ng-click="model.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>
-
-    <div class="col-md-6" ng-repeat="gadget in model.gadgets">
-        <a ui-sref="search-detail({productId: gadget.productId})">
-            <span>{{gadget.productId}}</span>
-            <img class="img-responsive" ng-src={{gadget.image}} /> <br/>
-            <span>{{gadget.name}}</span>
-        </a>
+    <div class="row">
+        <div class="col-md-4 col-sm-6 gadget-search-container text-center" ng-repeat="gadget in model.gadgets">
+            <div class="thumbnail">
+                <a ui-sref="search-detail({productId: gadget.productId})">
+                    <!--<span>{{gadget.productId}}</span>-->
+                    <img class="img-responsive" ng-src={{gadget.image}} height="200px"> <br/>
+                    <span>{{gadget.name}}</span>
+                </a>
+            </div>
+        </div>
     </div>
 
 </div>

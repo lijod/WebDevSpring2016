@@ -201,3 +201,12 @@ li.mobile-profile-sidebar-icon-selected:hover {
     font-size: 2em;
     color: #ec971f;
 }
+
+.gadget-search-container {
+    margin-top: 10px;
+    height: 305px;
+}
+
+.gadget-search-container img {
+    height: 200px !important;
+}
