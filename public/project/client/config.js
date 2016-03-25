@@ -15,13 +15,19 @@
                 url: '/home',
                 templateUrl: 'views/search/search.view.html',
                 controller: "SearchController",
-                controllerAs: "model"
+                controllerAs: "model",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .state('search-detail', {
                 url: '/search-detail/:productId',
                 templateUrl: 'views/search-detail/search-detail.view.html',
                 controller: "SearchResultController",
-                controllerAs: "searchDetailModel"
+                controllerAs: "searchDetailModel",
+                resolve: {
+                    getLoggedIn: getLoggedIn
+                }
             })
             .state('search-detail.feature', {
                 url: '/feature',
@@ -40,7 +46,10 @@
             .state('profile', {
                 url: '/profile',
                 templateUrl: 'views/user/profile/profile.view.html',
-                controller: 'ProfileController'
+                controller: 'ProfileController',
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             })
            .state('profile.edit', {
                 url: '/edit',
@@ -89,8 +98,44 @@
             .state('admin-user', {
                 url: '/admin-user',
                 templateUrl: 'views/admin/user.view.html',
-                controller: "UserController"
+                controller: "UserController",
+                resolve: {
+                    checkLoggedIn: checkLoggedIn
+                }
             });
 
+        function getLoggedIn(UserService, $q) {
+            var deferred = $q.defer();
+
+            UserService
+                .getCurrentUser()
+                .then(function(response){
+                    var currentUser = response.data;
+                    UserService.setCurrentUser(currentUser);
+                    deferred.resolve();
+                });
+
+            return deferred.promise;
+        }
+
+        function checkLoggedIn(UserService, $q, $location) {
+
+            var deferred = $q.defer();
+
+            UserService
+                .getCurrentUser()
+                .then(function(response) {
+                    var currentUser = response.data;
+                    if(currentUser) {
+                        UserService.setCurrentUser(currentUser);
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $location.url("/home");
+                    }
+                });
+
+            return deferred.promise;
+        }
     }
 })();

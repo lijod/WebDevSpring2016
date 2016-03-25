@@ -13,20 +13,20 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">{{username}}</a></li>-->
-                <li n-show="currentUser"><a ui-sref="profile">{{currentUser.username}}</a></li>
-                <li ui-sref-active="active">
+                <li ng-show="currentUser"><a ui-sref="profile">{{currentUser.username}}</a></li>
+                <li ui-sref-active="active" ng-show="currentUser && currentUser.roles.indexOf('admin') > -1">
                     <a ui-sref="admin-user">USER</a>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-show="currentUser">
                     <a ui-sref="profile">PROFILE</a>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-hide="currentUser">
                     <a ui-sref="register">REGISTER</a>
                 </li>
-                <li ui-sref-active="active">
+                <li ui-sref-active="active" ng-hide="currentUser">
                     <a ui-sref="login">LOGIN</a>
                 </li>
-                <li>
+                <li ng-show="currentUser">
                     <a href="" ng-click="model.logOut()">LOGOUT</a>
                 </li>
             </ul>
