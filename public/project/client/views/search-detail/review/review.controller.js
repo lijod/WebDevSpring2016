@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController($scope, $stateParams, $rootScope, ReviewService, UserService) {
+    function ReviewController($scope, $stateParams, $rootScope, $q, ReviewService, UserService) {
         var vm = this;
         vm.Math = window.Math;
         console.log($rootScope.user);
@@ -15,6 +15,7 @@
             .then(function (response) {
                     console.log(response.data);
                     vm.reviews = response.data;
+                    findUserByReviewUserId(vm.reviews);
                     vm.maxRating = 5;
                     vm.allRating = [0, 0, 0, 0, 0];
                     vm.avgPerRating = [0, 0, 0, 0, 0];
@@ -51,6 +52,7 @@
                             title: "",
                             rating: 0
                         };
+                        findUserByReviewUserId(vm.reviews);
                         updateAllRatings();
                     },
                     function () {
@@ -94,6 +96,7 @@
                         console.log(response);
                         vm.reviews = response.data;
                         vm.isUpdate = false;
+                        findUserByReviewUserId(vm.reviews);
                         updateAllRatings();
                     },
                     function () {
@@ -121,6 +124,28 @@
                     vm.allRating[ratingIndex] / vm.reviews.length * 100;
             }
             vm.avgRating = vm.totalRating / vm.reviews.length;
+        }
+
+        function findUserByReviewUserId(reviews) {
+            var promiseArray = [];
+            var result = [];
+            for (var i = 0; i < reviews.length; i++) {
+                promiseArray
+                    .push(
+                        UserService.findUserByUserId(reviews[i].userId)
+                            .then(function (response) {
+                                if (response.data) {
+                                    result.push(response.data);
+                                }
+                            }));
+            }
+
+            $q.all(promiseArray)
+                .then(function () {
+                    for (var i = 0; i < result.length; i++) {
+                        reviews[i].userFirstName = result[i].firstName;
+                    }
+                });
         }
     }
 
