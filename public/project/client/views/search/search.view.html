@@ -1,6 +1,7 @@
-<div class="container-fluid">
+ <div class="container-fluid">
 
-    <input type="text" class="form-control" ng-model="gadgetName"/>
+    <input type="text" class="form-control search-box" ng-model="gadgetName"
+           ng-keydown="$event.which === 13 && model.search(gadgetName)"/>
     <a href="javascript:void(0)" ng-click="model.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>
     <div class="row">
         <div class="col-md-4 col-sm-6 gadget-search-container text-center" ng-repeat="gadget in model.gadgets">

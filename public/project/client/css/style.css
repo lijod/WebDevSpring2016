@@ -210,3 +210,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .gadget-search-container img {
     height: 200px !important;
 }
+
+.search-box {
+    margin: 15px 0px 15px 1px;
+}
