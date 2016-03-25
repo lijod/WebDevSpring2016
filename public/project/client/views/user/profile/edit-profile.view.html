@@ -4,28 +4,28 @@
             <!--<label for="firstName" class="col-sm-2">First Name</label>-->
             <div class="col-xs-10 col-xs-offset-1 input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" id="firstName" class="form-control" placeholder="First Name" autofocus>
+                <input type="text" id="firstName" class="form-control" ng-model="model.user.firstName" placeholder="First Name" autofocus>
             </div>
         </div>
         <div class="form-group">
             <!--<label for="lastName" class="col-sm-2">Last Name</label>-->
             <div class="col-xs-10 col-xs-offset-1 input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" id="lastName" class="form-control" placeholder="Last Name">
+                <input type="text" id="lastName" class="form-control" ng-model="model.user.lastName" placeholder="Last Name">
             </div>
         </div>
         <div class="form-group">
             <!--<label for="userName" class="col-sm-2">Username</label>-->
             <div class="col-xs-10 col-xs-offset-1 input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                <input type="text" id="username" class="form-control" placeholder="Username">
+                <input type="text" id="username" class="form-control"  ng-model="model.user.username" placeholder="Username">
             </div>
         </div>
         <div class="form-group">
             <!--<label for="password" class="col-sm-2">Password</label>-->
             <div class="col-xs-10 col-xs-offset-1 input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                <input type="password" id="password" class="form-control" placeholder="Password">
+                <input type="password" id="password" class="form-control" ng-model="model.user.password" placeholder="Password">
             </div>
         </div>
         <div class="form-group">
@@ -39,19 +39,19 @@
             <!--<label for="email" class="col-sm-2">Email</label>-->
             <div class="col-xs-10 col-xs-offset-1 input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                <input type="email" id="email" class="form-control" placeholder="Email">
+                <input type="email" id="email" class="form-control" ng-model="model.user.email" placeholder="Email">
             </div>
         </div>
         <div class="form-group">
             <!--<label for="email" class="col-sm-2">Email</label>-->
             <div class="col-xs-10 col-xs-offset-1 input-group">
                 <span class="input-group-addon"><i class="glyphicon glyphicon-camera"></i></span>
-                <input type="file" id="profilePic" class="form-control" placeholder="Profile photo">
+                <input type="file" id="profilePic" class="form-control" placeholder="Profile photo" />
             </div>
         </div>
         <div class="form-group">
             <div class="col-xs-10 col-xs-offset-1">
-                <a class="btn btn-success btn-block" href="#">UPDATE</a>
+                <a class="btn btn-success btn-block" href="" ng-click="model.updateUser(model.user)">UPDATE</a>
             </div>
         </div>
     </form>
