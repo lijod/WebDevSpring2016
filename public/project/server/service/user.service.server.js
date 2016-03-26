@@ -1,18 +1,17 @@
 "use strict";
 module.exports = function(app, userModel) {
-    app.post("/api/assignment/user", register);
-    app.get("/api/assignment/user/:id", getUserById);
-    app.get("/api/assignment/user", user);
-    app.get("/api/assignment/userby", getUserByUsername);
-    app.put("/api/assignment/user/:id", updateUser);
-    app.delete("/api/assignment/user/:id", deleteUserById);
-    app.get("/api/assignment/loggedin", loggedin);
-    app.post("/api/assignment/logout", logout);
+    app.post("/api/gadgetguru/user", register);
+    app.get("/api/gadgetguru/user/:id", getUserById);
+    app.get("/api/gadgetguru/user", user);
+    app.get("/api/gadgetguru/userby", getUserByUsername);
+    app.put("/api/gadgetguru/user/:id", updateUser);
+    app.delete("/api/gadgetguru/user/:id", deleteUserById);
+    app.get("/api/gadgetguru/loggedin", loggedin);
+    app.post("/api/gadgetguru/logout", logout);
 
     function user(req, res) {
         var username = req.query.username;
         var password = req.query.password;
-
         if(username && password) {
             login(req, res);
         } else if(username) {

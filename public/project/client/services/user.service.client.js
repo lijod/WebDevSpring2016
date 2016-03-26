@@ -23,35 +23,35 @@
         return api;
 
         function findUserByCredentials (username, password) {
-            return $http.get("/api/assignment/user?username=" + username + "&password=" + password);
+            return $http.get("/api/gadgetguru/user?username=" + username + "&password=" + password);
         }
 
         function findUserByUsername(username) {
-            return $http.get("/api/assignment/user?username=" + username);
+            return $http.get("/api/gadgetguru/user?username=" + username);
         }
 
         function findUserByUserId(userId) {
-            return $http.get("/api/assignment/user/" + userId);
+            return $http.get("/api/gadgetguru/user/" + userId);
         }
 
         function findAllUsers () {
-            return $http.get("/api/assignment/user");
+            return $http.get("/api/gadgetguru/user");
         }
 
         function createUser (user) {
-            return $http.post("/api/assignment/user", user);
+            return $http.post("/api/gadgetguru/user", user);
         }
 
         function deleteUserById (userId) {
-            return $http.delete("/api/assignment/user/" + userId);
+            return $http.delete("/api/gadgetguru/user/" + userId);
         }
 
         function updateUser (userId, user) {
-            return $http.put("/api/assignment/user/" + userId, user);
+            return $http.put("/api/gadgetguru/user/" + userId, user);
         }
 
         function getCurrentUser() {
-            return $http.get("/api/assignment/loggedin");
+            return $http.get("/api/gadgetguru/loggedin");
         }
 
         function setCurrentUser(user) {
@@ -59,7 +59,7 @@
         }
 
         function invalidateCurrentSession() {
-            $http.post("/api/assignment/logout");
+            $http.post("/api/gadgetguru/logout");
             delete $rootScope.currentUser;
         }
     }
