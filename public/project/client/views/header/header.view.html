@@ -14,9 +14,9 @@
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">{{username}}</a></li>-->
                 <li ng-show="currentUser"><a ui-sref="profile">{{currentUser.username}}</a></li>
-                <li ui-sref-active="active" ng-show="currentUser && currentUser.roles.indexOf('admin') > -1">
-                    <a ui-sref="admin-user">USER</a>
-                </li>
+                <!--<li ui-sref-active="active" ng-show="currentUser && currentUser.roles.indexOf('admin') > -1">-->
+                    <!--<a ui-sref="admin-user">USER</a>-->
+                <!--</li>-->
                 <li ui-sref-active="active" ng-show="currentUser">
                     <a ui-sref="profile">PROFILE</a>
                 </li>
