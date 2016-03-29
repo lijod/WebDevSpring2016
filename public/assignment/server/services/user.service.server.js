@@ -43,7 +43,13 @@ module.exports = function(app, userModel) {
 
     function getUserById(req, res) {
         var userId = req.params.id;
-        res.json(userModel.findUserById(userId));
+        userModel.findUserById(userId)
+            .then(function(response) {
+                res.json(response);
+            },
+            function(err) {
+                res.status(400).send(err);
+            });
     }
 
     function getUserByUsername(req, res) {
@@ -78,9 +84,19 @@ module.exports = function(app, userModel) {
     function updateUser(req, res) {
         var userId = req.params.id;
         var user = req.body;
-        user = userModel.updateUser(userId, user);
-        req.session.currentUser = user;
-        res.json(userModel.findAllUsers());
+        userModel.updateUser(userId, user)
+            .then(function(response) {
+                return userModel.findUserById(userId);
+            },
+            function(err) {
+                res.status(400).send(err);
+            })
+            .then(function(response) {
+                req.session.currentUser = response;
+                res.json(response);
+            }, function(err) {
+                res.status(400).send(err);
+            });
     }
 
     function deleteUserById(req, res) {

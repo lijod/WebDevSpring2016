@@ -15,9 +15,9 @@
         init();
 
         function register(user) {
-            var emails = [];
-            emails.push(user.email);
-            user.emails = emails;
+            //var emails = [];
+            //emails.push(user.email);
+            //user.emails = emails;
             UserService.findUserByUsername(user.username)
                 .then(function(response){
                     doRegister(user, response);

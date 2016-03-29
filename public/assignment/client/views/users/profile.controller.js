@@ -15,7 +15,7 @@
                     var loggedInUser = response.data;
                     console.log(loggedInUser);
                     vm.user = loggedInUser;
-                    vm.user.email = vm.user.emails[0];
+                    //vm.user.email = vm.user.emails[0];
                 },
                 function() {
                     console.log("error profile->init->getCurrentUser");

@@ -1,7 +1,7 @@
 "use strict";
 var users = require("./user.mock.json");
 
-module.exports = function(db) {
+module.exports = function (db) {
 
     var UserSchema = require("./user.schema.server.js")();
     var UserModel = db.model("User", UserSchema);
@@ -19,13 +19,8 @@ module.exports = function(db) {
 
     return api;
 
-    function findUserById (userId) {
-        for(var u in users) {
-            if( users[u]._id == userId ) {
-                return users[u];
-            }
-        }
-        return null;
+    function findUserById(userId) {
+        return UserModel.findById(userId);
     }
 
     function findUserByUsername(username) {
@@ -36,37 +31,26 @@ module.exports = function(db) {
         return UserModel.findOne({username: credentials.username, password: credentials.password});
     }
 
-    function findAllUsers () {
+    function findAllUsers() {
         return users;
     }
 
-    function createUser (user) {
+    function createUser(user) {
         return UserModel.create(user);
     }
 
-    function deleteUserById (userId) {
-        for(var u in users) {
-            if( users[u]._id === userId ) {
+    function deleteUserById(userId) {
+        for (var u in users) {
+            if (users[u]._id === userId) {
                 return users[u];
             }
         }
         return null;
     }
 
-    function updateUser (userId, user) {
-        var index = -1;
-        for(var u in users) {
-            if(users[u]._id == userId) {
-                index = u;
-                break;
-            }
-        }
-
-        if(index > -1) {
-            users[index] = user;
-            return user;
-        }
-
-        return null;
+    function updateUser(userId, user) {
+        return UserModel.update(
+            {_id: userId},
+            {$set: user});
     }
 }
