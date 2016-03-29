@@ -15,6 +15,9 @@
         init();
 
         function register(user) {
+            var emails = [];
+            emails.push(user.email);
+            user.emails = emails;
             UserService.findUserByUsername(user.username)
                 .then(function(response){
                     doRegister(user, response);
@@ -46,6 +49,7 @@
         }
 
         function redirectUserToProfileIfValid(response) {
+            console.log(response)
             var user = response.data;
             console.log("Redirecting user: ");
             console.log(user);

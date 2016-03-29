@@ -1,7 +1,10 @@
 "use strict";
 var users = require("./user.mock.json");
 
-module.exports = function(uuid) {
+module.exports = function(db) {
+
+    var UserSchema = require("./user.schema.server.js")();
+    var UserModel = db.model("User", UserSchema);
 
     var api = {
         findUserById: findUserById,
@@ -26,22 +29,11 @@ module.exports = function(uuid) {
     }
 
     function findUserByUsername(username) {
-        for(var u in users) {
-            if( users[u].username === username ) {
-                return users[u];
-            }
-        }
-        return null;
+        return UserModel.findOne({username: username});
     }
 
     function findUserByCredentials(credentials) {
-        for(var u in users) {
-            if( users[u].username === credentials.username &&
-                users[u].password === credentials.password) {
-                return users[u];
-            }
-        }
-        return null;
+        return UserModel.findOne({username: credentials.username, password: credentials.password});
     }
 
     function findAllUsers () {
@@ -49,9 +41,7 @@ module.exports = function(uuid) {
     }
 
     function createUser (user) {
-        user._id = uuid.v4();
-        users.push(user);
-        return user;
+        return UserModel.create(user);
     }
 
     function deleteUserById (userId) {
