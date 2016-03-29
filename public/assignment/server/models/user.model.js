@@ -1,5 +1,4 @@
 "use strict";
-var users = require("./user.mock.json");
 
 module.exports = function (db) {
 
@@ -40,15 +39,11 @@ module.exports = function (db) {
     }
 
     function deleteUserById(userId) {
-        for (var u in users) {
-            if (users[u]._id === userId) {
-                return users[u];
-            }
-        }
-        return null;
+        return UserModel.remove({_id: userId});
     }
 
     function updateUser(userId, user) {
+        delete user._id;
         return UserModel.update(
             {_id: userId},
             {$set: user});

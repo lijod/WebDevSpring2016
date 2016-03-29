@@ -101,8 +101,13 @@ module.exports = function(app, userModel) {
 
     function deleteUserById(req, res) {
         var userId = req.params.id;
-        userModel.deleteUserById(userId);
-        res.json(userModel.findAllUsers());
+        userModel.deleteUserById(userId)
+            .then(function(response) {
+                res.json(userModel.findAllUsers());
+            },
+            function(err) {
+                res.status(400).send(err);
+            });
     }
 
     function loggedin(req, res) {
