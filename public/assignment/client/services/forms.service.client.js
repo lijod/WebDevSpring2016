@@ -30,8 +30,8 @@
             return $http.get("/api/assignment/user/" + userId + "/form");
         }
 
-        function deleteFormById(formId) {
-            return $http.delete("/api/assignment/form/" + formId);
+        function deleteFormById(formId, userId) {
+            return $http.delete("/api/assignment/user/" + userId + "/form/" + formId);
         }
 
         function findFormByTitleForUser(userId, title) {

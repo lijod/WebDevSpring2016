@@ -9,6 +9,6 @@ module.exports = function () {
             label: String,
             value: String
         } ]
-    }, {collection: 'field'});
+    });
     return FieldSchema;
 };

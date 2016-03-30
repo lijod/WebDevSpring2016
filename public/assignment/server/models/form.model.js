@@ -1,7 +1,10 @@
 "use strict";
 var forms = require("./form.mock.json");
 
-module.exports = function (uuid) {
+module.exports = function (db) {
+
+    var FormSchema = require("./form.schema.server.js")();
+    var FormModel = db.model("Form", FormSchema);
 
     var api = {
         findFormByTitle: findFormByTitle,
@@ -11,89 +14,51 @@ module.exports = function (uuid) {
         updateForm: updateForm,
         findFormByUserId: findFormByUserId,
         findFormById: findFormById,
-        findFormByTitleForUser: findFormByTitleForUser
+        findFormByTitleForUser: findFormByTitleForUser,
+        getMongooseModel: getMongooseModel
     };
 
     return api;
 
     function findFormById(formId) {
-        for (var f in forms) {
-            if (forms[f]._id == formId) {
-                return forms[f];
-            }
-        }
-        return null;
+        return FormModel.findById(formId);
     }
 
     function findFormByTitle(title) {
-        for (var f in forms) {
-            if (forms[f].title === title) {
-                return forms[f];
-            }
-        }
-        return null;
+        return FormModel.findOne({title: title});
     }
 
     function findFormByTitleForUser(userId, title) {
-        for (var f in forms) {
-            if (forms[f].title === title && forms[f].userId == userId) {
-                return forms[f];
-            }
-        }
-        return null;
+        return FormModel.findOne({userId: userId, title: title});
     }
 
     function findAllForms() {
-        return forms;
+        return FormModel.find();
     }
 
     function createForm(userId, form) {
-        form._id = uuid.v4();
         form.userId = userId;
         form.fields = [];
-        forms.push(form);
-        return form;
+        return FormModel.create(form);
     }
 
     function deleteFormById(formId) {
-        var index = -1;
-        for (var f in forms) {
-            if (forms[f]._id == formId) {
-                index = f;
-                break;
-            }
-        }
-
-        if (index > -1) {
-            var form = forms[index];
-            forms.splice(index, 1);
-            return form;
-        }
-        return null;
+       return FormModel.remove({_id: formId});
     }
 
     function updateForm(formId, form) {
-        var index = -1;
-        for (var f in forms) {
-            if (forms[f]._id == formId) {
-                index = f;
-                break;
-            }
-        }
-
-        if (index > -1) {
-            forms[index] = form;
-            return form;
-        }
-
-        return null;
+        delete form._id
+        return FormModel.update(
+            {_id: formId},
+            {$set: form}
+        );
     }
 
     function findFormByUserId(userId) {
-        var formByUserId = forms.filter(function (form, index, arr) {
-            return form.userId == userId;
-        });
+       return FormModel.find({userId: userId});
+    }
 
-        return formByUserId;
+    function getMongooseModel() {
+        return FormModel;
     }
 }

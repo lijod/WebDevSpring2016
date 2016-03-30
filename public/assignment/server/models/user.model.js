@@ -12,8 +12,8 @@ module.exports = function (db) {
         findAllUsers: findAllUsers,
         createUser: createUser,
         deleteUserById: deleteUserById,
-        updateUser: updateUser
-
+        updateUser: updateUser,
+        getMongooseModel: getMongooseModel
     };
 
     return api;
@@ -31,7 +31,7 @@ module.exports = function (db) {
     }
 
     function findAllUsers() {
-        return users;
+        return UserModel.find();
     }
 
     function createUser(user) {
@@ -47,5 +47,9 @@ module.exports = function (db) {
         return UserModel.update(
             {_id: userId},
             {$set: user});
+    }
+
+    function getMongooseModel() {
+        return UserModel;
     }
 }

@@ -83,7 +83,7 @@
         }
 
         function deleteForm(index) {
-            FormService.deleteFormById(vm.forms[index]._id)
+            FormService.deleteFormById(vm.forms[index]._id, userId)
                 .then(function (response) {
                         console.log("Form Deleted:");
                         console.log(index);
@@ -121,6 +121,7 @@
         function getFormByTitleForUser(userId, title, callback) {
             FormService.findFormByTitleForUser(userId, title)
                 .then(function (response) {
+                        console.log(response);
                         callback(response.data);
                     },
                     function () {
