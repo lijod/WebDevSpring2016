@@ -5,10 +5,10 @@ module.exports = function () {
         label: String,
         type: String,
         placeholder: String,
-        option: [{
+        options: [{
             label: String,
             value: String
-        } ]
+        }]
     });
     return FieldSchema;
 };

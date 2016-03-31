@@ -31,7 +31,7 @@ app.get('/', function(req, res){
   res.send('hello world');
 });
 
-require("./public/assignment/server/app.js")(app, db, uuid);
+require("./public/assignment/server/app.js")(app, db);
 require("./public/project/server/app.js")(app, uuid);
 
 app.listen(port, ipaddress);
