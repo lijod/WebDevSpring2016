@@ -47,6 +47,7 @@ module.exports = function (db) {
 
     function updateForm(formId, form) {
         delete form._id
+        form.updated = Date.now();
         return FormModel.update(
             {_id: formId},
             {$set: form}
