@@ -65,12 +65,13 @@ module.exports = function (formModel) {
                 var field = response.fields.id(fieldId);
                 field.label = newField.label;
                 field.type = newField.type;
-                if(field.placeholder) {
+                if(field.placeholder || field.placeholder == "") {
                     field.placeholder = newField.placeholder;
                 }
                 if(field.options) {
                     field.options = newField.options;
                 }
+                response.updated = Date.now();
                 return response.save();
             });
     }
