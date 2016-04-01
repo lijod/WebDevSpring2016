@@ -15,7 +15,6 @@
                     var loggedInUser = response.data;
                     console.log(loggedInUser);
                     vm.user = loggedInUser;
-                    //vm.user.email = vm.user.emails[0];
                 },
                 function() {
                     console.log("error profile->init->getCurrentUser");
@@ -27,7 +26,9 @@
         init();
 
         function update(user) {
-
+            console.log(user.emails);
+            user.emails = user.emails.toString().split(",");
+            user.phones = user.phones.toString().split(",");
             UserService.updateUser(user._id, user)
                 .then(function (userListResponse) {
                         UserService.findUserByUserId(user._id)
