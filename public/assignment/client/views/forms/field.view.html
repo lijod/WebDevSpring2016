@@ -38,6 +38,12 @@
                         <label><input type="radio" value="{{option.value}}" name="optradio">{{option.label}}</label>
                     </div>
                 </div>
+                <div class="col-xs-6 col-sm-7" ng-switch-when="EMAIL">
+                    <input type="email" class="form-control" placeholder="{{field.placeholder}}">
+                </div>
+                <div class="col-xs-6 col-sm-7" ng-switch-when="PASSWORD">
+                    <input type="password" class="form-control" placeholder="{{field.placeholder}}">
+                </div>
                 <div class="col-xs-6 col-sm-7" ng-switch-default>
                     <input type="text" class="form-control" placeholder="{{field.placeholder}}">
                 </div>

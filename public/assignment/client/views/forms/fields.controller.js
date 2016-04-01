@@ -21,6 +21,8 @@
             };
             vm.fieldList = [
                 "Single Line Text",
+                "Email",
+                "Password",
                 "Multi Line Text",
                 "Date",
                 "Dropdown",
@@ -47,6 +49,8 @@
             console.log(fieldType);
             var fieldTemplate = [
                 {"label": "New Text Field", "type": "TEXT", "placeholder": "New Field"},
+                {"label": "New Email Field", "type": "EMAIL", "placeholder": "New Field"},
+                {"label": "New Password Field", "type": "PASSWORD", "placeholder": "New Field"},
                 {"label": "New Text Field", "type": "TEXTAREA", "placeholder": "New Field"},
                 {"label": "New Date Field", "type": "DATE"},
                 {"label": "New Dropdown", "type": "OPTIONS", "options": [
@@ -92,7 +96,7 @@
                 "type": field.type
             };
             var type = field.type;
-            if(type == "TEXT" || type == "TEXTAREA") {
+            if(type === "TEXT" || type === "TEXTAREA" || type === "EMAIL" || type === "PASSWORD") {
                 vm.hasPlaceholder = true;
                 vm.hasOptions = false;
                 vm.modalField.placeholder = field.placeholder;
