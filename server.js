@@ -45,7 +45,7 @@ app.get('/', function(req, res){
 });
 
 require("./public/assignment/server/app.js")(app, db);
-require("./public/project/server/app.js")(app, uuid);
+require("./public/project/server/app.js")(app, db);
 
 app.listen(port, ipaddress);
 

@@ -1,7 +1,8 @@
 "use strict";
-var users = require("./user.mock.json");
+module.exports = function (db) {
 
-module.exports = function(uuid) {
+    var UserSchema = require("./user.schema.server.js")(db);
+    var UserModel = db.model("GG_User", UserSchema);
 
     var api = {
         findUserById: findUserById,
@@ -10,73 +11,44 @@ module.exports = function(uuid) {
         findAllUsers: findAllUsers,
         createUser: createUser,
         deleteUserById: deleteUserById,
-        updateUser: updateUser
-
+        updateUser: updateUser,
+        getMongooseModel: getMongooseModel
     };
 
     return api;
 
-    function findUserById (userId) {
-        for(var u in users) {
-            if( users[u]._id == userId ) {
-                return users[u];
-            }
-        }
-        return null;
+    function findUserById(userId) {
+        return UserModel.findById(userId);
     }
 
     function findUserByUsername(username) {
-        for(var u in users) {
-            if( users[u].username === username ) {
-                return users[u];
-            }
-        }
-        return null;
+        return UserModel.findOne({username: username});
     }
 
     function findUserByCredentials(credentials) {
-        for(var u in users) {
-            if( users[u].username === credentials.username &&
-                users[u].password === credentials.password) {
-                return users[u];
-            }
-        }
-        return null;
+        return UserModel.findOne({username: credentials.username, password: credentials.password});
     }
 
-    function findAllUsers () {
-        return users;
+    function findAllUsers() {
+        return UserModel.find();
     }
 
-    function createUser (user) {
-        user._id = uuid.v4();
-        users.push(user);
-        return user;
+    function createUser(user) {
+        return UserModel.create(user);
     }
 
-    function deleteUserById (userId) {
-        for(var u in users) {
-            if( users[u]._id === userId ) {
-                return users[u];
-            }
-        }
-        return null;
+    function deleteUserById(userId) {
+        return UserModel.remove({_id: userId});
     }
 
-    function updateUser (userId, user) {
-        var index = -1;
-        for(var u in users) {
-            if(users[u]._id == userId) {
-                index = u;
-                break;
-            }
-        }
+    function updateUser(userId, user) {
+        delete user._id;
+        return UserModel.update(
+            {_id: userId},
+            {$set: user});
+    }
 
-        if(index > -1) {
-            users[index] = user;
-            return user;
-        }
-
-        return null;
+    function getMongooseModel() {
+        return UserModel;
     }
 }

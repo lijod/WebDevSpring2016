@@ -12,6 +12,7 @@ module.exports = function(app, userModel) {
     function user(req, res) {
         var username = req.query.username;
         var password = req.query.password;
+
         if(username && password) {
             login(req, res);
         } else if(username) {
@@ -20,12 +21,20 @@ module.exports = function(app, userModel) {
             getAllUser(req, res);
         }
     }
-    
+
     function register(req, res) {
         var user = req.body;
-        var user = userModel.createUser(user);
-        req.session.currentUser = user;
-        res.json(userModel.findAllUsers());
+        console.log("register");
+        userModel.createUser(user)
+            .then(function (response) {
+                    console.log(response);
+                    user = response;
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
     function getAllUser(req, res) {
@@ -34,38 +43,71 @@ module.exports = function(app, userModel) {
 
     function getUserById(req, res) {
         var userId = req.params.id;
-        res.json(userModel.findUserById(userId));
+        userModel.findUserById(userId)
+            .then(function(response) {
+                    res.json(response);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
     }
 
     function getUserByUsername(req, res) {
         var username = req.query.username;
-        res.json(userModel.findUserByUsername(username));
+        userModel.findUserByUsername(username)
+            .then(function(response) {
+                    res.json(response);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
     }
 
     function login(req, res) {
         var username = req.query.username;
         var password = req.query.password;
-         var credentials = {
+        var credentials = {
             "username": username,
             "password": password
         }
-        var user = userModel.findUserByCredentials(credentials);
-        req.session.currentUser = user;
-        res.json(user);
+        userModel.findUserByCredentials(credentials)
+            .then(function (response) {
+                    var user = response;
+                    req.session.currentUser = user;
+                    res.json(user);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
     function updateUser(req, res) {
         var userId = req.params.id;
         var user = req.body;
-        user = userModel.updateUser(userId, user);
-        req.session.currentUser = user;
-        res.json(userModel.findAllUsers());
+        userModel.updateUser(userId, user)
+            .then(function(response) {
+                    return userModel.findUserById(userId);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                })
+            .then(function(response) {
+                req.session.currentUser = response;
+                res.json(response);
+            }, function(err) {
+                res.status(400).send(err);
+            });
     }
 
     function deleteUserById(req, res) {
         var userId = req.params.id;
-        userModel.deleteUserById(userId);
-        res.json(userModel.findAllUsers());
+        userModel.deleteUserById(userId)
+            .then(function(response) {
+                    res.json(userModel.findAllUsers());
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
     }
 
     function loggedin(req, res) {
