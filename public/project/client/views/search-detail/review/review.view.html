@@ -4,7 +4,8 @@
             <div class="rating-block">
                 <h4>Average user rating</h4>
                 <h2 class="bold padding-bottom-7">
-                    {{model.avgRating === 0 || isNaN(model.avgRating) ? 0 :  model.Math.round(model.avgRating * 2) / 2}}
+                    {{model.avgRating === 0 || model.isNaN(model.avgRating) ? 0 :
+                                    model.Math.round(model.avgRating * 2) / 2}}
                     <small>/ 5</small></h2>
                 <!--<button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">-->
                     <!--<span class="glyphicon glyphicon-star" aria-hidden="true"></span>-->
@@ -108,7 +109,7 @@
                         <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
                         <div class="review-block-name">
                             <!--a href="#"-->
-                                {{review.userFirstName}}
+                                {{review.username}}
                             <!--/a-->
                         </div>
                         <!--<div class="review-block-date">January 29, 2016</div>-->

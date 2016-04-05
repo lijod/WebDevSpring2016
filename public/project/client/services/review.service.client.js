@@ -36,8 +36,8 @@
         //    }
         //}
 
-        function deleteReview(reviewId, gadgetId) {
-            return $http.delete("/api/gadgetguru/gadget/" + gadgetId + "/review/" + reviewId);
+        function deleteReview(reviewId) {
+            return $http.delete("/api/gadgetguru/review/" + reviewId);
         }
     }
 

@@ -7,9 +7,10 @@
     function ReviewController($scope, $stateParams, $rootScope, $q, ReviewService, UserService) {
         var vm = this;
         vm.Math = window.Math;
+        vm.isNaN = isNaN;
         console.log($rootScope.user);
         var user = $rootScope.currentUser;
-            var productId = $stateParams.productId;
+        var productId = $stateParams.productId;
         console.log(productId);
         ReviewService.findAllReviewsForGadget(productId)
             .then(function (response) {
@@ -27,6 +28,7 @@
                 },
                 function () {
                     console.log("error ReviewController->findAllReviewsForGadget");
+                    console.log(err);
                 });
 
         vm.review = {
@@ -46,17 +48,22 @@
         function addReview(review) {
             ReviewService.addReviewForUser(user._id, productId, review)
                 .then(function (response) {
-                        vm.reviews = response.data;
-                        vm.review = {
-                            review: "",
-                            title: "",
-                            rating: 0
-                        };
-                        findUserByReviewUserId(vm.reviews);
-                        updateAllRatings();
+                        if (response.data) {
+                            vm.reviews.push(response.data);
+                            vm.review = {
+                                review: "",
+                                title: "",
+                                rating: 0
+                            };
+                            findUserByReviewUserId(vm.reviews);
+                            updateAllRatings();
+                        } else {
+                            alert("Error occurred while adding review");
+                        }
                     },
-                    function () {
+                    function (err) {
                         console.log("error ReviewController->addReview->addReviewForUser");
+                        console.log(err);
                     });
         }
 
@@ -77,39 +84,47 @@
         function updateReview(review) {
             ReviewService.updateReview(review._id, review)
                 .then(function(response) {
-                    vm.reviews[selectedIndex] = response.data;
-                    vm.review = {
-                        review: "",
-                        title: "",
-                        rating: 0
-                    };
-                    vm.isUpdate = false;
-                    updateAllRatings();
-                }, function() {
+                    response = response.data;
+                    if(response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        vm.reviews[selectedIndex] = review;
+                        vm.review = {
+                            review: "",
+                            title: "",
+                            rating: 0
+                        };
+                        vm.isUpdate = false;
+                        updateAllRatings();
+                    } else {
+                        alert("Error occurred while updating review");
+                    }
+
+                }, function(err) {
                     console.log("error ReviewController->updateReview->updateReview");
+                    console.log(err);
                 });
         }
 
         function deleteReview(index) {
-            ReviewService.deleteReview(vm.reviews[index]._id, productId)
+            ReviewService.deleteReview(vm.reviews[index]._id)
                 .then(function (response) {
-                        console.log(response);
-                        vm.reviews = response.data;
-                        vm.isUpdate = false;
-                        findUserByReviewUserId(vm.reviews);
-                        updateAllRatings();
+                        response = response.data;
+                        if(response.n && response.n === 1 && response.ok && response.ok ===1) {
+                            vm.reviews.splice(index, 1);
+                            findUserByReviewUserId(vm.reviews);
+                            updateAllRatings();
+                            vm.isUpdate = false;
+                        } else {
+                            alert("Error occurred while deleting review");
+                        }
                     },
-                    function () {
-                        console.log("error ReviewController->deleteReview->deleteReview")
+                    function (err) {
+                        console.log("error ReviewController->deleteReview->deleteReview");
+                        console.log(err);
                     });
         }
 
-        //function getUserById(userId) {
-        //    return UserService.getUserById(userId);
-        //}
-
         function updateAllRatings() {
-            if(!vm.reviews || vm.reviews.length === 0) {
+            if(!vm.reviews) {
                 return;
             }
             vm.allRating = [0, 0, 0, 0, 0];
@@ -123,7 +138,11 @@
                 vm.avgPerRating[ratingIndex] =
                     vm.allRating[ratingIndex] / vm.reviews.length * 100;
             }
-            vm.avgRating = vm.totalRating / vm.reviews.length;
+            if(vm.reviews.length === 0) {
+                vm.avgRating = 0;
+            } else {
+                vm.avgRating = vm.totalRating / vm.reviews.length;
+            }
         }
 
         function findUserByReviewUserId(reviews) {
@@ -143,7 +162,7 @@
             $q.all(promiseArray)
                 .then(function () {
                     for (var i = 0; i < result.length; i++) {
-                        reviews[i].userFirstName = result[i].firstName;
+                        reviews[i].username = result[i].username;
                     }
                 });
         }

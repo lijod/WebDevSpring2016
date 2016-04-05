@@ -1,7 +1,8 @@
 "use strict";
-var reviews = require("./review.mock.json");
+module.exports = function(db) {
 
-module.exports = function(uuid) {
+    var ReviewSchema = require("./review.schema.server.js")(db);
+    var ReviewModel = db.model("GG_Review", ReviewSchema);
 
     var api = {
         findAllReviewsForGadget: findAllReviewsForGadget,
@@ -13,39 +14,23 @@ module.exports = function(uuid) {
     return api;
 
     function findAllReviewsForGadget(gadgetId) {
-        var toReturn = reviews.filter(function(review, index, arr){
-            return (review.gadgetId == gadgetId);
-        });
-        return toReturn;
+        return ReviewModel.find({gadgetId: gadgetId});
     }
 
-    function addReviewForUser(userId, productId, review) {
-        review._id = uuid.v4();
+    function addReviewForUser(userId, gadgetId, review) {
         review.userId = userId;
-        review.gadgetId = productId;
-
-        reviews.push(review);
-
-        return findAllReviewsForGadget(productId);
+        review.gadgetId = gadgetId;
+        return ReviewModel.create(review);
     }
 
     function updateReview(reviewId, review) {
-        var index = getIndexByReviewId(reviewId);
-        reviews[index] = review;
-        return reviews[index];
-    }
-
-    function getIndexByReviewId(reviewId) {
-        for(var index in reviews) {
-            if(reviews[index]._id == reviewId) {
-                return index;
-            }
-        }
+        delete review._id;
+        return ReviewModel.update(
+            {_id: reviewId},
+            {$set: review});
     }
 
     function deleteReview(reviewId) {
-        var index = getIndexByReviewId(reviewId);
-        var deleted = reviews.splice(index, 1);
-        return deleted;
+        return ReviewModel.remove({_id: reviewId});
     }
 }
