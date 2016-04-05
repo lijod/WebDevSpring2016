@@ -28,14 +28,6 @@
             return $http.put("/api/gadgetguru/review/" + reviewId, review);
         }
 
-        //function getIndexByReviewId(reviewId) {
-        //    for(var index in reviews) {
-        //        if(reviews[index]._id === reviewId) {
-        //            return index;
-        //        }
-        //    }
-        //}
-
         function deleteReview(reviewId) {
             return $http.delete("/api/gadgetguru/review/" + reviewId);
         }
