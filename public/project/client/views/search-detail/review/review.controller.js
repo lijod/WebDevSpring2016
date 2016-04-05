@@ -6,45 +6,43 @@
 
     function ReviewController($scope, $stateParams, $rootScope, $q, ReviewService, UserService) {
         var vm = this;
-        vm.Math = window.Math;
-        vm.isNaN = isNaN;
-        console.log($rootScope.user);
-        var user = $rootScope.currentUser;
-        var productId = $stateParams.productId;
-        console.log(productId);
-        ReviewService.findAllReviewsForGadget(productId)
-            .then(function (response) {
-                    console.log(response.data);
-                    vm.reviews = response.data;
-                    findUserByReviewUserId(vm.reviews);
-                    vm.maxRating = 5;
-                    vm.allRating = [0, 0, 0, 0, 0];
-                    vm.avgPerRating = [0, 0, 0, 0, 0];
-                    vm.avgRating = 0;
-                    vm.totalRating = 0;
-                    updateAllRatings();
-                    $scope.searchDetailModel.avgRating=vm.avgRating;
-                    $scope.searchDetailModel.maxRating=vm.maxRating;
-                },
-                function () {
-                    console.log("error ReviewController->findAllReviewsForGadget");
-                    console.log(err);
-                });
+        function init() {
+            vm.Math = window.Math;
+            vm.isNaN = isNaN;
+            vm.selectedIndex = -1;
+            vm.maxRating = 5;
+            var user = $rootScope.currentUser;
+            var productId = $stateParams.productId;
 
-        vm.review = {
-            review: "",
-            title: "",
-            rating: 0
-        };
+            ReviewService.findAllReviewsForGadget(productId)
+                .then(function (response) {
+                        console.log(response.data);
+                        vm.reviews = response.data;
+                        findUserByReviewUserId(vm.reviews);
+                        updateAllRatings();
+                        $scope.searchDetailModel.avgRating = vm.avgRating;
+                        $scope.searchDetailModel.maxRating = vm.maxRating;
+                    },
+                    function () {
+                        console.log("error ReviewController->findAllReviewsForGadget");
+                        console.log(err);
+                    });
 
-        vm.isUpdate = false;
+            vm.review = {
+                review: "",
+                title: "",
+                rating: 0
+            };
 
-        vm.addReview = addReview;
-        vm.selectReview = selectReview;
-        vm.updateReview = updateReview;
-        vm.deleteReview = deleteReview;
-        //vm.getUserById = getUserById;
 
+            vm.addReview = addReview;
+            vm.selectReview = selectReview;
+            vm.updateReview = updateReview;
+            vm.deleteReview = deleteReview;
+            //vm.getUserById = getUserById;
+        }
+
+        init();
         function addReview(review) {
             ReviewService.addReviewForUser(user._id, productId, review)
                 .then(function (response) {
@@ -67,18 +65,8 @@
                     });
         }
 
-        var selectedIndex = -1;
         function selectReview(index) {
-            selectedIndex = index;
-            vm.review = {
-                "_id": vm.reviews[index]._id,
-                "title": vm.reviews[index].title,
-                "review": vm.reviews[index].review,
-                "gadgetId": vm.reviews[index].gadgetId,
-                "userId": vm.reviews[index].userId,
-                "rating": vm.reviews[index].rating
-            };
-            vm.isUpdate = true;
+            vm.selectedIndex = index;
         }
 
         function updateReview(review) {
@@ -86,13 +74,13 @@
                 .then(function(response) {
                     response = response.data;
                     if(response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
-                        vm.reviews[selectedIndex] = review;
+                        vm.reviews[vm.selectedIndex] = review;
                         vm.review = {
                             review: "",
                             title: "",
                             rating: 0
                         };
-                        vm.isUpdate = false;
+                        vm.selectedIndex = -1;
                         updateAllRatings();
                     } else {
                         alert("Error occurred while updating review");

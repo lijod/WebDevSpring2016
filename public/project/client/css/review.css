@@ -42,3 +42,8 @@
 .review-block-description{
     font-size:13px;
 }
+
+.review-update-btn {
+    margin-top: 5px;
+    float: right;
+}
