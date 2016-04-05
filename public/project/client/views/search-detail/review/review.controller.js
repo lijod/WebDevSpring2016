@@ -11,20 +11,28 @@
             vm.isNaN = isNaN;
             vm.selectedIndex = -1;
             vm.maxRating = 5;
-            var user = $rootScope.currentUser;
-            var productId = $stateParams.productId;
+            vm.productId = $stateParams.productId;
 
-            ReviewService.findAllReviewsForGadget(productId)
-                .then(function (response) {
-                        console.log(response.data);
-                        vm.reviews = response.data;
-                        findUserByReviewUserId(vm.reviews);
-                        updateAllRatings();
-                        $scope.searchDetailModel.avgRating = vm.avgRating;
-                        $scope.searchDetailModel.maxRating = vm.maxRating;
+            UserService.getCurrentUser()
+                .then(function (user) {
+                        vm.user = user.data;
+                        ReviewService.findAllReviewsForGadget(vm.productId)
+                            .then(function (response) {
+                                    console.log(response.data);
+                                    vm.reviews = response.data;
+                                    findUserByReviewUserId(vm.reviews);
+                                    updateAllRatings();
+                                    $scope.searchDetailModel.avgRating = vm.avgRating;
+                                    $scope.searchDetailModel.maxRating = vm.maxRating;
+                                },
+                                function (err) {
+                                    console.log("error ReviewController->findAllReviewsForGadget");
+                                    console.log(err);
+                                });
+
                     },
-                    function () {
-                        console.log("error ReviewController->findAllReviewsForGadget");
+                    function (err) {
+                        console.log("error ReviewController->getCurrentUser");
                         console.log(err);
                     });
 
@@ -44,7 +52,7 @@
 
         init();
         function addReview(review) {
-            ReviewService.addReviewForUser(user._id, productId, review)
+            ReviewService.addReviewForUser( vm.user._id, vm.productId, review)
                 .then(function (response) {
                         if (response.data) {
                             vm.reviews.push(response.data);
