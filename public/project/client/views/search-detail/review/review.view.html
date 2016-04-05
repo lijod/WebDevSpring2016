@@ -47,8 +47,14 @@
                     <div class="col-sm-9" ng-if="model.selectedIndex !== $index">
                         <ng-rating ng-model="review.rating" editable="false" stars-count="model.maxRating"></ng-rating>
                         <div class="review-block-title">{{review.title}}</div>
-                        <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"><i class="glyphicon glyphicon-pencil"></i></a>
-                        <a class="pull-right" href="javascript:void(0)" ng-click="model.deleteReview($index)"><i class="glyphicon glyphicon-trash"></i></a>
+                        <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"
+                            ng-if="review.username === model.user.username">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <a class="pull-right" href="javascript:void(0)" ng-click="model.deleteReview($index)"
+                           ng-if="review.username === model.user.username">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
                         <div class="review-block-description">{{review.review}}</div>
                     </div>
                     <div class="col-sm-9" ng-if="model.selectedIndex === $index">
