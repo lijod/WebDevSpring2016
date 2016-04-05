@@ -34,12 +34,13 @@
         <div class="col-sm-12">
             <hr/>
             <div class="review-block">
-                <div class="row" ng-repeat="review in model.reviews">
+                <div class="row" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
                     <div class="col-sm-3">
                         <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
                         <div class="review-block-name">
                             <!--a href="#"-->
-                                {{review.username}}
+                                {{review.username}} <br/>
+                                {{review.createdOn}}
                             <!--/a-->
                         </div>
                         <!--<div class="review-block-date">January 29, 2016</div>-->

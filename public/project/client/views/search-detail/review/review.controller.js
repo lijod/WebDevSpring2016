@@ -16,26 +16,26 @@
             UserService.getCurrentUser()
                 .then(function (user) {
                         vm.user = user.data;
-                        ReviewService.findAllReviewsForGadget(vm.productId)
-                            .then(function (response) {
-                                    console.log(response.data);
-                                    vm.reviews = response.data;
-                                    findUserByReviewUserId(vm.reviews);
-                                    updateAllRatings();
-                                    $scope.searchDetailModel.avgRating = vm.avgRating;
-                                    $scope.searchDetailModel.maxRating = vm.maxRating;
-                                },
-                                function (err) {
-                                    console.log("error ReviewController->findAllReviewsForGadget");
-                                    console.log(err);
-                                });
-
                     },
                     function (err) {
                         console.log("error ReviewController->getCurrentUser");
                         console.log(err);
                     });
 
+            ReviewService.findAllReviewsForGadget(vm.productId)
+                .then(function (response) {
+                        console.log(response.data);
+                        vm.reviews = response.data;
+                        findUserByReviewUserId(vm.reviews);
+                        updateAllRatings();
+                        $scope.searchDetailModel.avgRating = vm.avgRating;
+                        $scope.searchDetailModel.maxRating = vm.maxRating;
+                    },
+                    function (err) {
+                        console.log("error ReviewController->findAllReviewsForGadget");
+                        console.log(err);
+                    });
+            
             vm.review = {
                 review: "",
                 title: "",
@@ -52,6 +52,7 @@
 
         init();
         function addReview(review) {
+            console.log(vm.user.username)
             ReviewService.addReviewForUser( vm.user._id, vm.productId, review)
                 .then(function (response) {
                         if (response.data) {
@@ -144,23 +145,32 @@
         function findUserByReviewUserId(reviews) {
             var promiseArray = [];
             var result = [];
-            for (var i = 0; i < reviews.length; i++) {
-                promiseArray
-                    .push(
-                        UserService.findUserByUserId(reviews[i].userId)
-                            .then(function (response) {
-                                if (response.data) {
-                                    result.push(response.data);
-                                }
-                            }));
-            }
+            //for (var i = 0; i < reviews.length; i++) {
+            //    promiseArray
+            //        .push(
+            //            UserService.findUserByUserId(reviews[i].userId)
+            //                .then(function (response) {
+            //                    if (response.data) {
+            //                        result.push(response.data);
+            //                    }
+            //                }));
+            //}
+            //
+            //$q.all(promiseArray)
+            //    .then(function () {
+            //        for (var i = 0; i < result.length; i++) {
+            //            reviews[i].username = result[i].username;
+            //        }
+            //    });
 
-            $q.all(promiseArray)
-                .then(function () {
-                    for (var i = 0; i < result.length; i++) {
-                        reviews[i].username = result[i].username;
-                    }
-                });
+            reviews.forEach(function (element, index, arr) {
+                UserService.findUserByUserId(reviews[index].userId)
+                                .then(function (response) {
+                                    if (response.data) {
+                                        reviews[index].username = response.data.username;
+                                    }
+                                });
+            });
         }
     }
 
