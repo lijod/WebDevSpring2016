@@ -40,7 +40,7 @@
                         <div class="review-block-name">
                             <!--a href="#"-->
                                 {{review.username}} <br/>
-                                {{review.createdOn}}
+                                {{review.createdOn | date : "EEE, MM/dd/yyyy HH:mm"}}
                             <!--/a-->
                         </div>
                         <!--<div class="review-block-date">January 29, 2016</div>-->
