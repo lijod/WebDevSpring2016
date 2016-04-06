@@ -53,7 +53,7 @@
             if(user != null){
                 console.log("Redirecting user: ");
                 UserService.setCurrentUser(user);
-                $state.go("profile")
+                $state.go("profile", {userId: user._id});
             }
         }
     }

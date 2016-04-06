@@ -23,7 +23,7 @@
             console.log(user);
             if(user != null){
                 UserService.setCurrentUser(user);
-                $state.go("profile");
+                $state.go("profile", {userId: user._id});
             } else {
                 alert("Username and password doesn't exist!")
             }

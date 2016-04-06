@@ -4,9 +4,11 @@
         .module("GadgetGuruApp")
         .controller("EditProfileController", EditProfileController);
 
-    function EditProfileController($state, UserService) {
-        console.log("EditProfileController")
+    function EditProfileController($scope, $state, UserService) {
         var vm = this;
+        if($scope.profileModel.paramUser._id !== $scope.profileModel.loggedInUser._id) {
+            return;
+        }
         vm.updateUser = updateUser;
         function init() {
             vm.$state = $state;

@@ -7,7 +7,7 @@
     function configuration($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/home');
-        $urlRouterProvider.when('/profile', '/profile/review');
+        $urlRouterProvider.when('/profile/{userId}', '/profile/{userId}/review');
         $urlRouterProvider.when('/search-detail/{gadgetId}', '/search-detail/{gadgetId}/review');
 
         $stateProvider
@@ -44,7 +44,7 @@
                 templateUrl: 'views/search-detail/spec/spec.view.html'
             })
             .state('profile', {
-                url: '/profile',
+                url: '/profile/:userId',
                 templateUrl: 'views/user/profile/profile.view.html',
                 controller: 'ProfileController',
                 controllerAs: 'profileModel',
