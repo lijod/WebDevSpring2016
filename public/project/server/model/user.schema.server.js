@@ -5,6 +5,7 @@ module.exports = function (db) {
         firstName: String,
         lastName: String,
         email: String,
+        likedGadget: [String],
         role: {type: String, enum: ["USER", "ADMIN"]}
     }, {collection: 'gg_user'});
     return UserSchema;

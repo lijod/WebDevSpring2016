@@ -15,6 +15,9 @@
             createUser : createUser,
             deleteUserById : deleteUserById,
             updateUser : updateUser,
+            addLikedGadget: addLikedGadget,
+            undoLikedGadget: undoLikedGadget,
+            isLikedGadget: isLikedGadget,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
             invalidateCurrentSession : invalidateCurrentSession
@@ -48,6 +51,18 @@
 
         function updateUser (userId, user) {
             return $http.put("/api/gadgetguru/user/" + userId, user);
+        }
+
+        function addLikedGadget(userId, gadgetId) {
+            return $http.put("/api/gadgetguru/user/" + userId + "/gadget/" + gadgetId + "/like");
+        }
+
+        function undoLikedGadget(userId, gadgetId) {
+            return $http.put("/api/gadgetguru/user/" + userId + "/gadget/" + gadgetId + "/undolike");
+        }
+
+        function isLikedGadget(userId, gadgetId) {
+            return $http.put("/api/gadgetguru/user/" + userId + "/gadget/" + gadgetId + "/isliked");
         }
 
         function getCurrentUser() {

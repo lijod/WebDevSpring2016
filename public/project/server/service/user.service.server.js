@@ -5,6 +5,9 @@ module.exports = function(app, userModel) {
     app.get("/api/gadgetguru/user", user);
     app.get("/api/gadgetguru/userby", getUserByUsername);
     app.put("/api/gadgetguru/user/:id", updateUser);
+    app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/like", addLikedGadget);
+    app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/undolike", undoLikedGadget);
+    app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/isliked", isGadgetLiked);
     app.delete("/api/gadgetguru/user/:id", deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
     app.post("/api/gadgetguru/logout", logout);
@@ -104,6 +107,44 @@ module.exports = function(app, userModel) {
         userModel.deleteUserById(userId)
             .then(function(response) {
                     res.json(userModel.findAllUsers());
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function addLikedGadget(req, res) {
+        var userId = req.params.userId;
+        var gadgetId = req.params.gadgetId;
+        userModel.addLikedGadget(userId, gadgetId)
+            .then(function(response) {
+                res.json(response);
+            },
+            function(err) {
+                res.status(400).send(err);
+            })
+    }
+
+    function undoLikedGadget(req, res) {
+        var userId = req.params.userId;
+        var gadgetId = req.params.gadgetId;
+        userModel.undoLikedGadget(userId, gadgetId)
+            .then(function(response) {
+                    res.json(response);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                })
+    }
+
+    function isGadgetLiked(req, res) {
+        var userId = req.params.userId;
+        var gadgetId = req.params.gadgetId;
+        userModel.findUserById(userId)
+            .then(function(response) {
+                    var likedGadget = response.likedGadget;
+                    var isLiked = likedGadget.indexOf(gadgetId) > -1;
+                    res.json({isLiked: isLiked});
                 },
                 function(err) {
                     res.status(400).send(err);

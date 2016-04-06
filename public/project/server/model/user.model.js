@@ -12,6 +12,8 @@ module.exports = function (db) {
         createUser: createUser,
         deleteUserById: deleteUserById,
         updateUser: updateUser,
+        addLikedGadget: addLikedGadget,
+        undoLikedGadget: undoLikedGadget,
         getMongooseModel: getMongooseModel
     };
 
@@ -45,7 +47,22 @@ module.exports = function (db) {
         delete user._id;
         return UserModel.update(
             {_id: userId},
-            {$set: user});
+            {$set: user}
+        );
+    }
+
+    function addLikedGadget(userId, gadgetId) {
+        return UserModel.update(
+            {_id: userId},
+            {$addToSet: {likedGadget: gadgetId}}
+        );
+    }
+
+    function undoLikedGadget(userId, gadgetId) {
+        return UserModel.update(
+            {_id: userId},
+            {$pullAll: {likedGadget: [gadgetId]}}
+        );
     }
 
     function getMongooseModel() {

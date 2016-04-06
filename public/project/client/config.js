@@ -8,7 +8,7 @@
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/home');
         $urlRouterProvider.when('/profile', '/profile/review');
-        $urlRouterProvider.when('/search-detail/{productId}', '/search-detail/{productId}/review');
+        $urlRouterProvider.when('/search-detail/{gadgetId}', '/search-detail/{gadgetId}/review');
 
         $stateProvider
             .state('home', {
@@ -21,7 +21,7 @@
                 }
             })
             .state('search-detail', {
-                url: '/search-detail/:productId',
+                url: '/search-detail/:gadgetId',
                 templateUrl: 'views/search-detail/search-detail.view.html',
                 controller: "SearchResultController",
                 controllerAs: "searchDetailModel",
