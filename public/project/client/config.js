@@ -60,7 +60,9 @@
             })
             .state('profile.review', {
                 url: '/review',
-                templateUrl: 'views/user/profile/review/review.view.html'
+                templateUrl: 'views/user/profile/review/review.view.html',
+                controller: 'ProfileReviewController',
+                controllerAs: 'model'
             })
             .state('profile.like', {
                 url: '/like',
