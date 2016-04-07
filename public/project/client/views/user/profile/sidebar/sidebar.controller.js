@@ -1,15 +1,40 @@
-(function() {
+(function () {
 
     angular
         .module("GadgetGuruApp")
         .controller("SidebarController", SidebarController);
 
-    function SidebarController($scope, $state) {
+    function SidebarController($scope, $state, UserService) {
         var vm = this;
-        vm.state = $state;
+        function init() {
+            vm.state = $state;
+            vm.isFollowed = false;
+            vm.follow = follow;
+            vm.unfollow = unfollow;
+        }
+        init();
 
-        console.log($scope.profileModel.paramUser);
-        console.log($scope.profileModel.loggedInUser);
+        function follow() {
+            UserService.follow($scope.profileModel.loggedInUser._id,
+                $scope.profileModel.paramUser._id)
+                .then(function (response) {
+                        console.log(response);
+                    },
+                    function (err) {
+                        console.log(err);
+                    });
+        }
+
+        function unfollow() {
+            UserService.unfollow($scope.profileModel.loggedInUser._id,
+                $scope.profileModel.paramUser._id)
+                .then(function (response) {
+                        console.log(response);
+                    },
+                    function (err) {
+                        console.log(err);
+                    });
+        }
 
     }
 })();

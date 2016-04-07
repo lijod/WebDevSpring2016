@@ -18,6 +18,8 @@
             addLikedGadget: addLikedGadget,
             undoLikedGadget: undoLikedGadget,
             isLikedGadget: isLikedGadget,
+            follow: follow,
+            unfollow: unfollow,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
             invalidateCurrentSession : invalidateCurrentSession
@@ -63,6 +65,14 @@
 
         function isLikedGadget(userId, gadgetId) {
             return $http.put("/api/gadgetguru/user/" + userId + "/gadget/" + gadgetId + "/isliked");
+        }
+
+        function follow(follower, following) {
+            return $http.put("/api/gadgetguru/user/" + follower + "/user/" + following + "/follow");
+        }
+
+        function unfollow(follower, following) {
+            return $http.put("/api/gadgetguru/user/" + follower + "/user/" + following + "/unfollow");
         }
 
         function getCurrentUser() {

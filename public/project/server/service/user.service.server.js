@@ -8,6 +8,8 @@ module.exports = function(app, userModel) {
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/like", addLikedGadget);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/undolike", undoLikedGadget);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/isliked", isGadgetLiked);
+    app.put("/api/gadgetguru/user/:followerId/user/:followingId/follow", follow);
+    app.put("/api/gadgetguru/user/:followerId/user/:followingId/unfollow", unfollow);
     app.delete("/api/gadgetguru/user/:id", deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
     app.post("/api/gadgetguru/logout", logout);
@@ -145,6 +147,50 @@ module.exports = function(app, userModel) {
                     var likedGadget = response.likedGadget;
                     var isLiked = likedGadget.indexOf(gadgetId) > -1;
                     res.json({isLiked: isLiked});
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function follow(req, res) {
+        var follower = req.params.followerId;
+        var following = req.params.followingId;
+        userModel.addFollowing(follower, following)
+            .then(function(response) {
+                if(response) {
+                    return userModel.addFollower(follower, following);
+                } else {
+                    res.json({});
+                }
+            },
+            function(err) {
+                res.status(400).send(err);
+            })
+            .then(function(response) {
+                res.json(response);
+            },
+            function(err) {
+                res.status(400).send(err);
+            });
+    }
+
+    function unfollow(req, res) {
+        var follower = req.params.followerId;
+        var following = req.params.followingId;
+        userModel.removeFollowing(follower, following)
+            .then(function(response) {
+                    if(response) {
+                        return userModel.removeFollower(follower, following);
+                    } else {
+                        res.json({});
+                    }
+                },
+                function(err) {
+                    res.status(400).send(err);
+                })
+            .then(function(response) {
+                    res.json(response);
                 },
                 function(err) {
                     res.status(400).send(err);

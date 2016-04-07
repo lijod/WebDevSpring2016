@@ -13,6 +13,10 @@ module.exports = function (db) {
         deleteUserById: deleteUserById,
         updateUser: updateUser,
         addLikedGadget: addLikedGadget,
+        addFollowing: addFollowing,
+        addFollower: addFollower,
+        removeFollowing: removeFollowing,
+        removeFollower: removeFollower,
         undoLikedGadget: undoLikedGadget,
         getMongooseModel: getMongooseModel
     };
@@ -62,6 +66,34 @@ module.exports = function (db) {
         return UserModel.update(
             {_id: userId},
             {$pullAll: {likedGadget: [gadgetId]}}
+        );
+    }
+
+    function addFollowing(follower, following) {
+        return UserModel.update(
+            {_id: follower},
+            {$addToSet: {following: following}}
+        );
+    }
+
+    function addFollower(follower, following) {
+        return UserModel.update(
+            {_id: following},
+            {$addToSet: {follower: follower}}
+        );
+    }
+
+    function removeFollowing(follower, following) {
+        return UserModel.update(
+            {_id: follower},
+            {$pullAll: {following: [following]}}
+        );
+    }
+
+    function removeFollower(follower, following) {
+        return UserModel.update(
+            {_id: following},
+            {$pullAll: {follower: [follower]}}
         );
     }
 
