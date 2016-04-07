@@ -20,7 +20,6 @@
 
         function redirectUserToProfileIfValid(user) {
             console.log("Redirecting user: ");
-            console.log(user);
             if(user != null){
                 UserService.setCurrentUser(user);
                 $state.go("profile.edit", {userId: user._id});
