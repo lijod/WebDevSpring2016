@@ -1,13 +1,13 @@
 <div ng-controller="SidebarController as model">
     <div class="col-xs-2 sidebar">
-        <img class="img-responsive profile-img" src="/project/client/img/user.jpg" />
+        <img class="img-responsive profile-img" src="/project/client/img/user.jpg"/>
         <ul class="nav nav-sidebar text-center">
-            <li ui-sref-active="active" ng-if="profileModel.paramUser._id === profileModel.loggedInUser._id">
+            <li ui-sref-active="active" ng-if="model.paramUser._id === model.loggedInUser._id">
                 <a ui-sref=".edit">EDIT PROFILE</a>
             </li>
-            <li ng-if="profileModel.paramUser._id !== profileModel.loggedInUser._id">
-                <a href="" ng-click="model.follow()" class="btn btn-primary btn-xs">FOLLOW</a>
-                <a href="" ng-click="model.unfollow()" class="btn btn-primary btn-xs">UNFOLLOW</a>
+            <li ng-if="model.paramUser._id !== model.loggedInUser._id">
+                <a href="" ng-click="model.follow()" ng-if="!model.isFollowing" class="btn btn-primary btn-xs">FOLLOW</a>
+                <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing" class="btn btn-primary btn-xs">UNFOLLOW</a>
             </li>
             <li ui-sref-active="active"><a ui-sref=".review">REVIEW</a></li>
             <li ui-sref-active="active"><a ui-sref=".follow-main.follower">FOLLOWERS</a></li>
@@ -18,13 +18,14 @@
     </div>
 
     <div class="nav-sidebar-mobile col-xs-2 visible-xs-block text-center">
-        <img class="img-responsive profile-img" ng-src="/project/client/img/user.jpg" />
+        <img class="img-responsive profile-img" ng-src="/project/client/img/user.jpg"/>
         <ul class="nav text-center mobile-profile-sidebar-controller">
-            <li ng-if="profileModel.paramUser._id === model.profileModel.loggedInUser._id">
+            <li ng-if="model.paramUser._id === model.loggedInUser._id">
                 <a ui-sref=".edit">Edit</a>
             </li>
-            <li ng-if="profileModel.paramUser._id !== model.profileModel.loggedInUser._id">
-                <a ng-click="">Follow</a>
+            <li ng-if="model.paramUser._id !== model.loggedInUser._id">
+                <a href="" ng-click="model.follow()" ng-if="!model.isFollowing" class="btn btn-primary btn-xs">FOLLOW</a>
+                <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing" class="btn btn-primary btn-xs">UNFOLLOW</a>
             </li>
             <li ui-sref-active="mobile-profile-sidebar-icon-selected">
                 <a ui-sref=".review"><i class="glyphicon glyphicon-comment profile-icon"></i></a>

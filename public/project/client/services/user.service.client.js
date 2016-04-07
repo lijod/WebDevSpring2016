@@ -20,6 +20,7 @@
             isLikedGadget: isLikedGadget,
             follow: follow,
             unfollow: unfollow,
+            isFollowing: isFollowing,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
             invalidateCurrentSession : invalidateCurrentSession
@@ -73,6 +74,10 @@
 
         function unfollow(follower, following) {
             return $http.put("/api/gadgetguru/user/" + follower + "/user/" + following + "/unfollow");
+        }
+
+        function isFollowing(follower, following) {
+            return $http.put("/api/gadgetguru/user/" + follower + "/user/" + following + "/isfollowing");
         }
 
         function getCurrentUser() {

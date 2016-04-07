@@ -10,6 +10,7 @@ module.exports = function(app, userModel) {
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/isliked", isGadgetLiked);
     app.put("/api/gadgetguru/user/:followerId/user/:followingId/follow", follow);
     app.put("/api/gadgetguru/user/:followerId/user/:followingId/unfollow", unfollow);
+    app.put("/api/gadgetguru/user/:followerId/user/:followingId/isfollowing", isUserFollowing);
     app.delete("/api/gadgetguru/user/:id", deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
     app.post("/api/gadgetguru/logout", logout);
@@ -191,6 +192,21 @@ module.exports = function(app, userModel) {
                 })
             .then(function(response) {
                     res.json(response);
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
+    }
+
+
+    function isUserFollowing(req, res) {
+        var follower = req.params.followerId;
+        var following = req.params.followingId;
+        userModel.findUserById(follower)
+            .then(function(response) {
+                    var followingUsers = response.following;
+                    var isFollowing = followingUsers.indexOf(following) > -1;
+                    res.json({isFollowing: isFollowing});
                 },
                 function(err) {
                     res.status(400).send(err);
