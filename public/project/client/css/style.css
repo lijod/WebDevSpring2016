@@ -214,3 +214,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .search-box {
     margin: 15px 0px 15px 1px;
 }
+
+.review-update-btn-container {
+    margin-top: 5px;
+}

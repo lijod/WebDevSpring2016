@@ -47,7 +47,7 @@
             vm.selectReview = selectReview;
             vm.updateReview = updateReview;
             vm.deleteReview = deleteReview;
-            //vm.getUserById = getUserById;
+            vm.cancelUpdate = cancelUpdate;
         }
 
         init();
@@ -101,6 +101,10 @@
                 });
         }
 
+        function cancelUpdate() {
+            vm.selectedIndex = -1;
+        }
+
         function deleteReview(index) {
             ReviewService.deleteReview(vm.reviews[index]._id)
                 .then(function (response) {
@@ -143,26 +147,6 @@
         }
 
         function findUserByReviewUserId(reviews) {
-            var promiseArray = [];
-            var result = [];
-            //for (var i = 0; i < reviews.length; i++) {
-            //    promiseArray
-            //        .push(
-            //            UserService.findUserByUserId(reviews[i].userId)
-            //                .then(function (response) {
-            //                    if (response.data) {
-            //                        result.push(response.data);
-            //                    }
-            //                }));
-            //}
-            //
-            //$q.all(promiseArray)
-            //    .then(function () {
-            //        for (var i = 0; i < result.length; i++) {
-            //            reviews[i].username = result[i].username;
-            //        }
-            //    });
-
             reviews.forEach(function (element, index, arr) {
                 UserService.findUserByUserId(reviews[index].userId)
                                 .then(function (response) {

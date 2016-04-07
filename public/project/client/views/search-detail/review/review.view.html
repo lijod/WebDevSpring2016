@@ -39,8 +39,8 @@
                         <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
                         <div class="review-block-name">
                             <!--a href="#"-->
-                                {{review.username}} <br/>
-                                {{review.createdOn | date : "EEE, MM/dd/yyyy HH:mm"}}
+                                By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a> <on></on>
+                                {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}
                             <!--/a-->
                         </div>
                         <!--<div class="review-block-date">January 29, 2016</div>-->
@@ -63,10 +63,14 @@
                         </ng-rating>
                         <input ng-model="review.title" class="form-control" type="text"
                                placeholder="Please enter a title for your review"/>
-                    <textarea ng-model="review.review" class="search-review-text form-control"
-                              placeholder="Please enter your review" rows="3"></textarea>
-                        <a href="javascript:void(0)" ng-click="model.updateReview(review)"
-                           class="btn btn-primary review-update-btn">Update</a>
+                        <textarea ng-model="review.review" class="search-review-text form-control"
+                                  placeholder="Please enter your review" rows="3"></textarea>
+                        <div class="pull-right review-update-btn-container">
+                            <a href="javascript:void(0)" ng-click="model.cancelUpdate()"
+                               class="btn btn-primary">Cancel</a>
+                            <a href="javascript:void(0)" ng-click="model.updateReview(review)"
+                               class="btn btn-success">Update</a>
+                        </div>
                     </div>
                     <hr/>
                 </div>
