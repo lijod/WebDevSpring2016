@@ -62,17 +62,9 @@
                 url: '/review',
                 templateUrl: 'views/user/profile/review/review.view.html'
             })
-            .state('profile.like-main', {
-                url: '/like-main',
-                templateUrl: 'views/user/profile/like/like.main.view.html'
-            })
-            .state('profile.like-main.like', {
+            .state('profile.like', {
                 url: '/like',
                 templateUrl: 'views/user/profile/like/like.view.html'
-            })
-            .state('profile.like-main.dislike', {
-                url: '/dislike',
-                templateUrl: 'views/user/profile/like/dislike.view.html'
             })
             .state('profile.follow-main', {
                 url: '/follow-main',

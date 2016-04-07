@@ -12,8 +12,7 @@
             <li ui-sref-active="active"><a ui-sref=".review">REVIEW</a></li>
             <li ui-sref-active="active"><a ui-sref=".follow-main.follower">FOLLOWERS</a></li>
             <li ui-sref-active="active"><a ui-sref=".follow-main.following">FOLLOWING</a></li>
-            <li ui-sref-active="active"><a ui-sref=".like-main.like">LIKES</a></li>
-            <li ui-sref-active="active"><a ui-sref=".like-main.dislike">DISLIKES</a></li>
+            <li ui-sref-active="active"><a ui-sref=".like">LIKES</a></li>
         </ul>
     </div>
 
@@ -33,8 +32,8 @@
             <li ng-class="{'mobile-profile-sidebar-icon-selected': model.state.includes('follow-main')}">
                 <a ui-sref=".follow-main.follower"><i class="fa fa-users profile-icon"></i></a>
             </li>
-            <li ng-class="{'mobile-profile-sidebar-icon-selected': model.state.includes('like-main')}">
-                <a ui-sref=".like-main.like"><i class="glyphicon glyphicon-thumbs-up profile-icon"></i></a>
+            <li ui-sref-active="mobile-profile-sidebar-icon-selected">
+                <a ui-sref=".like"><i class="glyphicon glyphicon-thumbs-up profile-icon"></i></a>
             </li>
         </ul>
     </div>
