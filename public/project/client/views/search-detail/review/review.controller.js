@@ -11,7 +11,7 @@
             vm.isNaN = isNaN;
             vm.selectedIndex = -1;
             vm.maxRating = 5;
-            vm.productId = $stateParams.productId;
+            vm.gadgetId = $stateParams.gadgetId;
 
             UserService.getCurrentUser()
                 .then(function (user) {
@@ -22,7 +22,7 @@
                         console.log(err);
                     });
 
-            ReviewService.findAllReviewsForGadget(vm.productId)
+            ReviewService.findAllReviewsForGadget(vm.gadgetId)
                 .then(function (response) {
                         console.log(response.data);
                         vm.reviews = response.data;
@@ -53,7 +53,7 @@
         init();
         function addReview(review) {
             console.log(vm.user.username)
-            ReviewService.addReviewForUser( vm.user._id, vm.productId, review)
+            ReviewService.addReviewForUser( vm.user._id, vm.gadgetId, review)
                 .then(function (response) {
                         if (response.data) {
                             vm.reviews.push(response.data);
