@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("ReviewController", ReviewController);
 
-    function ReviewController($scope, $stateParams, $rootScope, $q, ReviewService, UserService) {
+    function ReviewController($scope, $stateParams, ReviewService, UserService, GadgetService) {
         var vm = this;
         function init() {
             vm.Math = window.Math;
@@ -52,8 +52,12 @@
 
         init();
         function addReview(review) {
-            console.log(vm.user.username)
-            ReviewService.addReviewForUser( vm.user._id, vm.gadgetId, review)
+            var gadgetToAdd = {
+                _id: $scope.searchDetailModel.gadget.productId + "",
+                title: $scope.searchDetailModel.gadget.name,
+                imgUrl: $scope.searchDetailModel.gadget.image
+            };
+            ReviewService.addReviewForUser(vm.user._id, vm.gadgetId, review)
                 .then(function (response) {
                         if (response.data) {
                             vm.reviews.push(response.data);
@@ -64,6 +68,7 @@
                             };
                             findUserByReviewUserId(vm.reviews);
                             updateAllRatings();
+                            return GadgetService.addGadget(gadgetToAdd);
                         } else {
                             alert("Error occurred while adding review");
                         }
@@ -71,7 +76,14 @@
                     function (err) {
                         console.log("error ReviewController->addReview->addReviewForUser");
                         console.log(err);
-                    });
+                    })
+                .then(function(response) {
+                    //console.log(response.data)
+                },
+                function(err) {
+                    console.log("addReview->addReviewForUser->addGadget")
+                    console.log(err);
+                });
         }
 
         function selectReview(index) {

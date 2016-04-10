@@ -1,4 +1,4 @@
-(function() {
+(function () {
 
     angular
         .module("GadgetGuruApp")
@@ -13,7 +13,7 @@
             vm.gadgetId = $stateParams.gadgetId;
             vm.isLiked = false;
             console.log("gadgetId:", vm.gadgetId);
-            if(vm.gadgetId && vm.gadgetId.trim() !== "") {
+            if (vm.gadgetId && vm.gadgetId.trim() !== "") {
                 GadgetService.getGadgetDetail(vm.gadgetId)
                     .then(function (response) {
                         console.log(response);
@@ -23,21 +23,21 @@
                         console.log(err);
                     });
                 UserService.getCurrentUser()
-                    .then(function(response) {
-                        vm.user = response.data;
-                        UserService.isLikedGadget(vm.user._id, vm.gadgetId)
-                            .then(function(response) {
-                                console.log(response.data.isLiked);
-                                vm.isLiked = response.data.isLiked;
-                            },
-                            function(err) {
-                                console.log(err);
-                            });
+                    .then(function (response) {
+                            vm.user = response.data;
+                            UserService.isLikedGadget(vm.user._id, vm.gadgetId)
+                                .then(function (response) {
+                                        console.log(response.data.isLiked);
+                                        vm.isLiked = response.data.isLiked;
+                                    },
+                                    function (err) {
+                                        console.log(err);
+                                    });
 
-                    },
-                    function(err) {
-                        console.log(err);
-                    });
+                        },
+                        function (err) {
+                            console.log(err);
+                        });
             } else {
                 vm.gadget = {};
                 $state.go("home");
@@ -49,31 +49,42 @@
         init();
 
         function likeGadget() {
+            var gadgetToAdd = {
+                _id: vm.gadget.productId + "",
+                title: vm.gadget.name,
+                imgUrl: vm.gadget.image
+            };
             UserService.addLikedGadget(vm.user._id, vm.gadgetId)
-                .then(function(response) {
-                    response = response.data;
-                    console.log(response);
-                    if(response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
-                        vm.isLiked = true;
-                    }
+                .then(function (response) {
+                        response = response.data;
+                        if (response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                            vm.isLiked = true;
+                            return GadgetService.addGadget(gadgetToAdd);
+                        }
+                    },
+                    function (err) {
+                        console.log(err);
+                    })
+                .then(function (response) {
+                    console.log(response.data);
                 },
                 function(err) {
-                    console.log(err);
+                    console.log("likeGadget->addLikedGadget->addGadget");
                 });
         }
 
         function undoLikeGadget() {
             UserService.undoLikedGadget(vm.user._id, vm.gadgetId)
-                .then(function(response) {
-                    response = response.data;
-                    console.log(response);
-                    if(response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
-                        vm.isLiked = false;
-                    }
-                },
-                function(err) {
-                    console.log(err);
-                });
+                .then(function (response) {
+                        response = response.data;
+                        console.log(response);
+                        if (response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                            vm.isLiked = false;
+                        }
+                    },
+                    function (err) {
+                        console.log(err);
+                    });
         }
 
     }

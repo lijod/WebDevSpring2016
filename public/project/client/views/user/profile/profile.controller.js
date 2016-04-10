@@ -8,15 +8,6 @@
         var vm = this;
 
         function init() {
-            UserService.getCurrentUser()
-                .then(function (response) {
-                        vm.user = response.data;
-                        console.log("test");
-                    },
-                    function () {
-                        console.log("ProfileController->getCurrentUser");
-                    });
-
 
         }
 

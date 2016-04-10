@@ -17,11 +17,11 @@
         return api;
 
         function findAllReviewsForGadget(gadgetId) {
-            return $http.get("/api/gadgetguru/gadget/" + gadgetId);
+            return $http.get("/api/gadgetguru/review/gadget/" + gadgetId);
         }
 
         function addReviewForUser(userId, gadgetId, review) {
-            return $http.post("/api/gadgetguru/user/" + userId + "/gadget/" + gadgetId, review);
+            return $http.post("/api/gadgetguru/review/user/" + userId + "/gadget/" + gadgetId, review);
         }
 
         function updateReview(reviewId, review) {

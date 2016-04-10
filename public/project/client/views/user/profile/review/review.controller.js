@@ -5,6 +5,14 @@
         .controller("ProfileReviewController", ProfileReviewController);
 
     function ProfileReviewController($scope) {
-        console.log($scope.profileModel.user);
+        UserService.findUserByUserId(userId)
+            .then(function (response) {
+                vm.paramUser = response.data;
+                console.log(vm.paramUser);
+            },
+            function (err) {
+                console.log("ProfileController->findUserByUserId");
+                console.log(err);
+            });
     }
 })();

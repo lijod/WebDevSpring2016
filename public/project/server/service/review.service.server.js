@@ -1,8 +1,8 @@
 "use strict";
 module.exports = function(app, reviewModel) {
 
-    app.get("/api/gadgetguru/gadget/:gadgetId", findAllReviewsForGadget);
-    app.post("/api/gadgetguru/user/:userId/gadget/:gadgetId", createReview);
+    app.get("/api/gadgetguru/review/gadget/:gadgetId", findAllReviewsForGadget);
+    app.post("/api/gadgetguru/review/user/:userId/gadget/:gadgetId", createReview);
     app.put("/api/gadgetguru/review/:reviewId", updateReview);
     app.delete("/api/gadgetguru/review/:reviewId", deleteReview);
 

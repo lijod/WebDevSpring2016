@@ -9,7 +9,8 @@
 
         var api = {
             getGadgetsByKeyword: getGadgetsByKeyword,
-            getGadgetDetail: getGadgetDetail
+            getGadgetDetail: getGadgetDetail,
+            addGadget: addGadget
         };
 
         return api;
@@ -30,6 +31,10 @@
             var url = "http://api.bestbuy.com/v1/products(productId=" + gadgetId + ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn&show=" + fields;
             console.log(url);
             return $http.get(url);
+        }
+
+        function addGadget(gadget) {
+            return $http.post("/api/gadgetguru/gadget", gadget);
         }
     }
 
