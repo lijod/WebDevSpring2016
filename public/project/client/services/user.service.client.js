@@ -21,6 +21,8 @@
             follow: follow,
             unfollow: unfollow,
             isFollowing: isFollowing,
+            findFollowingUsers: findFollowingUsers,
+            findFollowerUsers: findFollowerUsers,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
             invalidateCurrentSession : invalidateCurrentSession
@@ -77,7 +79,15 @@
         }
 
         function isFollowing(follower, following) {
-            return $http.put("/api/gadgetguru/user/" + follower + "/user/" + following + "/isfollowing");
+            return $http.get("/api/gadgetguru/user/" + follower + "/user/" + following + "/isfollowing");
+        }
+
+        function findFollowingUsers(userId) {
+            return $http.get("/api/gadgetguru/user/" + userId + "/following");
+        }
+
+        function findFollowerUsers(userId) {
+            return $http.get("/api/gadgetguru/user/" + userId + "/follower");
         }
 
         function getCurrentUser() {

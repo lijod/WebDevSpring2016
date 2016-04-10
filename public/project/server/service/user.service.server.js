@@ -1,5 +1,5 @@
 "use strict";
-module.exports = function(app, userModel) {
+module.exports = function (app, userModel) {
     app.post("/api/gadgetguru/user", register);
     app.get("/api/gadgetguru/user/:id", getUserById);
     app.get("/api/gadgetguru/user", user);
@@ -10,7 +10,9 @@ module.exports = function(app, userModel) {
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/isliked", isGadgetLiked);
     app.put("/api/gadgetguru/user/:followerId/user/:followingId/follow", follow);
     app.put("/api/gadgetguru/user/:followerId/user/:followingId/unfollow", unfollow);
-    app.put("/api/gadgetguru/user/:followerId/user/:followingId/isfollowing", isUserFollowing);
+    app.get("/api/gadgetguru/user/:followerId/user/:followingId/isfollowing", isUserFollowing);
+    app.get("/api/gadgetguru/user/:userId/following", findFollowingUser);
+    app.get("/api/gadgetguru/user/:userId/follower", findFollowerUser);
     app.delete("/api/gadgetguru/user/:id", deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
     app.post("/api/gadgetguru/logout", logout);
@@ -19,9 +21,9 @@ module.exports = function(app, userModel) {
         var username = req.query.username;
         var password = req.query.password;
 
-        if(username && password) {
+        if (username && password) {
             login(req, res);
-        } else if(username) {
+        } else if (username) {
             getUserByUsername(req, res);
         } else {
             getAllUser(req, res);
@@ -50,10 +52,10 @@ module.exports = function(app, userModel) {
     function getUserById(req, res) {
         var userId = req.params.id;
         userModel.findUserById(userId)
-            .then(function(response) {
+            .then(function (response) {
                     res.json(response);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 });
     }
@@ -61,10 +63,10 @@ module.exports = function(app, userModel) {
     function getUserByUsername(req, res) {
         var username = req.query.username;
         userModel.findUserByUsername(username)
-            .then(function(response) {
+            .then(function (response) {
                     res.json(response);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 });
     }
@@ -91,16 +93,16 @@ module.exports = function(app, userModel) {
         var userId = req.params.id;
         var user = req.body;
         userModel.updateUser(userId, user)
-            .then(function(response) {
+            .then(function (response) {
                     return userModel.findUserById(userId);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 })
-            .then(function(response) {
+            .then(function (response) {
                 req.session.currentUser = response;
                 res.json(response);
-            }, function(err) {
+            }, function (err) {
                 res.status(400).send(err);
             });
     }
@@ -108,10 +110,10 @@ module.exports = function(app, userModel) {
     function deleteUserById(req, res) {
         var userId = req.params.id;
         userModel.deleteUserById(userId)
-            .then(function(response) {
+            .then(function (response) {
                     res.json(userModel.findAllUsers());
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 });
     }
@@ -120,22 +122,22 @@ module.exports = function(app, userModel) {
         var userId = req.params.userId;
         var gadgetId = req.params.gadgetId;
         userModel.addLikedGadget(userId, gadgetId)
-            .then(function(response) {
-                res.json(response);
-            },
-            function(err) {
-                res.status(400).send(err);
-            })
+            .then(function (response) {
+                    res.json(response);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
     }
 
     function undoLikedGadget(req, res) {
         var userId = req.params.userId;
         var gadgetId = req.params.gadgetId;
         userModel.undoLikedGadget(userId, gadgetId)
-            .then(function(response) {
+            .then(function (response) {
                     res.json(response);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 })
     }
@@ -144,12 +146,12 @@ module.exports = function(app, userModel) {
         var userId = req.params.userId;
         var gadgetId = req.params.gadgetId;
         userModel.findUserById(userId)
-            .then(function(response) {
+            .then(function (response) {
                     var likedGadget = response.likedGadget;
                     var isLiked = likedGadget.indexOf(gadgetId) > -1;
                     res.json({isLiked: isLiked});
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 });
     }
@@ -158,42 +160,42 @@ module.exports = function(app, userModel) {
         var follower = req.params.followerId;
         var following = req.params.followingId;
         userModel.addFollowing(follower, following)
-            .then(function(response) {
-                if(response) {
-                    return userModel.addFollower(follower, following);
-                } else {
-                    res.json({});
-                }
-            },
-            function(err) {
-                res.status(400).send(err);
-            })
-            .then(function(response) {
-                res.json(response);
-            },
-            function(err) {
-                res.status(400).send(err);
-            });
+            .then(function (response) {
+                    if (response) {
+                        return userModel.addFollower(follower, following);
+                    } else {
+                        res.json({});
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+            .then(function (response) {
+                    res.json(response);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
     function unfollow(req, res) {
         var follower = req.params.followerId;
         var following = req.params.followingId;
         userModel.removeFollowing(follower, following)
-            .then(function(response) {
-                    if(response) {
+            .then(function (response) {
+                    if (response) {
                         return userModel.removeFollower(follower, following);
                     } else {
                         res.json({});
                     }
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 })
-            .then(function(response) {
+            .then(function (response) {
                     res.json(response);
                 },
-                function(err) {
+                function (err) {
                     res.status(400).send(err);
                 });
     }
@@ -203,12 +205,47 @@ module.exports = function(app, userModel) {
         var follower = req.params.followerId;
         var following = req.params.followingId;
         userModel.findUserById(follower)
-            .then(function(response) {
+            .then(function (response) {
                     var followingUsers = response.following;
                     var isFollowing = followingUsers.indexOf(following) > -1;
                     res.json({isFollowing: isFollowing});
                 },
-                function(err) {
+                function (err) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function findFollowingUser(req, res) {
+        var userId = req.params.userId;
+        userModel.findUserById(userId)
+            .then(function (response) {
+                    return userModel.findAllById(response.following);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+            .then(function (response) {
+                    res.json(response)
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function findFollowerUser(req, res) {
+        var userId = req.params.userId;
+
+        userModel.findUserById(userId)
+            .then(function (response) {
+                    return userModel.findAllById(response.follower);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+            .then(function (response) {
+                    res.json(response)
+                },
+                function (err) {
                     res.status(400).send(err);
                 });
     }

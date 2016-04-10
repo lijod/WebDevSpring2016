@@ -6,6 +6,7 @@ module.exports = function (db) {
 
     var api = {
         findUserById: findUserById,
+        findAllById: findAllById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         findAllUsers: findAllUsers,
@@ -25,6 +26,10 @@ module.exports = function (db) {
 
     function findUserById(userId) {
         return UserModel.findById(userId);
+    }
+
+    function findAllById(userIdList) {
+        return UserModel.find({_id : {$in : userIdList}});
     }
 
     function findUserByUsername(username) {

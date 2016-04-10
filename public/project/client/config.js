@@ -74,11 +74,15 @@
             })
             .state('profile.follow-main.follower', {
                 url: '/follower',
-                templateUrl: 'views/user/profile/follower/follower.view.html'
+                templateUrl: 'views/user/profile/follower/follower.view.html',
+                controller: "FollowerController",
+                controllerAs: 'model'
             })
             .state('profile.follow-main.following', {
                 url: '/following',
-                templateUrl: 'views/user/profile/follower/following.view.html'
+                templateUrl: 'views/user/profile/follower/following.view.html',
+                controller: "FollowingController",
+                controllerAs: 'model'
             })
             .state('login', {
                 url: '/login',

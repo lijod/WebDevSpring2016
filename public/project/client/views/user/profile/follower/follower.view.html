@@ -1,45 +1,9 @@
 <div class="container-fluid container-inner-like">
     <div class="row">
-        <div class="col-sm-4 col-md-2 container-like-list">
+        <div class="col-sm-4 col-md-2 container-like-list" ng-repeat="user in model.following">
             <div class="thumbnail">
                 <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 container-like-list">
-            <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 container-like-list">
-            <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 container-like-list">
-            <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 container-like-list">
-            <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 container-like-list">
-            <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-2 container-like-list">
-            <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>Username</h4></div>
+                <div class="caption text-center"><h4>{{user.firstName}} {{user.lastName}}</h4></div>
             </div>
         </div>
 
