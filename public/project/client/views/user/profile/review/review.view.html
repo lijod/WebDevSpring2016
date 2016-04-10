@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="row review-row" ng-repeat="review in model.reviews">
+    <div class="row review-row" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
         <!--<p>Gadget Name</p>-->
 
         <div class="col-sm-3 container-profile-review-img">
@@ -11,10 +11,11 @@
                     <a href='' ui-sref='search-detail({gadgetId: review.gadget._id})'><h4>{{review.gadget.title}}</h4></a>
                 </div>
                 <div class="row">
+                    <p>On {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}</p>
                     <ng-rating ng-model="review.rating" editable="false"></ng-rating>
                     <p>{{review.title}}</p>
                     <p>{{review.review | limitTo : 100}}
-                        {{review.review.length > 100? "..."  : ""}}
+                        {{review.review.length > 100 ? "..."  : ""}}
                     </p>
                 </div>
             </div>
