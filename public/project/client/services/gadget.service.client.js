@@ -10,7 +10,8 @@
         var api = {
             getGadgetsByKeyword: getGadgetsByKeyword,
             getGadgetDetail: getGadgetDetail,
-            addGadget: addGadget
+            addGadget: addGadget,
+            findAllGadget: findAllGadget
         };
 
         return api;
@@ -35,6 +36,10 @@
 
         function addGadget(gadget) {
             return $http.post("/api/gadgetguru/gadget", gadget);
+        }
+
+        function findAllGadget(gadgetIdList) {
+            return $http.post("/api/gadgetguru/getallgadget", gadgetIdList);
         }
     }
 

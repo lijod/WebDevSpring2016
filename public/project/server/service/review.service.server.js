@@ -1,7 +1,9 @@
 "use strict";
-module.exports = function(app, reviewModel) {
+var q = require("q");
+module.exports = function(app, reviewModel, gadgetModel) {
 
     app.get("/api/gadgetguru/review/gadget/:gadgetId", findAllReviewsForGadget);
+    app.get("/api/gadgetguru/review/user/:userId", findAllReviewsForUser);
     app.post("/api/gadgetguru/review/user/:userId/gadget/:gadgetId", createReview);
     app.put("/api/gadgetguru/review/:reviewId", updateReview);
     app.delete("/api/gadgetguru/review/:reviewId", deleteReview);
@@ -15,6 +17,35 @@ module.exports = function(app, reviewModel) {
             function(err) {
                 res.status(400).send(err);
             });
+    }
+
+    function findAllReviewsForUser(req, res) {
+        var userId = req.params.userId;
+        reviewModel.findAllReviewsForUser(userId)
+            .then(function(response) {
+                    var promiseArray = [];
+                    var result = [];
+                    response.forEach(function(element, index) {
+                        promiseArray.push(gadgetModel.findGadgetById(element.gadgetId)
+                            .then(function(gadget){
+                                var newObject = JSON.parse(JSON.stringify(element));
+                                newObject.gadget = gadget;
+                                result.push(newObject);
+                            },
+                            function(err) {
+                                var newObject = JSON.parse(JSON.stringify(element));
+                                newObject.gadget = {};
+                                result.push(newObject);
+                            }));
+                    });
+
+                    q.all(promiseArray).then(function() {
+                        res.json(result);
+                    });
+                },
+                function(err) {
+                    res.status(400).send(err);
+                });
     }
 
     function createReview(req, res) {

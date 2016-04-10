@@ -9,6 +9,7 @@
 
         var api = {
             findAllReviewsForGadget: findAllReviewsForGadget,
+            findAllReviewsForUser: findAllReviewsForUser,
             addReviewForUser: addReviewForUser,
             updateReview: updateReview,
             deleteReview: deleteReview
@@ -18,6 +19,10 @@
 
         function findAllReviewsForGadget(gadgetId) {
             return $http.get("/api/gadgetguru/review/gadget/" + gadgetId);
+        }
+
+        function findAllReviewsForUser(userId) {
+            return $http.get("/api/gadgetguru/review/user/" + userId);
         }
 
         function addReviewForUser(userId, gadgetId, review) {

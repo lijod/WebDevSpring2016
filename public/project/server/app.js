@@ -7,7 +7,7 @@ module.exports = function(app, db) {
     var gadgetModel = require("./model/gadget.model.js")(db);
 
     require("./service/user.service.server.js") (app, userModel);
-    require("./service/review.service.server.js") (app, reviewModel);
+    require("./service/review.service.server.js") (app, reviewModel, gadgetModel);
     require("./service/gadget.service.server.js") (app, gadgetModel);
 
 };

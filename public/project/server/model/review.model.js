@@ -6,6 +6,7 @@ module.exports = function(db) {
 
     var api = {
         findAllReviewsForGadget: findAllReviewsForGadget,
+        findAllReviewsForUser: findAllReviewsForUser,
         addReviewForUser: addReviewForUser,
         updateReview: updateReview,
         deleteReview: deleteReview
@@ -15,6 +16,10 @@ module.exports = function(db) {
 
     function findAllReviewsForGadget(gadgetId) {
         return ReviewModel.find({gadgetId: gadgetId});
+    }
+
+    function findAllReviewsForUser(userId) {
+        return ReviewModel.find({userId: userId});
     }
 
     function addReviewForUser(userId, gadgetId, review) {

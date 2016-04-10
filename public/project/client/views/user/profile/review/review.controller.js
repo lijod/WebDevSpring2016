@@ -4,15 +4,17 @@
         .module("GadgetGuruApp")
         .controller("ProfileReviewController", ProfileReviewController);
 
-    function ProfileReviewController($scope) {
-        UserService.findUserByUserId(userId)
-            .then(function (response) {
-                vm.paramUser = response.data;
-                console.log(vm.paramUser);
+    function ProfileReviewController($stateParams, ReviewService, UserService) {
+        var vm = this;
+
+        var userId = $stateParams.userId;
+
+        ReviewService.findAllReviewsForUser(userId)
+            .then(function(response) {
+                vm.reviews = response.data;
             },
-            function (err) {
-                console.log("ProfileController->findUserByUserId");
-                console.log(err);
+            function(err) {
+               console.log(err);
             });
     }
 })();

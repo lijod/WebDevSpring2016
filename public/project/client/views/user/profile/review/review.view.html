@@ -1,64 +1,17 @@
 <div class="container-fluid">
-    <div class="row review-row">
+    <div class="row review-row" ng-repeat="review in model.reviews">
         <!--<p>Gadget Name</p>-->
+
         <div class="col-sm-3 container-profile-review-img">
-            <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
+            <img class="img-responsive img-gadget-review" ng-src="{{review.gadget.imgUrl}}" />
         </div>
         <div class="col-sm-9 container-profile-review">
             <div class="container">
                 <div class="row">
-                    <h4>Name</h4>
+                    <h4>{{review.gadget.title}}</h4>
                 </div>
                 <div class="row">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row review-row">
-        <!--<p>Gadget Name</p>-->
-        <div class="col-sm-3">
-            <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        </div>
-        <div class="col-sm-9 container-profile-review">
-            <div class="container">
-                <div class="row">
-                    <h4>Name</h4>
-                </div>
-                <div class="row">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row review-row">
-        <!--<p>Gadget Name</p>-->
-        <div class="col-sm-3">
-            <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        </div>
-        <div class="col-sm-9 container-profile-review">
-            <div class="container">
-                <div class="row">
-                    <h4>Name</h4>
-                </div>
-                <div class="row">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row review-row">
-        <!--<p>Gadget Name</p>-->
-        <div class="col-sm-3">
-            <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        </div>
-        <div class="col-sm-9 container-profile-review">
-            <div class="container">
-                <div class="row">
-                    <h4>Name</h4>
-                </div>
-                <div class="row">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
+                    <p>{{review.review | limitTo : 100}} {{review.review.length > 100 ? "..." : ""}}</p>
                 </div>
             </div>
         </div>
