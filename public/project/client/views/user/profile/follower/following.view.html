@@ -2,10 +2,11 @@
     <div class="row">
         <div class="col-sm-4 col-md-2 container-like-list" ng-repeat="user in model.following">
             <div class="thumbnail">
-                <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
-                <div class="caption text-center"><h4>{{user.firstName}} {{user.lastName}}</h4></div>
+                <a ui-sref="profile.review({userId: user._id})">
+                    <img class="img-responsive img-gadget-review" src="/project/client/img/avatar.png">
+                    <div class="caption text-center"><h4>{{user.firstName}} {{user.lastName}}</h4></div>
+                </a>
             </div>
         </div>
-
     </div>
 </div>

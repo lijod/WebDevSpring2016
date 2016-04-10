@@ -1,5 +1,5 @@
 "use strict";
-module.exports = function (app, userModel) {
+module.exports = function (app, userModel, gadgetModel) {
     app.post("/api/gadgetguru/user", register);
     app.get("/api/gadgetguru/user/:id", getUserById);
     app.get("/api/gadgetguru/user", user);
@@ -13,6 +13,7 @@ module.exports = function (app, userModel) {
     app.get("/api/gadgetguru/user/:followerId/user/:followingId/isfollowing", isUserFollowing);
     app.get("/api/gadgetguru/user/:userId/following", findFollowingUser);
     app.get("/api/gadgetguru/user/:userId/follower", findFollowerUser);
+    app.get("/api/gadgetguru/user/:userId/likedgadgets", findLikedGadgets);
     app.delete("/api/gadgetguru/user/:id", deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
     app.post("/api/gadgetguru/logout", logout);
@@ -238,6 +239,24 @@ module.exports = function (app, userModel) {
         userModel.findUserById(userId)
             .then(function (response) {
                     return userModel.findAllById(response.follower);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+            .then(function (response) {
+                    res.json(response)
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
+    }
+
+    function findLikedGadgets(req, res) {
+        var userId = req.params.userId;
+
+        userModel.findUserById(userId)
+            .then(function (response) {
+                    return gadgetModel.findAllById(response.likedGadget);
                 },
                 function (err) {
                     res.status(400).send(err);

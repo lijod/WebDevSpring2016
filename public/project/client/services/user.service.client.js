@@ -23,6 +23,7 @@
             isFollowing: isFollowing,
             findFollowingUsers: findFollowingUsers,
             findFollowerUsers: findFollowerUsers,
+            findLikedGadgets: findLikedGadgets,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
             invalidateCurrentSession : invalidateCurrentSession
@@ -88,6 +89,10 @@
 
         function findFollowerUsers(userId) {
             return $http.get("/api/gadgetguru/user/" + userId + "/follower");
+        }
+
+        function findLikedGadgets(userId) {
+            return $http.get("/api/gadgetguru/user/" + userId + "/likedgadgets");
         }
 
         function getCurrentUser() {

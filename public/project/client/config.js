@@ -66,7 +66,9 @@
             })
             .state('profile.like', {
                 url: '/like',
-                templateUrl: 'views/user/profile/like/like.view.html'
+                templateUrl: 'views/user/profile/like/like.view.html',
+                controller: 'ProfileLikeController',
+                controllerAs: 'model'
             })
             .state('profile.follow-main', {
                 url: '/follow-main',

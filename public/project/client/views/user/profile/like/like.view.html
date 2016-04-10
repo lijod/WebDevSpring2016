@@ -1,42 +1,8 @@
-<div class="col-sm-6 col-md-4 container-like-list">
+<div class="col-sm-6 col-md-4 container-like-list" ng-repeat="gadget in model.likedGadgets">
     <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
-    </div>
-</div>
-<div class="col-sm-6 col-md-4 container-like-list">
-    <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
-    </div>
-</div>
-<div class="col-sm-6 col-md-4 container-like-list">
-    <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
-    </div>
-</div>
-<div class="col-sm-6 col-md-4 container-like-list">
-    <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
-    </div>
-</div>
-<div class="col-sm-6 col-md-4 container-like-list">
-    <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
-    </div>
-</div>
-<div class="col-sm-6 col-md-4 container-like-list">
-    <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
-    </div>
-</div>
-<div class="col-sm-6 col-md-4 container-like-list">
-    <div class="thumbnail">
-        <img class="img-responsive img-gadget-review" src="/project/client/img/gadget.jpeg">
-        <div class="caption text-center"><h4>Gadget Name</h4></div>
+        <a ui-sref="search-detail({gadgetId: gadget._id})">
+            <img class="img-responsive img-gadget-review" ng-src="{{gadget.imgUrl}}">
+            <div class="caption text-center"><h4>{{gadget.title}}</h4></div>
+        </a>
     </div>
 </div>
