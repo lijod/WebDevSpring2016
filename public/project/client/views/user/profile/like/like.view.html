@@ -1,8 +1,18 @@
 <div class="col-sm-6 col-md-4 container-like-list" ng-repeat="gadget in model.likedGadgets">
-    <div class="thumbnail">
+    <div class="thumbnail text-center">
         <a ui-sref="search-detail({gadgetId: gadget._id})">
             <img class="img-responsive img-gadget-review" ng-src="{{gadget.imgUrl}}">
             <div class="caption text-center"><h4>{{gadget.title}}</h4></div>
+        </a>
+        <a href="" ng-click="model.likeGadget(gadget)"
+           ng-if="!gadget.isLiked"
+           class="btn btn-success btn-xs">
+            LIKE
+        </a>
+        <a href="" ng-click="model.undoLikeGadget(gadget)"
+           ng-if="gadget.isLiked"
+           class="btn btn-warning btn-xs">
+            UNLIKE
         </a>
     </div>
 </div>
