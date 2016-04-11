@@ -22,8 +22,9 @@ module.exports = function(db) {
     }
 
     function addGadget(gadget) {
+        var gadgetId = gadget._id;
         delete gadget._id;
-        return GadgetModel.findOneAndUpdate({_id: gadget._id}, gadget, {upsert: true});
+        return GadgetModel.findOneAndUpdate({_id: gadgetId}, gadget, {upsert: true});
     }
 
 }
