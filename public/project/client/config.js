@@ -27,7 +27,7 @@
             })
             .state('home.result', {
                 url: '/result/:keyword?isCategory',
-                templateUrl: 'views/search/search-result.view.html',
+                templateUrl: 'views/search/search-result/search-result.view.html',
                 controller: 'SearchResultController',
                 controllerAs: 'model'
             })
