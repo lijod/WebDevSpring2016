@@ -50,7 +50,7 @@
 
         function likeGadget() {
             var gadgetToAdd = {
-                _id: vm.gadget.productId + "",
+                _id: vm.gadgetId,
                 title: vm.gadget.name,
                 imgUrl: vm.gadget.image
             };
