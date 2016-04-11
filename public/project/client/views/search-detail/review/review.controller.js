@@ -94,7 +94,7 @@
             ReviewService.updateReview(review._id, review)
                 .then(function(response) {
                     response = response.data;
-                    if(response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                    if(response.ok && response.ok === 1 && response.n && response.n === 1) {
                         vm.reviews[vm.selectedIndex] = review;
                         vm.review = {
                             review: "",

@@ -52,7 +52,7 @@
             UserService.follow(vm.loggedInUser._id, vm.paramUser._id)
                 .then(function (response) {
                         response = response.data;
-                        if (response && response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response && response.ok && response.ok === 1 && response.n && response.n === 1) {
                             vm.isFollowing = true;
                         }
                     },
@@ -65,7 +65,7 @@
             UserService.unfollow(vm.loggedInUser._id, vm.paramUser._id)
                 .then(function (response) {
                         response = response.data;
-                        if (response && response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response && response.ok && response.ok === 1 && response.n && response.n === 1) {
                             vm.isFollowing = false;
                         }
                     },

@@ -47,7 +47,7 @@
             UserService.addLikedGadget(vm.currUser._id, gadget._id)
                 .then(function (response) {
                         response = response.data;
-                        if (response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response.ok && response.ok === 1 && response.n && response.n === 1) {
                             gadget.isLiked = true;
                         }
                     },
@@ -61,7 +61,7 @@
                 .then(function (response) {
                         response = response.data;
                         console.log(response);
-                        if (response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response.ok && response.ok === 1 && response.n && response.n === 1) {
                             gadget.isLiked = false;
                         }
                     },

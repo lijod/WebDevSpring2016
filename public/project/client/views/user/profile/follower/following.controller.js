@@ -41,7 +41,7 @@
             UserService.follow(vm.currUser._id, toFollowUser._id)
                 .then(function (response) {
                         response = response.data;
-                        if (response && response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response && response.ok && response.ok === 1 && response.n && response.n === 1) {
                             toFollowUser.isFollowing = true;
                         }
                     },
@@ -54,7 +54,7 @@
             UserService.unfollow(vm.currUser._id, toUnfollowUser._id)
                 .then(function (response) {
                         response = response.data;
-                        if (response && response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response && response.ok && response.ok === 1 && response.n && response.n === 1) {
                             toUnfollowUser.isFollowing = false;
                         }
                     },

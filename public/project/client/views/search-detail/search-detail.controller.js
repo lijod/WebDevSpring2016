@@ -57,7 +57,7 @@
             UserService.addLikedGadget(vm.user._id, vm.gadgetId)
                 .then(function (response) {
                         response = response.data;
-                        if (response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response.ok && response.ok === 1 && response.n && response.n === 1) {
                             vm.isLiked = true;
                             return GadgetService.addGadget(gadgetToAdd);
                         }
@@ -78,7 +78,7 @@
                 .then(function (response) {
                         response = response.data;
                         console.log(response);
-                        if (response.ok && response.ok === 1 && response.nModified && response.nModified === 1) {
+                        if (response.ok && response.ok === 1 && response.n && response.n === 1) {
                             vm.isLiked = false;
                         }
                     },
