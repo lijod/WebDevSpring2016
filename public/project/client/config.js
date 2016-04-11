@@ -6,7 +6,8 @@
 
     function configuration($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
         $urlMatcherFactoryProvider.strictMode(false);
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/home/category');
+        $urlRouterProvider.when('/home', '/home/category    ');
         $urlRouterProvider.when('/profile/{userId}', '/profile/{userId}/review');
         $urlRouterProvider.when('/search-detail/{gadgetId}', '/search-detail/{gadgetId}/review');
 
@@ -15,15 +16,25 @@
                 url: '/home',
                 templateUrl: 'views/search/search.view.html',
                 controller: "SearchController",
-                controllerAs: "model",
+                controllerAs: "searchModel",
                 resolve: {
                     getLoggedIn: getLoggedIn
                 }
             })
+            .state('home.category', {
+                url: '/category',
+                templateUrl: 'views/search/category-list.view.html'
+            })
+            .state('home.result', {
+                url: '/result/:keyword?isCategory',
+                templateUrl: 'views/search/search-result.view.html',
+                controller: 'SearchResultController',
+                controllerAs: 'model'
+            })
             .state('search-detail', {
                 url: '/search-detail/:gadgetId',
                 templateUrl: 'views/search-detail/search-detail.view.html',
-                controller: "SearchResultController",
+                controller: "SearchDetailController",
                 controllerAs: "searchDetailModel",
                 resolve: {
                     getLoggedIn: getLoggedIn

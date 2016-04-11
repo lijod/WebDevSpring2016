@@ -7,9 +7,20 @@
 
     function GadgetService($http){
 
+        var categoryCallParam = {
+            "mobile": "categoryPath.name=Cell%20Phones&categoryPath.id!=abcat0811006&categoryPath.id!=abcat0811002",
+            "laptop": "categoryPath.id=abcat0502000&type!=BlackTie",
+            "appliances": "(categoryPath.id=abcat09100007%7CcategoryPath.id=abcat0911000)&type!=BlackTie",
+            "games": "(categoryPath.id=abcat0700000)&type!=BlackTie",
+            "software": "(categoryPath.id=abcat0508000)&type!=BlackTie",
+            "audio": "(categoryPath.id=abcat0200000)&type!=BlackTie",
+            "camera": "(categoryPath.id=abcat0401005)&type!=BlackTie"
+        };
+
         var api = {
             getGadgetsByKeyword: getGadgetsByKeyword,
             getGadgetDetail: getGadgetDetail,
+            getGadgetsByCategory: getGadgetsByCategory,
             addGadget: addGadget,
             findAllGadget: findAllGadget
         };
@@ -22,6 +33,12 @@
                 "&type!=Movie&type!=BlackTie&type!=Software)?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn";
             var searchURL = url.replace("(KEYWORD)", keyword);
             return $http.get(searchURL);
+        }
+
+        function getGadgetsByCategory(category){
+            var url = "http://api.bestbuy.com/v1/products(" + categoryCallParam[category] +
+                ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn";
+            return $http.get(url);
         }
 
         function getGadgetDetail(gadgetId){

@@ -2,10 +2,10 @@
 
     angular
         .module("GadgetGuruApp")
-        .controller("SearchResultController", SearchResultController);
+        .controller("SearchDetailController", SearchDetailController);
 
-    function SearchResultController($state, $stateParams, GadgetService, UserService) {
-        console.log("SearchResultController");
+    function SearchDetailController($state, $stateParams, GadgetService, UserService) {
+        console.log("SearchDetailController");
 
         var vm = this;
         vm.gadget = {};

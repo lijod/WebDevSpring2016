@@ -1,18 +1,9 @@
  <div class="container-fluid">
 
-    <input type="text" class="form-control search-box" ng-model="gadgetName"
-           ng-keydown="$event.which === 13 && model.search(gadgetName)"/>
-    <a href="javascript:void(0)" ng-click="model.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>
-    <div class="row">
-        <div class="col-md-4 col-sm-6 gadget-search-container text-center" ng-repeat="gadget in model.gadgets">
-            <div class="thumbnail">
-                <a ui-sref="search-detail({gadgetId: gadget.productId})">
-                    <!--<span>{{gadget.productId}}</span>-->
-                    <img class="img-responsive" ng-src={{gadget.image}} height="200px"> <br/>
-                    <span>{{gadget.name}}</span>
-                </a>
-            </div>
-        </div>
-    </div>
+    <input type="text" class="form-control search-box" ng-model="gadgetName" />
+           <!--ng-keydown="$event.which === 13 && model.search(gadgetName)"/>-->
+    <!--<a href="javascript:void(0)" ng-click="searchModel.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>-->
+    <a href="" ui-sref="home.result({keyword: gadgetName, isCategory: false})" class="btn btn-primary btn-block">SEARCH</a>
 
+     <div ui-view></div>
 </div>
