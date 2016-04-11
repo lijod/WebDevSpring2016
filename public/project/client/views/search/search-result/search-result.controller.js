@@ -11,8 +11,9 @@
         function init() {
             var keyword = $stateParams.keyword;
             var isCategory = $stateParams.isCategory;
-            $scope.searchModel.updateGadgetName(keyword);
-
+            if(isCategory != 'true') {
+                $scope.searchModel.updateGadgetName(keyword);
+            }
             search(keyword, isCategory);
             vm.gadgets = [];
         }
