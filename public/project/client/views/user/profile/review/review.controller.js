@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("ProfileReviewController", ProfileReviewController);
 
-    function ProfileReviewController($stateParams, ReviewService, UserService) {
+    function ProfileReviewController($stateParams, ReviewService) {
         var vm = this;
 
         var userId = $stateParams.userId;

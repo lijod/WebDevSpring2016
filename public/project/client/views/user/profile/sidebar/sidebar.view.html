@@ -1,6 +1,6 @@
 <div ng-controller="SidebarController as model">
     <div class="col-xs-2 sidebar text-center">
-        <h4>{{model.paramUser.username}}</h4>
+        <h4>{{model.paramUser.username}}'s profile</h4>
         <img class="img-responsive profile-img" src="/project/client/img/user.jpg"/>
         <ul class="nav nav-sidebar text-center">
             <li ui-sref-active="active" ng-if="model.paramUser._id === model.loggedInUser._id">

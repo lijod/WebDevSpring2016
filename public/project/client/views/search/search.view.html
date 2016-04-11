@@ -1,9 +1,18 @@
- <div class="container-fluid">
-
-    <input type="text" class="form-control search-box" ng-model="gadgetName" />
-           <!--ng-keydown="$event.which === 13 && model.search(gadgetName)"/>-->
-    <!--<a href="javascript:void(0)" ng-click="searchModel.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>-->
-    <a href="" ui-sref="home.result({keyword: gadgetName, isCategory: false})" class="btn btn-primary btn-block">SEARCH</a>
-
-     <div ui-view></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <div class="input-group search-box">
+                <input type="text" class="form-control" ng-model="searchModel.gadgetName"/>
+                <!--ng-keydown="$event.which === 13 && model.search(gadgetName)"/>-->
+                <!--<a href="javascript:void(0)" ng-click="searchModel.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>-->
+                <span class="input-group-btn">
+                    <a href="" ui-sref="home.result({keyword: searchModel.gadgetName, isCategory: false})"
+                       class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i></a>
+                </span>
+            </div>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div ui-view></div>
 </div>

@@ -4,13 +4,14 @@
         .module("GadgetGuruApp")
         .controller("SearchResultController", SearchResultController);
 
-    function SearchResultController($stateParams, GadgetService) {
+    function SearchResultController($scope, $stateParams, GadgetService) {
         console.log("SearchResultController");
         var vm = this;
         //vm.search = search;
         function init() {
             var keyword = $stateParams.keyword;
             var isCategory = $stateParams.isCategory;
+            $scope.searchModel.updateGadgetName(keyword);
 
             search(keyword, isCategory);
             vm.gadgets = [];

@@ -11,14 +11,15 @@
                     <a href='' ui-sref='search-detail({gadgetId: review.gadget._id})'><h4>{{review.gadget.title}}</h4></a>
                 </div>
                 <div class="row">
+                    <h4>{{review.title}}</h4>
                     <p>On {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}</p>
                     <ng-rating ng-model="review.rating" editable="false"></ng-rating>
-                    <p>{{review.title}}</p>
                     <p>{{review.review | limitTo : 100}}
                         {{review.review.length > 100 ? "..."  : ""}}
                     </p>
                 </div>
             </div>
         </div>
+        <hr/>
     </div>
 </div>
