@@ -66,7 +66,7 @@
                         console.log(err);
                     })
                 .then(function (response) {
-                    console.log(response.data);
+                    //console.log(response.data);
                 },
                 function(err) {
                     console.log("likeGadget->addLikedGadget->addGadget");
