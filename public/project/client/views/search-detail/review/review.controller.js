@@ -117,12 +117,12 @@
             vm.selectedIndex = -1;
         }
 
-        function deleteReview(index) {
-            ReviewService.deleteReview(vm.reviews[index]._id)
+        function deleteReview(review) {
+            ReviewService.deleteReview(review._id)
                 .then(function (response) {
                         response = response.data;
                         if(response.n && response.n === 1 && response.ok && response.ok ===1) {
-                            vm.reviews.splice(index, 1);
+                            vm.reviews.splice(vm.reviews.indexOf(review), 1);
                             findUserByReviewUserId(vm.reviews);
                             updateAllRatings();
                             vm.isUpdate = false;
