@@ -12,6 +12,7 @@
             UserService.getCurrentUser()
                 .then(function (response) {
                         vm.user = response.data;
+                        vm.udpateProfileApi = "/api/gadgetguru/user/" + vm.user._id;
                         if(userId !== vm.user._id) {
                             $state.go("profile" , {userId: userId});
                         }

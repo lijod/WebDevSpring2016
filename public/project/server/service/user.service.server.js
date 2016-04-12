@@ -1,10 +1,15 @@
 "use strict";
 module.exports = function (app, userModel, gadgetModel) {
+
+    var multer = require('multer');
+    var upload = multer({ dest: __dirname+'/../../../../public/uploads' });
+
     app.post("/api/gadgetguru/user", register);
     app.get("/api/gadgetguru/user/:id", getUserById);
     app.get("/api/gadgetguru/user", user);
     app.get("/api/gadgetguru/userby", getUserByUsername);
     app.put("/api/gadgetguru/user/:id", updateUser);
+    app.post("/api/gadgetguru/user/:id", upload.single('profileImg'), updateUserWithImage);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/like", addLikedGadget);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/undolike", undoLikedGadget);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/isliked", isGadgetLiked);
@@ -103,6 +108,35 @@ module.exports = function (app, userModel, gadgetModel) {
             .then(function (response) {
                 req.session.currentUser = response;
                 res.json(response);
+            }, function (err) {
+                res.status(400).send(err);
+            });
+    }
+
+    function updateUserWithImage(req, res) {
+        console.log("updateUserWithImage");
+        var userId = req.params.id;
+        var user = req.body;
+        var imageFile = req.file;
+        var destination   = imageFile.destination;
+        var path          = imageFile.path;
+        var originalname  = imageFile.originalname;
+        var size          = imageFile.size;
+        var mimetype      = imageFile.mimetype;
+        var filename      = imageFile.filename;
+
+        user.imgUrl = "/uploads/" + filename;
+        console.log("filename", filename);
+        userModel.updateUser(userId, user)
+            .then(function (response) {
+                    return userModel.findUserById(userId);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+            .then(function (response) {
+                req.session.currentUser = response;
+                res.redirect(req.header('Referer') + "#/profile/" + userId + "/edit");
             }, function (err) {
                 res.status(400).send(err);
             });

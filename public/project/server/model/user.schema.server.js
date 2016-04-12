@@ -5,6 +5,7 @@ module.exports = function (db) {
         firstName: String,
         lastName: String,
         email: String,
+        imgUrl: String,
         likedGadget: [String],
         follower: [String],
         following: [String],
