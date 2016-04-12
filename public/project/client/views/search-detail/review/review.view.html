@@ -1,4 +1,4 @@
-<div ng-controller="ReviewController">
+<div class="container-fluid" ng-controller="ReviewController">
     <div class="row">
         <div class="col-sm-3">
             <div class="rating-block">
@@ -33,10 +33,11 @@
     <div class="row">
         <div class="col-sm-12">
             <hr/>
-            <div class="review-block">
-                <div class="row" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
+            <h3 class="lead">Review</h3>
+            <div class="">
+                <div class="row well" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
                     <div class="col-sm-2">
-                        <img class="img-responsive" height="100px" ng-src="{{review.userImgUrl}}" class="img-rounded">
+                        <img class="img-responsive review-user-image" ng-src="{{review.userImgUrl}}" class="img-rounded">
                         <div class="review-block-name">
                             <!--a href="#"-->
                                 By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a> <on></on>
