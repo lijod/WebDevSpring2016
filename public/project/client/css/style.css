@@ -129,8 +129,8 @@ footer {
 }
 
 .img-gadget-review {
-    height: 150px;
-    width: 200px;
+    height: 200px!important;
+    /*width: 200px;*/
 }
 
 .container-profile-review-img {
