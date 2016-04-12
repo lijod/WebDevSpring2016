@@ -9,3 +9,9 @@
         </div>
     </div>
 </div>
+<div class="row text-center">
+    <uib-pagination total-items="model.totalItems" ng-model="model.currentPage" max-size="model.maxPaginationSize"
+                    class="pagination-sm"
+                    boundary-links="true" num-pages="numPages" ng-change="model.search()"
+                    items-per-page="model.itemsPerPage"></uib-pagination>
+</div>

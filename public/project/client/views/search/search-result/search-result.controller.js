@@ -8,28 +8,45 @@
         console.log("SearchResultController");
         var vm = this;
         //vm.search = search;
+
+        vm.totalItems = 1;
+        vm.currentPage = 1;
+        vm.maxPaginationSize = 10;
+        vm.itemsPerPage = 15;
+
+
         function init() {
-            var keyword = $stateParams.keyword;
-            var isCategory = $stateParams.isCategory;
-            if(isCategory != 'true') {
-                $scope.searchModel.updateGadgetName(keyword);
-            }
-            search(keyword, isCategory);
             vm.gadgets = [];
+            vm.keyword = $stateParams.keyword;
+            vm.isCategory = $stateParams.isCategory;
+
+            if(vm.isCategory != 'true') {
+                $scope.searchModel.updateGadgetName(vm.keyword);
+            } else {
+                $scope.searchModel.updateGadgetName("");
+            }
+
+            vm.search = search;
+            vm.search();
         }
 
         init();
 
-        function search(keyword, isCategory) {
-            console.log("Keyword:" + keyword);
-            isCategory = isCategory ? isCategory.toLowerCase() : "false";
-            console.log("isCategory:" + isCategory);
-            if (isCategory == 'true') {
+        vm.pageChanged = function() {
+            console.log('Page changed to: ' + vm.currentPage);
+        };
+
+        function search() {
+            console.log("Keyword:" + vm.keyword);
+            vm.isCategory = vm.isCategory ? vm.isCategory.toLowerCase() : "false";
+            console.log("isCategory:" + vm.isCategory);
+            if (vm.isCategory == 'true') {
                 GadgetService
-                    .getGadgetsByCategory(keyword)
+                    .getGadgetsByCategory(vm.keyword, vm.currentPage, vm.itemsPerPage)
                     .then(function (response) {
                             console.log(response);
                             vm.gadgets = response.data.products;
+                            vm.totalItems = response.data.total;
                         },
                         function () {
                             console.log("Error occurred while getting result from API");
@@ -37,10 +54,11 @@
                         });
             } else {
                 GadgetService
-                    .getGadgetsByKeyword(keyword)
+                    .getGadgetsByKeyword(vm.keyword, vm.currentPage, vm.itemsPerPage)
                     .then(function (response) {
                             console.log(response);
                             vm.gadgets = response.data.products;
+                            vm.totalItems = response.data.total;
                         },
                         function () {
                             console.log("Error occurred while getting result from API");

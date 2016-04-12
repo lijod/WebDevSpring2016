@@ -4,7 +4,7 @@
             <div class="rating-block">
                 <h4>Average user rating</h4>
                 <h2 class="bold padding-bottom-7">
-                    {{model.avgRating === 0 || model.isNaN(model.avgRating) ? 0 :
+                    {{model.avgRating === 0 || model.isNaN(model.avgRating) ? - :
                                     model.Math.round(model.avgRating * 2) / 2}}
                     <small>/ 5</small></h2>
                 <ng-rating ng-model="model.avgRating" editable="false" stars-count="model.maxRating"></ng-rating>
@@ -39,12 +39,9 @@
                     <div class="col-sm-2">
                         <img class="img-responsive review-user-image" ng-src="{{review.userImgUrl}}" class="img-rounded">
                         <div class="review-block-name">
-                            <!--a href="#"-->
                                 By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a> <on></on>
                                 {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}
-                            <!--/a-->
                         </div>
-                        <!--<div class="review-block-date">January 29, 2016</div>-->
                     </div>
                     <div class="col-sm-10" ng-if="model.selectedIndex !== $index">
                         <ng-rating ng-model="review.rating" editable="false" stars-count="model.maxRating"></ng-rating>

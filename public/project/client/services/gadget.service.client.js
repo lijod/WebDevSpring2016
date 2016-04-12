@@ -1,11 +1,11 @@
 "use strict";
-(function() {
+(function () {
 
     angular
         .module("GadgetGuruApp")
         .factory("GadgetService", GadgetService);
 
-    function GadgetService($http){
+    function GadgetService($http) {
 
         var categoryCallParam = {
             "mobile": "categoryPath.name=Cell%20Phones&categoryPath.id!=abcat0811006&categoryPath.id!=abcat0811002",
@@ -27,21 +27,23 @@
 
         return api;
 
-        function getGadgetsByKeyword(keyword){
+        function getGadgetsByKeyword(keyword, currentPage, itemsPerpage) {
             keyword = encodeURIComponent(keyword);
-            var url = "http://api.bestbuy.com/v1/products(name=(KEYWORD)*&type!=Music" +
-                "&type!=Movie&type!=BlackTie&type!=Software)?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn";
+            var url = "http://api.bestbuy.com/v1/products(search=(KEYWORD)&type!=Music" +
+                "&type!=Movie&type!=BlackTie&type!=Software)?" +
+                "page=" + currentPage + "&pageSize=" + itemsPerpage + "&format=json&apiKey=762v7pj4r2xqka9nnhetu5gn";
             var searchURL = url.replace("(KEYWORD)", keyword);
             return $http.get(searchURL);
         }
 
-        function getGadgetsByCategory(category){
+        function getGadgetsByCategory(category, currentPage, itemsPerpage) {
             var url = "http://api.bestbuy.com/v1/products(" + categoryCallParam[category] +
-                ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn";
+                ")?" +
+                "page=" + currentPage + "&pageSize=" + itemsPerpage + "&format=json&apiKey=762v7pj4r2xqka9nnhetu5gn";
             return $http.get(url);
         }
 
-        function getGadgetDetail(gadgetId){
+        function getGadgetDetail(gadgetId) {
             var fields = "productId,name,active,regularPrice,salePrice,frequentlyPurchasedWith," +
                 "relatedProducts,url,mobileUrl,categoryPath,customerReviewAverage,shortDescription," +
                 "manufacturer,image,largeFrontImage,mediumImage,thumbnailImage,largeImage," +
