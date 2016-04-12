@@ -18,7 +18,7 @@
     </div>
 
     <div class="nav-sidebar-mobile col-xs-2 visible-xs-block text-center">
-        <img class="img-responsive profile-img" ng-src="/project/client/img/user.jpg"/>
+        <img class="img-responsive" ng-src="{{model.paramUser.imgUrl}}"/>
         <ul class="nav text-center mobile-profile-sidebar-controller">
             <li ng-if="model.paramUser._id === model.loggedInUser._id">
                 <a ui-sref=".edit">Edit</a>

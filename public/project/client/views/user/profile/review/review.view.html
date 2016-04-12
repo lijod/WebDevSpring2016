@@ -3,21 +3,16 @@
         <!--<p>Gadget Name</p>-->
 
         <div class="col-sm-3 container-profile-review-img">
-            <img class="img-responsive img-gadget-review" ng-src="{{review.gadget.imgUrl}}" />
+            <img class="img-responsive img-gadget-review" ng-src="{{review.gadget.imgUrl}}"/>
         </div>
         <div class="col-sm-9 container-profile-review">
             <div class="container">
-                <div class="row">
-                    <a href='' ui-sref='search-detail({gadgetId: review.gadget._id})'><h4>{{review.gadget.title}}</h4></a>
-                </div>
-                <div class="row">
-                    <h4>{{review.title}}</h4>
-                    <p>On {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}</p>
-                    <ng-rating ng-model="review.rating" editable="false"></ng-rating>
-                    <p>{{review.review | limitTo : 100}}
-                        {{review.review.length > 100 ? "..."  : ""}}
-                    </p>
-                </div>
+                <a href='' ui-sref='search-detail({gadgetId: review.gadget._id})'><h4>{{review.gadget.title}}</h4></a>
+                <h4>{{review.title}}</h4> <small>On {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}</small> <br/>
+                <ng-rating ng-model="review.rating" editable="false"></ng-rating>
+                <p>{{review.review | limitTo : 100}}
+                    {{review.review.length > 100 ? "..." : ""}}
+                </p>
             </div>
         </div>
         <hr/>

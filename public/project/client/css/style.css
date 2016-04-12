@@ -115,11 +115,12 @@ footer {
 .profile-img {
     padding: 5px;
     margin: 0 auto;
-    height: 200px!important;
+    max-height: 200px!important;
     width: 180px!important;
 }
 
 .review-row {
+    margin-top: 10px;
     height: 100%;
 }
 
@@ -128,10 +129,8 @@ footer {
 }
 
 .img-gadget-review {
-    height: 100%;
-    width: 100%;
-    max-width: 150px;
-    max-width: 150px;
+    height: 150px;
+    width: 200px;
 }
 
 .container-profile-review-img {
@@ -223,6 +222,6 @@ li.mobile-profile-sidebar-icon-selected:hover {
 }
 
 .review-user-image {
-    height: 110px;
+    max-height: 110px;
     width: 110px;
 }
