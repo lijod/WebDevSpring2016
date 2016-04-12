@@ -12,6 +12,7 @@
             vm.selectedIndex = -1;
             vm.maxRating = 5;
             vm.gadgetId = $stateParams.gadgetId;
+            $scope.searchDetailModel.maxRating = vm.maxRating;
 
             UserService.getCurrentUser()
                 .then(function (user) {
@@ -28,8 +29,6 @@
                         vm.reviews = response.data;
                         findUserByReviewUserId(vm.reviews);
                         updateAllRatings();
-                        $scope.searchDetailModel.avgRating = vm.avgRating;
-                        $scope.searchDetailModel.maxRating = vm.maxRating;
                     },
                     function (err) {
                         console.log("error ReviewController->findAllReviewsForGadget");
@@ -156,6 +155,7 @@
             } else {
                 vm.avgRating = vm.totalRating / vm.reviews.length;
             }
+            $scope.searchDetailModel.updateRating(vm.avgRating);
         }
 
         function findUserByReviewUserId(reviews) {

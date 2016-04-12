@@ -8,9 +8,10 @@
         </div>
         <div class="col-sm-4 text-center">
             <!--<uib-rating class="main-rating-container" ng-model="searchDetailModel.avgRating"-->
-                        <!--max="searchDetailModel.maxRating" read-only="true"-->
-                        <!--aria-labelledby="default-rating"></uib-rating>-->
-            <ng-rating ng-model="searchDetailModel.avgRating" editable="false" stars-count="model.maxRating"></ng-rating>
+            <!--max="searchDetailModel.maxRating" read-only="true"-->
+            <!--aria-labelledby="default-rating"></uib-rating>-->
+            <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
+                       stars-count="searchDetailModel.maxRating"></ng-rating>
             <br/>
             <h4><b>Market Price:</b> {{searchDetailModel.gadget.regularPrice}}</h4><br/>
             <a href="" ng-if="!searchDetailModel.isLiked" ng-click="searchDetailModel.likeGadget()">

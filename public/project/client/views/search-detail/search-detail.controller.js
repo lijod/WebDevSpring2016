@@ -44,6 +44,7 @@
             }
             vm.likeGadget = likeGadget;
             vm.undoLikeGadget = undoLikeGadget;
+            vm.updateRating = updateRating;
         }
 
         init();
@@ -87,5 +88,9 @@
                     });
         }
 
+        function updateRating(rating) {
+            console.log("update",rating)
+            vm.avgRating = rating;
+        }
     }
 })();
