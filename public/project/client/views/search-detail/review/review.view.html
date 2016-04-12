@@ -35,8 +35,8 @@
             <hr/>
             <div class="review-block">
                 <div class="row" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
-                    <div class="col-sm-3">
-                        <img src="http://dummyimage.com/60x60/666/ffffff&text=No+Image" class="img-rounded">
+                    <div class="col-sm-2">
+                        <img class="img-responsive" height="100px" ng-src="{{review.userImgUrl}}" class="img-rounded">
                         <div class="review-block-name">
                             <!--a href="#"-->
                                 By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a> <on></on>
@@ -45,7 +45,7 @@
                         </div>
                         <!--<div class="review-block-date">January 29, 2016</div>-->
                     </div>
-                    <div class="col-sm-9" ng-if="model.selectedIndex !== $index">
+                    <div class="col-sm-10" ng-if="model.selectedIndex !== $index">
                         <ng-rating ng-model="review.rating" editable="false" stars-count="model.maxRating"></ng-rating>
                         <div class="review-block-title">{{review.title}}</div>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"

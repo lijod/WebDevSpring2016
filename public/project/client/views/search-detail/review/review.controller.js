@@ -164,6 +164,7 @@
                                 .then(function (response) {
                                     if (response.data) {
                                         reviews[index].username = response.data.username;
+                                        reviews[index].userImgUrl = response.data.imgUrl;
                                     }
                                 });
             });
