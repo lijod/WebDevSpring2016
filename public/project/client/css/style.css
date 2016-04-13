@@ -225,3 +225,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
     max-height: 110px;
     width: 110px;
 }
+
+.feature-container {
+    padding: 25px;
+}

@@ -2,7 +2,8 @@
     <div class="thumbnail text-center">
         <a ui-sref="search-detail({gadgetId: gadget._id})">
             <img class="img-responsive img-gadget-review" ng-src="{{gadget.imgUrl}}">
-            <div class="caption text-center"><h4>{{gadget.title}}</h4></div>
+            <div class="caption text-center"><h4>{{gadget.title | limitTo: 35}} {{gadget.title.length > 35 ? '...' :
+                ''}}</h4></div>
         </a>
         <a href="" ng-click="model.likeGadget(gadget)"
            ng-if="!gadget.isLiked"
