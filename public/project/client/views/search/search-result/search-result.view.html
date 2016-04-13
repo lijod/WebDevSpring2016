@@ -9,6 +9,9 @@
         </div>
     </div>
 </div>
+<div class="loading-wrapper" ng-show="model.loading">
+    <div class="loading-img"></div>
+</div>
 <div class="row text-center">
     <uib-pagination total-items="model.totalItems" ng-model="model.currentPage" max-size="model.maxPaginationSize"
                     class="pagination-sm"

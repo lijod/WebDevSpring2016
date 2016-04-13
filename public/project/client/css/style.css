@@ -249,3 +249,14 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .detail-img {
     max-height: 350px;
 }
+
+.loading-img {
+    background-image: url("/project/client/img/loading.gif");
+    height: 100px;
+    width: 98px;
+    display: inline-block;
+}
+
+.loading-wrapper {
+    text-align: center;
+}
