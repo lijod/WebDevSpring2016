@@ -245,3 +245,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .like-container {
     margin-bottom: 10px;
 }
+
+.detail-img {
+    max-height: 350px;
+}
