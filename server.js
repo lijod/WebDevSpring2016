@@ -32,7 +32,6 @@ var db = mongoose.connect(connectionString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-console.log(process.env.PASSPORT_SECRET);
 app.use(session({
     secret: process.env.PASSPORT_SECRET,
     resave: true,

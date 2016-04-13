@@ -73,13 +73,13 @@ footer {
 /*}*/
 
 .login-container-border {
-    box-shadow: 1px 1px 5px 5px #888888;
+    box-shadow: 1px 1px 5px 0px #888888;
     transform: translateY(40%);
     border-radius: 10px;
 }
 
 .register-container-border {
-    box-shadow: 1px 1px 5px 5px #888888;
+    box-shadow: 1px 1px 5px 0px #888888;
     transform: translateY(10%);
     border-radius: 10px;
     margin-bottom: 10px;
