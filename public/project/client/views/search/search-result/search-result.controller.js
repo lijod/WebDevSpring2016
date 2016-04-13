@@ -17,7 +17,7 @@
             vm.gadgets = [];
             vm.keyword = $stateParams.keyword;
             vm.isCategory = $stateParams.isCategory;
-            vm.loading = 0;
+            vm.loading = false;
 
             if(vm.isCategory != 'true') {
                 $scope.searchModel.updateGadgetName(vm.keyword);
@@ -35,7 +35,7 @@
             console.log("Keyword:" + vm.keyword);
             vm.isCategory = vm.isCategory ? vm.isCategory.toLowerCase() : "false";
             console.log("isCategory:" + vm.isCategory);
-            vm.loading++;
+            vm.loading=true;
             vm.gadgets = [];
             if (vm.isCategory == 'true') {
                 GadgetService
@@ -44,12 +44,12 @@
                             console.log(response);
                             vm.gadgets = response.data.products;
                             vm.totalItems = response.data.total;
-                            vm.loading--;
+                            vm.loading = false;
                         },
                         function () {
                             console.log("Error occurred while getting result from API");
                             vm.gadgets = [];
-                            vm.loading--;
+                            vm.loading = false;
                         });
             } else {
                 GadgetService
@@ -58,12 +58,12 @@
                             console.log(response);
                             vm.gadgets = response.data.products;
                             vm.totalItems = response.data.total;
-                            vm.loading--;
+                            vm.loading = false;
                         },
                         function () {
                             console.log("Error occurred while getting result from API");
                             vm.gadgets = [];
-                            vm.loading--;
+                            vm.loading = false;
                         });
             }
         }
