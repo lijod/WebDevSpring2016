@@ -14,7 +14,7 @@
                 .then(function (response) {
                         console.log(response);
                         var loggedInUser = response.data;
-                        if (loggedInUser !== undefined) {
+                        if (loggedInUser !== undefined && loggedInUser != '0') {
                             userId = loggedInUser._id;
                             updateFormsForCurrentUser(userId);
                         }

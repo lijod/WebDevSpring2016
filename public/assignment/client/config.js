@@ -1,5 +1,5 @@
 "use strict";
-(function() {
+(function () {
     angular
         .module("FormBuilderApp")
         .config(configuration);
@@ -52,11 +52,11 @@
                 templateUrl: "views/admin/admin.view.html",
                 controller: "AdminController",
                 resolve: {
-                    checkLoggedIn: checkLoggedIn
+                    checkLoggedIn: checkAdmin
                 }
             })
             .otherwise({
-                redirectTo : "/home"
+                redirectTo: "/home"
             })
     }
 
@@ -65,9 +65,11 @@
 
         UserService
             .getCurrentUser()
-            .then(function(response){
+            .then(function (response) {
                 var currentUser = response.data;
-                UserService.setCurrentUser(currentUser);
+                if (currentUser && currentUser !== '0') {
+                    UserService.setCurrentUser(currentUser);
+                }
                 deferred.resolve();
             });
 
@@ -80,9 +82,9 @@
 
         UserService
             .getCurrentUser()
-            .then(function(response) {
+            .then(function (response) {
                 var currentUser = response.data;
-                if(currentUser) {
+                if (currentUser && currentUser !== '0') {
                     UserService.setCurrentUser(currentUser);
                     deferred.resolve();
                 } else {
@@ -93,5 +95,25 @@
 
         return deferred.promise;
     }
+
+    var checkAdmin = function ($q, UserService, $location) {
+        var deferred = $q.defer();
+
+        UserService
+            .getCurrentUser()
+            .then(function (response) {
+                var user = response.data;
+                // User is Authenticated
+                if (user && user !== '0' && user.roles.indexOf('admin') != -1) {
+                    UserService.setCurrentUser(user);
+                    deferred.resolve();
+                } else {
+                    deferred.reject();
+                    $location.url('/home');
+                }
+            });
+
+        return deferred.promise;
+    };
 
 })();

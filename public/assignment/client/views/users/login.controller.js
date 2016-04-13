@@ -14,13 +14,14 @@
 
         init();
 
-        function login(username, password) {
-            console.log("login-> " + username)
-            UserService.findUserByCredentials(username, password)
+        function login(user) {
+            console.log("login-> " + user)
+            UserService.login(user)
                 .then(redirectUserToProfileIfValid);
         }
 
         function redirectUserToProfileIfValid(response) {
+            console.log(response);
             var user = response.data;
             console.log("Redirecting user: ");
             console.log(user);

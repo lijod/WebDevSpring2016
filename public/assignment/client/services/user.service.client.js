@@ -13,10 +13,12 @@
             findUserByUserId : findUserByUserId,
             findAllUsers : findAllUsers,
             createUser : createUser,
+            register: register,
             deleteUserById : deleteUserById,
             updateUser : updateUser,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
+            login: login,
             invalidateCurrentSession : invalidateCurrentSession
         };
 
@@ -56,6 +58,14 @@
 
         function setCurrentUser(user) {
             $rootScope.currentUser = user;
+        }
+
+        function register(user) {
+            return $http.post("/api/assignment/register", user);
+        }
+
+        function login(user) {
+            return $http.post("/api/assignment/login", user);
         }
 
         function invalidateCurrentSession() {

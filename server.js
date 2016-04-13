@@ -3,9 +3,10 @@ console.time("Node startup time");
 var express       = require('express');
 var bodyParser    = require('body-parser');
 var multer        = require('multer');
+var passport      = require('passport');
 var session       = require('express-session');
 var cookieParser  = require('cookie-parser');
-var uuid = require('node-uuid');
+//var uuid = require('node-uuid');
 
 var app = express();
 app.use(express.static(__dirname + '/public'));
@@ -31,18 +32,14 @@ var db = mongoose.connect(connectionString);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(multer());
-app.use(session({ secret: "lijo_key" }));
-console.log("Secret: ", process.env.PASSPORT_SECRET);
-//app.use(session({ secret: process.env.PASSPORT_SECRET }));
-app.use(cookieParser())
-
-// Handles root request
-app.get('/', function(req, res){
-  res.send('Home');
-// Handles /hello requests
-}).get('/hello', function(req, res){
-  res.send('hello world');
-});
+console.log(process.env.PASSPORT_SECRET);
+app.use(session({
+    secret: process.env.PASSPORT_SECRET,
+    resave: true,
+    saveUninitialized: true}));
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use(passport.session());
 
 require("./public/assignment/server/app.js")(app, db);
 require("./public/project/server/app.js")(app, db);
