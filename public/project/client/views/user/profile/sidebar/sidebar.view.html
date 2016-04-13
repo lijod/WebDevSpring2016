@@ -7,8 +7,10 @@
                 <a ui-sref=".edit">EDIT PROFILE</a>
             </li>
             <li ng-if="model.paramUser._id !== model.loggedInUser._id">
-                <a href="" ng-click="model.follow()" ng-if="!model.isFollowing" class="btn btn-primary btn-xs">FOLLOW</a>
-                <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing" class="btn btn-primary btn-xs">UNFOLLOW</a>
+                <div class="profile-follow-container">
+                    <a href="" ng-click="model.follow()" ng-if="!model.isFollowing" class="btn btn-success btn-xs">FOLLOW</a>
+                    <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing" class="btn btn-warning btn-xs">UNFOLLOW</a>
+                </div>
             </li>
             <li ui-sref-active="active"><a ui-sref=".review">REVIEW</a></li>
             <li ui-sref-active="active"><a ui-sref=".follow-main.follower">FOLLOWERS</a></li>
@@ -24,8 +26,10 @@
                 <a ui-sref=".edit">Edit</a>
             </li>
             <li ng-if="model.paramUser._id !== model.loggedInUser._id">
-                <a href="" ng-click="model.follow()" ng-if="!model.isFollowing" class="btn btn-primary btn-xs">FOLLOW</a>
-                <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing" class="btn btn-primary btn-xs">UNFOLLOW</a>
+                <a href="" ng-click="model.follow()" ng-if="!model.isFollowing"
+                   class="btn btn-primary btn-xs">FOLLOW</a>
+                <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing"
+                   class="btn btn-primary btn-xs">UNFOLLOW</a>
             </li>
             <li ui-sref-active="mobile-profile-sidebar-icon-selected">
                 <a ui-sref=".review"><i class="glyphicon glyphicon-comment profile-icon"></i></a>

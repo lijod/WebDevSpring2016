@@ -260,3 +260,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .loading-wrapper {
     text-align: center;
 }
+
+.profile-follow-container {
+    margin-bottom: 10px;
+}
