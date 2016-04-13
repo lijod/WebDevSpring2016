@@ -114,19 +114,20 @@ module.exports = function (app, userModel, gadgetModel) {
     }
 
     function updateUserWithImage(req, res) {
-        console.log("updateUserWithImage");
         var userId = req.params.id;
         var user = req.body;
         var imageFile = req.file;
-        var destination   = imageFile.destination;
-        var path          = imageFile.path;
-        var originalname  = imageFile.originalname;
-        var size          = imageFile.size;
-        var mimetype      = imageFile.mimetype;
-        var filename      = imageFile.filename;
 
-        user.imgUrl = "/uploads/" + filename;
-        console.log("filename", filename);
+        if(imageFile) {
+            var destination = imageFile.destination;
+            var path = imageFile.path;
+            var originalname = imageFile.originalname;
+            var size = imageFile.size;
+            var mimetype = imageFile.mimetype;
+            var filename = imageFile.filename;
+            user.imgUrl = "/uploads/" + filename;
+        }
+
         userModel.updateUser(userId, user)
             .then(function (response) {
                     return userModel.findUserById(userId);
