@@ -25,15 +25,16 @@
                 UserService.getCurrentUser()
                     .then(function (response) {
                             vm.user = response.data;
-                            UserService.isLikedGadget(vm.user._id, vm.gadgetId)
-                                .then(function (response) {
-                                        console.log(response.data.isLiked);
-                                        vm.isLiked = response.data.isLiked;
-                                    },
-                                    function (err) {
-                                        console.log(err);
-                                    });
-
+                            if (vm.user) {
+                                UserService.isLikedGadget(vm.user._id, vm.gadgetId)
+                                    .then(function (response) {
+                                            console.log(response.data.isLiked);
+                                            vm.isLiked = response.data.isLiked;
+                                        },
+                                        function (err) {
+                                            console.log(err);
+                                        });
+                            }
                         },
                         function (err) {
                             console.log(err);
@@ -67,11 +68,11 @@
                         console.log(err);
                     })
                 .then(function (response) {
-                    //console.log(response.data);
-                },
-                function(err) {
-                    console.log("likeGadget->addLikedGadget->addGadget");
-                });
+                        //console.log(response.data);
+                    },
+                    function (err) {
+                        console.log("likeGadget->addLikedGadget->addGadget");
+                    });
         }
 
         function undoLikeGadget() {
@@ -89,7 +90,7 @@
         }
 
         function updateRating(rating) {
-            console.log("update",rating)
+            console.log("update", rating)
             vm.avgRating = rating;
         }
     }

@@ -1,4 +1,4 @@
-<div class="container-fluid" ng-controller="ReviewController">
+<div class="container-fluid review-container" ng-controller="ReviewController">
     <div class="row">
         <div class="col-sm-3">
             <div class="rating-block">
@@ -73,7 +73,7 @@
                     <hr/>
                 </div>
                 <hr/>
-                <div class="" ng-if="model.user">
+                <div class="">
                     <h4>Write a Review:</h4>
                     <form role="form" class="ng-pristine ng-valid">
                         <div class="form-group rating-container">
@@ -84,8 +84,10 @@
                             <textarea ng-model="model.review.review" class="search-review-text form-control"
                                       placeholder="Please enter your review" rows="3"></textarea>
                         </div>
-                        <a href="javascript:void(0)" ng-click="model.addReview(model.review)"
+                        <a href="" ng-click="model.addReview(model.review)" ng-if="model.user"
                            class="btn btn-primary">Submit</a>
+                        <a href="" ng-disabled="!model.user" ng-if="!model.user"
+                           class="btn btn-warning">Please login to review</a>
                     </form>
                 </div>
             </div>

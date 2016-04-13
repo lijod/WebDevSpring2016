@@ -46,7 +46,7 @@
         function getGadgetDetail(gadgetId) {
             var fields = "productId,name,active,regularPrice,salePrice,frequentlyPurchasedWith," +
                 "relatedProducts,url,mobileUrl,categoryPath,customerReviewAverage,shortDescription," +
-                "manufacturer,image,largeFrontImage,mediumImage,thumbnailImage,largeImage," +
+                "manufacturer,modelNumber,image,largeFrontImage,mediumImage,thumbnailImage,largeImage," +
                 "alternateViewsImage,longDescription,features,details";
             var url = "http://api.bestbuy.com/v1/products(productId=" + gadgetId + ")?format=json&apiKey=762v7pj4r2xqka9nnhetu5gn&show=" + fields;
             console.log(url);

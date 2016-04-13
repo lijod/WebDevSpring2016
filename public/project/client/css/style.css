@@ -229,3 +229,11 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .feature-container {
     padding: 25px;
 }
+
+.review-container {
+    margin-top: 10px;
+}
+
+.search-detail-like {
+    font-size: 3em;
+}
