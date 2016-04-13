@@ -237,3 +237,11 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .search-detail-like {
     font-size: 3em;
 }
+
+.rating-like-container {
+    margin-top: 25px;
+}
+
+.like-container {
+    margin-bottom: 10px;
+}

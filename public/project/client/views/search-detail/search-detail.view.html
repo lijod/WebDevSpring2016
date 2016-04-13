@@ -7,32 +7,37 @@
     </div>
     <div class="row">
         <div class="col-sm-2"></div>
-        <div class="col-sm-6">
+        <div class="col-sm-5">
             <img class="img-responsive" ng-src="{{searchDetailModel.gadget.largeFrontImage}}"/>
         </div>
-        <div class="col-sm-2 text-center">
-            <!--<uib-rating class="main-rating-container" ng-model="searchDetailModel.avgRating"-->
-            <!--max="searchDetailModel.maxRating" read-only="true"-->
-            <!--aria-labelledby="default-rating"></uib-rating>-->
-            <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
-                       stars-count="searchDetailModel.maxRating"></ng-rating>
-            <br/>
-            <h4><b>Market Price:</b> {{searchDetailModel.gadget.regularPrice}}</h4><br/>
-            <div ng-if="searchDetailModel.user">
-                <a href="" ng-if="!searchDetailModel.isLiked" ng-click="searchDetailModel.likeGadget()">
-                    <i class="fa fa-thumbs-o-up search-detail-like"></i>
-                </a>
-                <a href="" ng-if="searchDetailModel.isLiked" ng-click="searchDetailModel.undoLikeGadget()">
-                    <i class="fa fa-thumbs-up search-detail-like"></i>
-                </a>
-            </div>
-            <div ng-if="!searchDetailModel.user" uib-tooltip="Please login to like!">
-                <a>
-                    <i class="fa fa-thumbs-o-up search-detail-like"></i>
-                </a>
+        <div class="col-sm-5 col-md-4 text-center">
+            <div class="row">
+                <div class="col-xs-5">
+                    <h4><i class="fa fa-usd"></i>{{searchDetailModel.gadget.regularPrice}}</h4>
+                    <a href="{{searchDetailModel.gadget.url}}" target="_blank"><img
+                            src="/project/client/img/bestbuy.png"></a>
+                </div>
+                <div class="col-xs-7 rating-like-container">
+                    <div class="like-container">
+                        <div ng-if="searchDetailModel.user">
+                            <a href="" ng-if="!searchDetailModel.isLiked" ng-click="searchDetailModel.likeGadget()">
+                                <i class="fa fa-thumbs-o-up search-detail-like"></i>
+                            </a>
+                            <a href="" ng-if="searchDetailModel.isLiked" ng-click="searchDetailModel.undoLikeGadget()">
+                                <i class="fa fa-thumbs-up search-detail-like"></i>
+                            </a>
+                        </div>
+                        <div ng-if="!searchDetailModel.user" uib-tooltip="Please login to like!">
+                            <a>
+                                <i class="fa fa-thumbs-o-up search-detail-like"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
+                               stars-count="searchDetailModel.maxRating"></ng-rating>
+                </div>
             </div>
         </div>
-        <div class="col-sm-2"></div>
     </div>
     <hr/>
     {{searchDetailModel.gadget.longDescription}}
