@@ -2,6 +2,10 @@ html, body {
     height: 100%;
 }
 
+body {
+    font-family: 'Ubuntu';
+}
+
 .glyphicon.tableicon-lg {
     font-size: 1.2em;
 }
