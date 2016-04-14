@@ -268,7 +268,9 @@ li.mobile-profile-sidebar-icon-selected:hover {
 }
 
 .profile-follow-container {
+    margin-top: 10px;
     margin-bottom: 10px;
+    padd
 }
 
 .nav-sidebar-mobile, .sidebar {
@@ -306,4 +308,14 @@ li.mobile-profile-sidebar-icon-selected:hover {
 
 .btn-search:hover{
     color: #F0AD4E;
+}
+
+.mobile-unfollow {
+    color: #F0AD4E;
+    font-size: 1.8em;
+}
+
+.mobile-follow {
+    color: #5CB85C;
+    font-size: 1.8em;
 }
