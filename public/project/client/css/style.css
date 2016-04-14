@@ -321,6 +321,52 @@ li.mobile-profile-sidebar-icon-selected:hover {
     font-size: 1.8em;
 }
 
-.mobile-profile-img {
-    border-radius: 10px;
+.profile-common-detail-label-block {
+    display: block !important;
+}
+
+.profile-common-detail-container {
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.profile-common-detail {
+    box-sizing: border-box;
+    display: table;
+    margin: 0;
+    min-width: 100%;
+    padding: 0;
+    table-layout: auto;
+}
+
+ul.profile-common-detail {
+    list-style: outside none none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-common-detail-section {
+    display: table-cell;
+    padding: 0;
+    vertical-align: top;
+}
+
+.profile-common-detail-section a:hover {
+    text-decoration: none;
+}
+
+.profile-common-detail-value {
+    display: block;
+    font-size: 18px;
+    font-weight: 500;
+    transition: color 0.15s ease-in-out 0s;
+}
+
+.profile-common-detail-label {
+    color: #8899a6;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    overflow: hidden;
+    text-transform: uppercase;
+    transition: color 0.15s ease-in-out 0s;
 }
