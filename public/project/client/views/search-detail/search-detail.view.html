@@ -19,6 +19,8 @@
                             src="/project/client/img/bestbuy.png"></a>
                 </div>
                 <div class="col-xs-7 rating-like-container">
+                    <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
+                               stars-count="searchDetailModel.maxRating"></ng-rating>
                     <div class="like-container">
                         <div ng-if="searchDetailModel.user">
                             <a href="" ng-if="!searchDetailModel.isLiked" ng-click="searchDetailModel.likeGadget()">
@@ -34,8 +36,6 @@
                             </a>
                         </div>
                     </div>
-                    <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
-                               stars-count="searchDetailModel.maxRating"></ng-rating>
                 </div>
             </div>
         </div>

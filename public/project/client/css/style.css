@@ -245,11 +245,11 @@ li.mobile-profile-sidebar-icon-selected:hover {
 }
 
 .rating-like-container {
-    margin-top: 25px;
+    margin-top: 16px;
 }
 
 .like-container {
-    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .detail-img {
@@ -272,7 +272,6 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .profile-follow-container {
     margin-top: 10px;
     margin-bottom: 10px;
-    padd
 }
 
 .nav-sidebar-mobile, .sidebar {
@@ -320,4 +319,8 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .mobile-follow {
     color: #5CB85C;
     font-size: 1.8em;
+}
+
+.mobile-profile-img {
+    border-radius: 10px;
 }
