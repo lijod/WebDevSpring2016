@@ -178,7 +178,7 @@ footer {
 }
 
 .mobile-profile-sidebar-icon-selected {
-    background-color: lightgray;
+    background-color: #428BCA;
 }
 
 li.mobile-profile-sidebar-icon-selected:hover {
@@ -267,4 +267,20 @@ li.mobile-profile-sidebar-icon-selected:hover {
 
 .profile-follow-container {
     margin-bottom: 10px;
+}
+
+.nav-sidebar-mobile, .sidebar {
+    background-color: #87CEFA;
+}
+
+.header-navbar {
+    background-color: #002F47;
+}
+
+.nav-sidebar-mobile a, .sidebar a, .header-navbar a {
+    color: #FFFFFF !important;
+}
+
+.nav-sidebar-mobile a:hover, .sidebar a:hover, .header-navbar a:hover {
+    color: #64B8DC !important;
 }
