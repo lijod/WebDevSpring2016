@@ -119,8 +119,9 @@ footer {
 .profile-img {
     padding: 5px;
     margin: 0 auto;
-    max-height: 200px!important;
+    max-height: 180px!important;
     width: 180px!important;
+    border-radius: 15px;
 }
 
 .review-row {
@@ -228,6 +229,7 @@ li.mobile-profile-sidebar-icon-selected:hover {
 .review-user-image {
     max-height: 110px;
     width: 110px;
+    border-radius: 15px;
 }
 
 .feature-container {

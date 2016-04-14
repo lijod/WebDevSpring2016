@@ -5,7 +5,8 @@
         <div class="col-sm-4 col-md-2 container-like-list" ng-repeat="user in model.following">
             <div class="thumbnail text-center">
                 <a ui-sref="profile.review({userId: user._id})">
-                    <img class="img-responsive profile-img" ng-src="{{user.imgUrl}}">
+                    <img class="img-responsive profile-img"
+                         ng-src="{{user.imgUrl || '/project/client/img/no-user-img.png'}}">
                     <div class="caption text-center"><h4>{{user.firstName}} {{user.lastName}}</h4></div>
                 </a>
 

@@ -37,7 +37,7 @@
             <div class="">
                 <div class="row well" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
                     <div class="col-sm-2">
-                        <img class="img-responsive review-user-image" ng-src="{{review.userImgUrl}}" class="img-rounded">
+                        <img class="img-responsive review-user-image" ng-src="{{review.userImgUrl || '/project/client/img/no-user-img.png'}}" class="img-rounded">
                         <div class="review-block-name">
                                 By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a> <on></on>
                                 {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}
