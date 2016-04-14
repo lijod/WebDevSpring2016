@@ -272,11 +272,11 @@ li.mobile-profile-sidebar-icon-selected:hover {
 }
 
 .nav-sidebar-mobile, .sidebar {
-    background-color: #87CEFA;
+    background-color: #026F90;
 }
 
 .header-navbar {
-    background-color: #002F47;
+    background-color: #003B64;
 }
 
 .nav-sidebar-mobile a, .sidebar a, .header-navbar a {
@@ -284,5 +284,26 @@ li.mobile-profile-sidebar-icon-selected:hover {
 }
 
 .nav-sidebar-mobile a:hover, .sidebar a:hover, .header-navbar a:hover {
-    color: #64B8DC !important;
+    color: #F0AD4E !important;
+}
+
+.search-container {
+    background-image: url('/project/client/img/matrix.jpg');
+    background-repeat: repeat-x;
+    height: 170px;
+}
+
+.search-main-container {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.btn-search{
+    color: #FFFFFF;
+    background-color: #337ab7;
+    border-color: #FFFFFF;
+}
+
+.btn-search:hover{
+    color: #F0AD4E;
 }
