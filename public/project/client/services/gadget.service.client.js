@@ -10,11 +10,13 @@
         var categoryCallParam = {
             "mobile": "categoryPath.name=Cell%20Phones&categoryPath.id!=abcat0811006&categoryPath.id!=abcat0811002",
             "laptop": "categoryPath.id=abcat0502000&type!=BlackTie",
-            "appliances": "(categoryPath.id=abcat09100007%7CcategoryPath.id=abcat0911000)&type!=BlackTie",
+            "appliances": "(categoryPath.id=abcat0903000|categoryPath.id=abcat0901000|categoryPath.id=abcat0910001)&type!=BlackTie",
             "games": "(categoryPath.id=abcat0700000)&type!=BlackTie",
             "software": "(categoryPath.id=abcat0508000)&type!=BlackTie",
             "audio": "(categoryPath.id=abcat0200000)&type!=BlackTie",
-            "camera": "(categoryPath.id=abcat0401005)&type!=BlackTie"
+            "camera": "(categoryPath.id=abcat0401005)&type!=BlackTie",
+            "tv": "(categoryPath.id=abcat0101000)&type!=BlackTie",
+            "fitness": "(categoryPath.id=pcmcat242800050021)&type!=BlackTie"
         };
 
         var api = {
