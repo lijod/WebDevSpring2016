@@ -3,7 +3,7 @@
         <div class="thumbnail">
             <a ui-sref="search-detail({gadgetId: gadget.productId})">
                 <!--<span>{{gadget.productId}}</span>-->
-                <img class="img-responsive" ng-src={{gadget.image}} height="200px"> <br/>
+                <img class="img-responsive" ng-src="{{ gadget.image || '/project/client/img/no-gadget-img.png' }}"> <br/>
                 <span>{{gadget.name}}</span>
             </a>
         </div>

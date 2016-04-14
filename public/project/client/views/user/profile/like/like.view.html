@@ -3,7 +3,7 @@
 <div class="col-sm-6 col-md-4 container-like-list" ng-repeat="gadget in model.likedGadgets">
     <div class="thumbnail text-center">
         <a ui-sref="search-detail({gadgetId: gadget._id})">
-            <img class="img-responsive img-gadget-review" ng-src="{{gadget.imgUrl}}">
+            <img class="img-responsive img-gadget-review" ng-src="{{gadget.imgUrl  || '/project/client/img/no-gadget-img.png'}}">
             <div class="caption text-center"><h4>{{gadget.title | limitTo: 35}} {{gadget.title.length > 35 ? '...' :
                 ''}}</h4></div>
         </a>
