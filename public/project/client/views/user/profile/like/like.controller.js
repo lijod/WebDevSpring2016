@@ -9,7 +9,7 @@
 
         function init() {
             var userId = $stateParams.userId;
-
+            vm.loading = true;
             UserService.getCurrentUser()
                 .then(function (response) {
                         vm.currUser = response.data;
@@ -17,6 +17,7 @@
                     },
                     function () {
                         console.log("FollowerController->getCurrentUser");
+                        vm.loading = false;
                     })
                 .then(function (response) {
                         vm.currUser = response.data;
@@ -24,17 +25,19 @@
                     },
                     function () {
                         console.log("FollowerController->findUserByUserId");
+                        vm.loading = false;
                     })
                 .then(function(response) {
                         var likedGadgets = response.data;
                         likedGadgets.forEach(function(element, index) {
                            element.isLiked = vm.currUser.likedGadget.indexOf(element._id) > -1;
                         });
-                    console.log(likedGadgets);
                         vm.likedGadgets = likedGadgets;
+                        vm.loading = false;
                     },
                     function(err) {
                         console.log("ProfileLikeController->init->findLikedGadgets");
+                        vm.loading = false;
                     });
 
             vm.likeGadget = likeGadget;

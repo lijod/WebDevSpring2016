@@ -9,7 +9,7 @@
 
         function init() {
             vm.paramUserId = $stateParams.userId;
-
+            vm.loading = true;
             UserService.getCurrentUser()
                 .then(function (response) {
                         vm.currUser = response.data;
@@ -17,6 +17,7 @@
                     },
                     function () {
                         console.log("FollowingController->getCurrentUser");
+                        vm.loading = false;
                     })
                 .then(function(response) {
                         var following = response.data;
@@ -24,10 +25,11 @@
                             element.isFollowing = element.follower.indexOf(vm.currUser._id) > -1;
                         });
                         vm.following = following;
-                        console.log(vm.following);
+                        vm.loading = false;
                     },
                     function(err) {
-                        console.log("FollowerController->init->findFollowingUsers")
+                        console.log("FollowerController->init->findFollowingUsers");
+                        vm.loading = false;
                     });
 
             vm.follow = follow;

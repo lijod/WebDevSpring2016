@@ -7,14 +7,20 @@
     function ProfileReviewController($stateParams, ReviewService) {
         var vm = this;
 
-        var userId = $stateParams.userId;
+        function init() {
+            var userId = $stateParams.userId;
+            vm.loading = true;
+            ReviewService.findAllReviewsForUser(userId)
+                .then(function (response) {
+                        vm.reviews = response.data;
+                        vm.loading = false;
+                    },
+                    function (err) {
+                        console.log(err);
+                        vm.loading = false;
+                    });
+        }
 
-        ReviewService.findAllReviewsForUser(userId)
-            .then(function(response) {
-                vm.reviews = response.data;
-            },
-            function(err) {
-               console.log(err);
-            });
+        init();
     }
 })();
