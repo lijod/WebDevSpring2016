@@ -1,31 +1,39 @@
 <div class="container-fluid review-container" ng-controller="ReviewController">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-4 col-md-3">
             <div class="rating-block">
                 <h4>Average user rating</h4>
                 <h2 class="bold padding-bottom-7">
                     {{model.avgRating === 0 || model.isNaN(model.avgRating) ? '-' :
-                                    model.Math.round(model.avgRating * 2) / 2}}
-                    <small>/ 5</small></h2>
+                    model.Math.round(model.avgRating * 2) / 2}}
+                    <small>/ 5</small>
+                </h2>
                 <ng-rating ng-model="model.avgRating" editable="false" stars-count="model.maxRating"></ng-rating>
             </div>
         </div>
-        <div class="col-sm-3">
-            <h4>Rating breakdown</h4>
-            <div class="pull-left" ng-repeat="rating in model.allRating | orderBy:'-$index':true track by $index">
-                <div class="pull-left" style="width:35px; line-height:1;">
-                    <div style="height:9px; margin:5px 0;">{{model.maxRating - $index}} <span class="glyphicon glyphicon-star"></span></div>
-                </div>
-                <div class="pull-left" style="width:180px;">
-                    <div class="progress" style="height:9px; margin:8px 0;">
 
+        <div class="col-sm-6 col-md-5">
+            <h4>Rating breakdown</h4>
+            <div class="row" ng-repeat="rating in model.allRating | orderBy:'-$index':true track by $index">
+                <div class="col-xs-2 col-md-3">
+                    <div class="row text-left">
+                        <div class="col-xs-2">
+                            {{model.maxRating - $index}}
+                        </div>
+                        <div class="col-xs-3 ">
+                            <span class="glyphicon glyphicon-star"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-8 col-md-7">
+                    <div class="progress review-rating-progress">
                         <div class="progress-bar progress-bar-success"
-                             ng-style="{'width': model.avgPerRating[model.maxRating - $index - 1]+'%'}" >
+                             ng-style="{'width': model.avgPerRating[model.maxRating - $index - 1]+'%'}">
                             <span class="sr-only">80% Complete (danger)</span>
                         </div>
                     </div>
                 </div>
-                <div class="pull-right" style="margin-left:10px;">{{rating}}</div>
+                <div class="col-xs-2 col-sm-2">{{rating}}</div>
             </div>
         </div>
     </div>
@@ -37,17 +45,20 @@
             <div class="">
                 <div class="row well" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
                     <div class="col-sm-2">
-                        <img class="img-responsive review-user-image" ng-src="{{review.userImgUrl || '/project/client/img/no-user-img.png'}}" class="img-rounded">
+                        <img class="img-responsive review-user-image"
+                             ng-src="{{review.userImgUrl || '/project/client/img/no-user-img.png'}}"
+                             class="img-rounded">
                         <div class="review-block-name">
-                                By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a> <on></on>
-                                {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}
+                            By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a>
+                            <on></on>
+                            {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}
                         </div>
                     </div>
                     <div class="col-sm-10" ng-if="model.selectedIndex !== $index">
                         <ng-rating ng-model="review.rating" editable="false" stars-count="model.maxRating"></ng-rating>
                         <div class="review-block-title">{{review.title}}</div>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.selectReview($index)"
-                            ng-if="review.username === model.user.username">
+                           ng-if="review.username === model.user.username">
                             <i class="glyphicon glyphicon-pencil"></i>
                         </a>
                         <a class="pull-right" href="javascript:void(0)" ng-click="model.deleteReview(review)"

@@ -484,3 +484,7 @@ ul.profile-common-detail {
 {
     margin-right: 10px;
 }
+
+.review-rating-progress {
+    height:9px;
+}
