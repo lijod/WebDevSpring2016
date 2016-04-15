@@ -1,18 +1,32 @@
 <div class="row">
     <div class="col-md-4 col-sm-6 gadget-search-container text-center" ng-repeat="gadget in model.gadgets">
-        <div class="thumbnail">
-            <a ui-sref="search-detail({gadgetId: gadget.productId})">
-                <!--<span>{{gadget.productId}}</span>-->
-                <img class="img-responsive" ng-src="{{ gadget.image || '/project/client/img/no-gadget-img.png' }}"> <br/>
-                <span>{{gadget.name}}</span>
-            </a>
+        <div class="col-item">
+            <div class="photo">
+                <img class="img-responsive" ng-src="{{ gadget.image || '/project/client/img/no-gadget-img.png' }}" />
+            </div>
+            <div class="info">
+                <div class="row text-center">
+                    <div class="price">
+                        <h5>{{gadget.name | limitTo: 40}}{{gadget.name.length > 40 ? '...' : ''}}</h5>
+                        <h5 class="price-text-color"><i class="fa fa-usd"></i>{{gadget.regularPrice}}</h5>
+                    </div>
+                </div>
+                <div class="separator clear-left">
+                    <p class="btn-add">
+                        <i class="fa fa-shopping-cart"></i><a href="{{gadget.url}}" target="_blank">Visit Page</a></p>
+                    <p class="btn-details">
+                        <i class="fa fa-list"></i><a href="" ui-sref="search-detail({gadgetId: gadget.productId})">More Details</a></p>
+                </div>
+                <div class="clearfix">
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 <ng-include src="'views/commons/loading.html'"></ng-include>
 
-<div class="row text-center">
+<div class="row text-center" ng-if="model.gadgets.length > 0">
     <uib-pagination total-items="model.totalItems" ng-model="model.currentPage" max-size="model.maxPaginationSize"
                     class="pagination-sm"
                     boundary-links="true" num-pages="numPages" ng-change="model.search()"
