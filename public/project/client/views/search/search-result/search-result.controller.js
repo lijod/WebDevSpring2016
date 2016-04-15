@@ -18,6 +18,7 @@
             vm.keyword = $stateParams.keyword;
             vm.isCategory = $stateParams.isCategory;
             vm.loading = false;
+            vm.hasNoResult = false;
 
             if(vm.isCategory != 'true') {
                 $scope.searchModel.updateGadgetName(vm.keyword);
@@ -45,11 +46,13 @@
                             vm.gadgets = response.data.products;
                             vm.totalItems = response.data.total;
                             vm.loading = false;
+                            vm.hasNoResult = (vm.gadgets.length == 0);
                         },
                         function () {
                             console.log("Error occurred while getting result from API");
                             vm.gadgets = [];
                             vm.loading = false;
+                            vm.hasNoResult = true;
                         });
             } else {
                 GadgetService
@@ -59,11 +62,13 @@
                             vm.gadgets = response.data.products;
                             vm.totalItems = response.data.total;
                             vm.loading = false;
+                            vm.hasNoResult = (vm.gadgets.length == 0);
                         },
                         function () {
                             console.log("Error occurred while getting result from API");
                             vm.gadgets = [];
                             vm.loading = false;
+                            vm.hasNoResult = true;
                         });
             }
         }

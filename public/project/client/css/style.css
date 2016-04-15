@@ -488,3 +488,7 @@ ul.profile-common-detail {
 .review-rating-progress {
     height:9px;
 }
+
+.flash-msg-container {
+    padding: 5px;
+}

@@ -32,13 +32,16 @@
         </div>
     </div>
 
-    <ng-include src="'views/commons/loading.html'"></ng-include>
+    <flash-message ng-if="model.hasNoResult" type="warning"
+                   header="Info"
+                   msg="No results for this search, please modify your search text and try again.">
+    </flash-message>
 
+    <ng-include src="'views/commons/loading.html'"></ng-include>
     <div class="row text-center" ng-if="model.gadgets.length > 0">
         <uib-pagination total-items="model.totalItems" ng-model="model.currentPage" max-size="model.maxPaginationSize"
                         class="pagination-sm"
                         boundary-links="true" num-pages="numPages" ng-change="model.search()"
                         items-per-page="model.itemsPerPage"></uib-pagination>
     </div>
-
 </div>
