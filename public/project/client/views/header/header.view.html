@@ -15,7 +15,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">{{username}}</a></li>-->
                 <li ng-show="currentUser">
-                    <a ui-sref="profile.edit({userId: currentUser._id})"><i class="fa fa-user" aria-hidden="true"></i>
+                    <a ui-sref="profile.edit({userId: currentUser._id})" data-toggle="collapse"
+                       data-target=".navbar-collapse"><i class="fa fa-user" aria-hidden="true"></i>
                         {{currentUser.username}}</a>
                 </li>
                 <!--<li ui-sref-active="active" ng-show="currentUser && currentUser.roles.indexOf('admin') > -1">-->
@@ -25,13 +26,18 @@
                 <!--<a ui-sref="profile">PROFILE</a>-->
                 <!--</li>-->
                 <li ui-sref-active="active" ng-hide="currentUser">
-                    <a ui-sref="register"><i class="fa fa-link" aria-hidden="true"></i> REGISTER</a>
+                    <a ui-sref="register" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-link"
+                                                                                                   aria-hidden="true"></i>
+                        REGISTER</a>
                 </li>
                 <li ui-sref-active="active" ng-hide="currentUser">
-                    <a ui-sref="login"><i class="fa fa-sign-in" aria-hidden="true"></i> LOGIN</a>
+                    <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-sign-in"
+                                                                                                aria-hidden="true"></i>
+                        LOGIN</a>
                 </li>
                 <li ng-show="currentUser">
-                    <a href="" ng-click="model.logOut()"><i class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a>
+                    <a href="" ng-click="model.logOut()" data-toggle="collapse" data-target=".navbar-collapse"><i
+                            class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a>
                 </li>
             </ul>
         </div>
