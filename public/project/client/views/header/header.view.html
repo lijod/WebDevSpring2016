@@ -15,7 +15,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!--<li><a href="#">{{username}}</a></li>-->
                 <li ng-show="currentUser">
-                    <a ui-sref="profile.edit({userId: currentUser._id})" class="hidden-xs"><i class="fa fa-user" aria-hidden="true"></i>
+                    <a ui-sref="profile.edit({userId: currentUser._id})" class="hidden-xs"><i class="fa fa-user"
+                                                                                              aria-hidden="true"></i>
                         {{currentUser.username}}</a>
                     <a ui-sref="profile.edit({userId: currentUser._id})" data-toggle="collapse"
                        data-target=".navbar-collapse" class="visible-xs"><i class="fa fa-user" aria-hidden="true"></i>
@@ -38,7 +39,7 @@
                 </li>
                 <li ui-sref-active="active" class="hidden-xs" ng-hide="currentUser">
                     <a ui-sref="login"><i class="fa fa-sign-in"
-                                                                                                aria-hidden="true"></i>
+                                          aria-hidden="true"></i>
                         LOGIN</a>
                 <li ui-sref-active="active" class="visible-xs" ng-hide="currentUser">
                     <a ui-sref="login" data-toggle="collapse" data-target=".navbar-collapse"><i class="fa fa-sign-in"
@@ -48,7 +49,8 @@
                 <li ng-show="currentUser">
                     <a href="" ng-click="model.logOut()" class="hidden-xs"><i
                             class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a>
-                    <a href="" ng-click="model.logOut()" class="visible-xs" data-toggle="collapse" data-target=".navbar-collapse"><i
+                    <a href="" ng-click="model.logOut()" class="visible-xs" data-toggle="collapse"
+                       data-target=".navbar-collapse"><i
                             class="fa fa-sign-out" aria-hidden="true"></i> LOGOUT</a>
                 </li>
             </ul>
