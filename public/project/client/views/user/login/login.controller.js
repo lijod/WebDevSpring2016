@@ -29,7 +29,7 @@
             console.log("Redirecting user: ");
             if(user != null){
                 UserService.setCurrentUser(user);
-                $state.go("profile.edit", {userId: user._id});
+                $state.go("home");
             } else {
                 console.log("Username/password error");
                 vm.hasError = true;
