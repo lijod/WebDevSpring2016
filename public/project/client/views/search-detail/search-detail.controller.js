@@ -4,12 +4,17 @@
         .module("GadgetGuruApp")
         .controller("SearchDetailController", SearchDetailController);
 
-    function SearchDetailController($state, $stateParams, GadgetService, UserService) {
+    function SearchDetailController($state, $scope, $stateParams, GadgetService, UserService) {
         console.log("SearchDetailController");
 
         var vm = this;
         vm.gadget = {};
         function init() {
+            $scope.$on('$stateChangeSuccess', function() {
+                console.log("tews")
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            });
             vm.gadgetId = $stateParams.gadgetId;
             vm.isLiked = false;
             console.log("gadgetId:", vm.gadgetId);
