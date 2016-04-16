@@ -500,3 +500,11 @@ ul.profile-common-detail {
 .review-new-container {
     margin-bottom: 10px;
 }
+
+.btn-review {
+    font-size: 1.5em;
+}
+
+.review-btn-container {
+    width: 55px;
+}
