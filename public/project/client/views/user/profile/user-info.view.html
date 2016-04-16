@@ -5,18 +5,18 @@
             <ul class="profile-common-detail">
                 <li class="profile-common-detail-section text-center">
                     <span class="profile-common-detail-label profile-common-detail-label-block">Username</span>
-                    <span class="profile-common-detail-value">{{profileModel.profileUser.username}}</span>
+                    <span class="profile-common-detail-value">
+                        {{profileModel.profileUser.username | limitTo: 10}}{{profileModel.profileUser.username.length > 10 ? '...' : ''}}
+                    </span>
                 </li>
                 <li class="profile-common-detail-section text-center">
-                    <a href="" ui-sref="profile.follow-main.following({userId: profileModel.profileUser._id})"
-                       title="885 Following">
+                    <a href="" ui-sref="profile.follow-main.following({userId: profileModel.profileUser._id})">
                         <span class="profile-common-detail-label profile-common-detail-label-block">Following</span>
                         <span class="profile-common-detail-value">{{profileModel.profileUser.following.length}}</span>
                     </a>
                 </li>
                 <li class="profile-common-detail-section text-center">
-                    <a href="" ui-sref="profile.follow-main.follower({userId: profileModel.profileUser._id})"
-                       title="1.810 Followers">
+                    <a href="" ui-sref="profile.follow-main.follower({userId: profileModel.profileUser._id})">
                         <span class="profile-common-detail-label profile-common-detail-label-block">Followers</span>
                         <span class="profile-common-detail-value">{{profileModel.profileUser.follower.length}}</span>
                     </a>
