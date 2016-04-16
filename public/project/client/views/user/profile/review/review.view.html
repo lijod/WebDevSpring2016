@@ -1,6 +1,9 @@
 <ng-include src="'views/user/profile/user-info.view.html'"></ng-include>
 <ng-include src="'views/commons/loading.html'"></ng-include>
-
+<flash-message ng-if="model.reviews.length === 0" type="info"
+               header="Info"
+               msg="Has not reviewed any gadgets yet.">
+</flash-message>
 <div class="container-fluid">
     <div class="row review-row" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
         <!--<p>Gadget Name</p>-->

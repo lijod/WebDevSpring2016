@@ -10,6 +10,7 @@
         function init() {
             vm.paramUserId = $stateParams.userId;
             vm.loading = true;
+            vm.hasNoResult = false;
             UserService.getCurrentUser()
                 .then(function (response) {
                         vm.currUser = response.data;
@@ -29,7 +30,6 @@
                     },
                     function(err) {
                         console.log("FollowerController->init->findFollowingUsers");
-                        vm.loading = false;
                     });
 
             vm.follow = follow;
