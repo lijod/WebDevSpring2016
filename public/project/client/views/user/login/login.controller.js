@@ -4,8 +4,15 @@
         .module("GadgetGuruApp")
         .controller("LoginController", LoginController);
 
-    function LoginController($scope, $rootScope, $state, UserService) {
-        $scope.login = login;
+    function LoginController($state, UserService) {
+        var vm = this;
+
+        function init() {
+            vm.login = login;
+            vm.hasError = false;
+        }
+
+        init();
 
         function login(username, password) {
             console.log("login... " + username);
@@ -24,7 +31,8 @@
                 UserService.setCurrentUser(user);
                 $state.go("profile.edit", {userId: user._id});
             } else {
-                alert("Username and password doesn't exist!")
+                console.log("Username/password error");
+                vm.hasError = true;
             }
         }
     }

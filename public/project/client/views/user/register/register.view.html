@@ -1,4 +1,8 @@
 <div class="container-fluid wrapper">
+    <flash-message ng-if="model.hasError" type="danger"
+                   header="Error"
+                   msg="Username already exists, please try a different one.">
+    </flash-message>
     <div class="row">
         <!--<div class="col-xs-1 col-md-3"></div>-->
         <!-- Content goes here-->

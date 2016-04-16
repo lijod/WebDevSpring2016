@@ -8,7 +8,8 @@
         var vm = this;
 
         function init() {
-            vm.register = register;
+            vm.register = register
+            vm.hasError = false;
             console.log($rootScope.currentUser);
         }
 
@@ -31,7 +32,7 @@
             console.log(user);
             if (user) {
                 console.log("User Already Exists");
-                alert("User Already Exists");
+                vm.hasError = true;
             } else {
                 UserService.createUser(currUser)
                     .then(function(respose){

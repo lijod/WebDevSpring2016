@@ -100,7 +100,8 @@
             .state('login', {
                 url: '/login',
                 templateUrl: 'views/user/login/login.view.html',
-                controller: "LoginController"
+                controller: "LoginController",
+                controllerAs: "model"
             })
             .state('register', {
                 url: '/register',
