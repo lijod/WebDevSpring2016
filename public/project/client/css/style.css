@@ -508,3 +508,7 @@ ul.profile-common-detail {
 .review-btn-container {
     width: 55px;
 }
+
+.container-profile-review .ng-rating {
+    font-size: 1.2em;
+}
