@@ -399,7 +399,7 @@ ul.profile-common-detail {
 }
 
 .col-item:hover .info {
-    background-color: #F5F5DC;
+    /*background-color: #F5F5DC;*/
 }
 .col-item .price
 {
@@ -491,4 +491,12 @@ ul.profile-common-detail {
 
 .flash-msg-container {
     padding: 5px;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.review-new-container {
+    margin-bottom: 10px;
 }
