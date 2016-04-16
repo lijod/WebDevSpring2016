@@ -512,3 +512,7 @@ ul.profile-common-detail {
 .container-profile-review .ng-rating {
     font-size: 1.2em;
 }
+
+.lg-profile-sidebar-controller {
+    margin-top: 15px;
+}
