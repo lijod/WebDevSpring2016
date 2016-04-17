@@ -36,55 +36,9 @@
         <div class="col-sm-12">
             <hr/>
             <h3 class="lead">Review</h3>
-            <!--<div class="row well" ng-repeat="review in model.reviews | orderBy: '-createdOn'">-->
-            <!--<div class="col-sm-2">-->
-            <!--<img class="img-responsive review-user-image"-->
-            <!--ng-src="{{review.userImgUrl || '/project/client/img/no-user-img.png'}}"-->
-            <!--class="img-rounded">-->
-            <!--<div class="review-block-name">-->
-            <!--By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a>-->
-            <!--<on></on>-->
-            <!--{{review.createdOn | date : "MMM dd, yyyy HH:mm"}}-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-10" ng-if="model.selectedIndex !== $index">-->
-            <!--<ng-rating ng-model="review.rating" editable="false" stars-count="model.maxRating"></ng-rating>-->
-            <!--<div class="review-block-title">{{review.title}}</div>-->
-            <!--<div class="pull-right review-btn-container">-->
-            <!--<div class="pull-left">-->
-            <!--<a class="pull-right btn-review" href="javascript:void(0)"-->
-            <!--ng-click="model.selectReview($index)"-->
-            <!--ng-if="review.username === model.user.username">-->
-            <!--<i class="glyphicon glyphicon-pencil text-info"></i>-->
-            <!--</a>-->
-            <!--</div>-->
-            <!--<div class="pull-right">-->
-            <!--<a class="pull-right btn-review" href="javascript:void(0)"-->
-            <!--ng-click="model.deleteReview(review)"-->
-            <!--ng-if="review.username === model.user.username">-->
-            <!--<i class="glyphicon glyphicon-trash text-danger"></i>-->
-            <!--</a>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<div class="review-block-description">{{review.review}}</div>-->
-            <!--</div>-->
-            <!--<div class="col-sm-9" ng-if="model.selectedIndex === $index">-->
-            <!--<ng-rating ng-model="review.rating" editable="true" stars-count="model.maxRating">-->
-            <!--</ng-rating>-->
-            <!--<input ng-model="review.title" class="form-control" type="text"-->
-            <!--placeholder="Please enter a title for your review"/>-->
-            <!--<textarea ng-model="review.review" class="search-review-text form-control"-->
-            <!--placeholder="Please enter your review" rows="3"></textarea>-->
-            <!--<div class="pull-right review-update-btn-container">-->
-            <!--<a href="javascript:void(0)" ng-click="model.cancelUpdate()"-->
-            <!--class="btn btn-primary">Cancel</a>-->
-            <!--<a href="javascript:void(0)" ng-click="model.updateReview(review)"-->
-            <!--class="btn btn-success">Update</a>-->
-            <!--</div>-->
-            <!--</div>-->
-            <!--<hr/>-->
-            <!--</div>-->
-
+            <div>
+                {{model.reviews.length === 0 ? 'Be the first to review this gadget.' : ''}}
+            </div>
             <div class="panel panel-default" ng-repeat="review in model.reviews | orderBy: '-createdOn'">
                 <div class="panel-body">
                     <div class="col-sm-2">
