@@ -89,12 +89,14 @@
             <div class="review-new-container well">
                 <h4>Write a Review:</h4>
                 <div class="form-group rating-container">
-                    <ng-rating ng-model="model.review.rating" editable="true" stars-count="model.maxRating">
+                    <ng-rating ng-disabled="!model.user" ng-model="model.review.rating" editable="true"
+                               stars-count="model.maxRating">
                     </ng-rating>
-                    <input ng-model="model.review.title" class="form-control" type="text"
+                    <input ng-disabled="!model.user" ng-model="model.review.title" class="form-control" type="text"
                            placeholder="Please enter a title for your review"/>
-                            <textarea ng-model="model.review.review" class="search-review-text form-control"
-                                      placeholder="Please enter your review" rows="3"></textarea>
+                    <textarea ng-disabled="!model.user" ng-model="model.review.review"
+                              class="search-review-text form-control"
+                              placeholder="Please enter your review" rows="3"></textarea>
                 </div>
                 <a href="" ng-click="model.addReview(model.review)" ng-if="model.user"
                    class="btn btn-success pull-right">Submit</a>
