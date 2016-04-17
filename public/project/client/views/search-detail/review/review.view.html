@@ -101,23 +101,17 @@
                         <div class="review-block-title">{{review.title}}</div>
                         <div class="review-block-description text-justify">{{review.review}}</div>
                     </div>
-                    <div class="col-sm-9" ng-if="model.selectedIndex === $index">
+                    <div class="col-sm-10" ng-if="model.selectedIndex === $index">
                         <ng-rating ng-model="review.rating" editable="true" stars-count="model.maxRating">
                         </ng-rating>
                         <input ng-model="review.title" class="form-control" type="text"
                                placeholder="Please enter a title for your review"/>
                         <textarea ng-model="review.review" class="search-review-text form-control"
                                   placeholder="Please enter your review" rows="3"></textarea>
-                        <div class="pull-right review-update-btn-container">
-                            <a href="javascript:void(0)" ng-click="model.cancelUpdate()"
-                               class="btn btn-primary">Cancel</a>
-                            <a href="javascript:void(0)" ng-click="model.updateReview(review)"
-                               class="btn btn-success">Update</a>
-                        </div>
                     </div>
                 </div>
                 <div class="panel-footer" ng-if="review.username === model.user.username">
-                    <div class="pull-right">
+                    <div class="pull-right" ng-if="model.selectedIndex !== $index">
                         <a class="btn btn-sm btn-warning" href="javascript:void(0)"
                            ng-click="model.selectReview($index)">
                             <i class="fa fa-pencil"></i> Edit
@@ -126,6 +120,12 @@
                            ng-click="model.deleteReview(review)">
                             <i class="fa fa-trash"></i> Delete
                         </a>
+                    </div>
+                    <div class="pull-right review-update-btn-container" ng-if="model.selectedIndex === $index">
+                        <a href="javascript:void(0)" ng-click="model.cancelUpdate()"
+                           class="btn btn-sm btn-warning"><i class="fa fa-times"></i> Cancel</a>
+                        <a href="javascript:void(0)" ng-click="model.updateReview(review)"
+                           class="btn btn-sm btn-success"><i class="fa fa-pencil"></i> Update</a>
                     </div>
                     <div class="clearfix"></div>
                 </div>
