@@ -2,7 +2,7 @@
 module.exports = function (app, userModel, gadgetModel) {
 
     var multer = require('multer');
-    var upload = multer({ dest: __dirname+'/../../../../public/uploads' });
+    var upload = multer({dest: __dirname + '/../../../uploads'});
 
     app.post("/api/gadgetguru/user", register);
     app.get("/api/gadgetguru/user/:id", getUserById);
@@ -118,7 +118,7 @@ module.exports = function (app, userModel, gadgetModel) {
         var user = req.body;
         var imageFile = req.file;
 
-        if(imageFile) {
+        if (imageFile) {
             var destination = imageFile.destination;
             var path = imageFile.path;
             var originalname = imageFile.originalname;
