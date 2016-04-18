@@ -21,7 +21,7 @@
             //return;
             if(!validateUser(user)) {
                 vm.hasError = true;
-                vm.errorMessage = "Something is wrong with the data you entered.";
+                vm.errorMessage = "You have entered invalid data or missed some fields.";
                 return;
             }
             console.log("register");
@@ -76,6 +76,7 @@
                 flag = flag && user.firstName;
                 flag = flag && user.lastName;
                 flag = flag && user.email;
+                flag = flag && validateEmail(user.email);
 
                 if (user.password == user.verifyPassword)
                     flag = flag && true;
@@ -87,6 +88,11 @@
             }
 
             return flag;
+        }
+
+        function validateEmail(email) {
+            var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
         }
     }
 
