@@ -7,6 +7,7 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     var upload = multer({dest: __dirname + '/../../../uploads'});
 
     app.post("/api/gadgetguru/user", register);
+    app.post("/api/gadgetguru/admin/user", createUser);
     app.get("/api/gadgetguru/user/:id", getUserById);
     app.get("/api/gadgetguru/user", user);
     app.post("/api/gadgetguru/user/login", passport.authenticate('project'), login);
@@ -58,8 +59,50 @@ module.exports = function (app, userModel, gadgetModel, passport) {
                 });
     }
 
+    function createUser(req, res) {
+        var newUser = req.body;
+        //if (!newUser.role) {
+        //    newUser.role = "user";
+        //}
+
+        userModel
+            .findUserByUsername(newUser.username)
+            .then(function (user) {
+                    if (user == null) {
+                        //newUser.password = bcrypt.hashSync(newUser.password);
+                        return userModel.createUser(newUser)
+                            .then(function () {
+                                    return userModel.findAllUsers();
+                                },
+                                function (err) {
+                                    res.status(400).send(err);
+                                }
+                            );
+                    } else {
+                        return userModel.findAllUsers();
+                    }
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+            .then(function (users) {
+                    res.json(users);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                }
+            )
+    }
+
     function getAllUser(req, res) {
-        res.json(userModel.findAllUsers());
+        userModel.findAllUsers()
+            .then(function (response) {
+                    res.json(response);
+                },
+                function (err) {
+                    res.status(400).send(err);
+                });
     }
 
     function getUserById(req, res) {
@@ -141,7 +184,13 @@ module.exports = function (app, userModel, gadgetModel, passport) {
         var userId = req.params.id;
         userModel.deleteUserById(userId)
             .then(function (response) {
-                    res.json(userModel.findAllUsers());
+                    return userModel.findAllUsers();
+                },
+                function (err) {
+                    res.status(400).send(err);
+                })
+            .then(function (response) {
+                    res.json(response);
                 },
                 function (err) {
                     res.status(400).send(err);

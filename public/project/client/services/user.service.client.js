@@ -26,7 +26,8 @@
             findLikedGadgets: findLikedGadgets,
             setCurrentUser : setCurrentUser,
             getCurrentUser : getCurrentUser,
-            invalidateCurrentSession : invalidateCurrentSession
+            invalidateCurrentSession : invalidateCurrentSession,
+            createUserAdmin: createUserAdmin
         };
 
         return api;
@@ -53,6 +54,10 @@
 
         function createUser (user) {
             return $http.post("/api/gadgetguru/user", user);
+        }
+
+        function createUserAdmin (user) {
+            return $http.post("/api/gadgetguru/admin/user", user);
         }
 
         function deleteUserById (userId) {

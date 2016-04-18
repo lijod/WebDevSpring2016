@@ -9,7 +9,7 @@ module.exports = function (db) {
         likedGadget: [String],
         follower: [String],
         following: [String],
-        role: {type: String, enum: ["USER", "ADMIN"]},
+        role: {type: String, enum: ["user", "admin"], default: "user"},
         type: {type: String, default: "project"}
     }, {collection: 'gg_user'});
     return UserSchema;
