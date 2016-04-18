@@ -46,7 +46,9 @@
                              ng-src="{{review.userImgUrl || '/project/client/img/no-user-img.png'}}"
                              class="img-rounded">
                         <div class="review-block-name">
-                            By <a ui-sref="profile.review({userId: review.userId})">{{review.username}}</a>
+                            By <a ng-if="model.user" ui-sref="profile.review({userId: review.userId})">{{review.username}}</a>
+                            <a href="" ng-if="!model.user" uib-tooltip="Log in to view {{review.username}}'s profile">
+                                {{review.username}}</a>
                             {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}
                         </div>
                     </div>
