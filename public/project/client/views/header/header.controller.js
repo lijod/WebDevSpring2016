@@ -15,8 +15,14 @@
         init();
 
         function logOut() {
-            UserService.invalidateCurrentSession();
-            $state.go("home");
+            UserService.invalidateCurrentSession()
+                .then(function(response) {
+                    UserService.setCurrentUser(null);
+                    $state.go("home");
+                },
+                function(err) {
+                    console.log("Error logging out");
+                });
         }
     }
 })();

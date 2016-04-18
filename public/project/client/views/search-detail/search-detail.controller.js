@@ -10,8 +10,7 @@
         var vm = this;
         vm.gadget = {};
         function init() {
-            $scope.$on('$stateChangeSuccess', function() {
-                console.log("tews")
+            $scope.$on('$stateChangeSuccess', function () {
                 document.body.scrollTop = 0;
                 document.documentElement.scrollTop = 0;
             });
@@ -30,6 +29,7 @@
                 UserService.getCurrentUser()
                     .then(function (response) {
                             vm.user = response.data;
+                            console.log(vm.user);
                             if (vm.user) {
                                 UserService.isLikedGadget(vm.user._id, vm.gadgetId)
                                     .then(function (response) {

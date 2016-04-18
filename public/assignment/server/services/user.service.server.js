@@ -1,13 +1,13 @@
 "use strict";
-var passport = require('passport');
-var LocalStrategy = require('passport-local').Strategy;
+//var passport = require('passport');
+//var LocalStrategy = require('passport-local').Strategy;
 var bcrypt = require("bcrypt-nodejs");
-module.exports = function (app, userModel) {
+module.exports = function (app, userModel, passport) {
 
     var auth = authorized;
     app.post("/api/assignment/admin/user", auth, createUser);
     app.get("/api/assignment/admin/user", auth, getAllUser);
-    app.post("/api/assignment/login", passport.authenticate('local'), login);
+    app.post("/api/assignment/login", passport.authenticate('assignment'), login);
     app.post('/api/assignment/register', register);
     app.get("/api/assignment/user/:id", getUserById);
     app.get("/api/assignment/user", user);
@@ -17,44 +17,6 @@ module.exports = function (app, userModel) {
     app.put("/api/assignment/admin/user/:userId", auth, updateUserAdmin);
     app.get("/api/assignment/loggedin", loggedin);
     app.post("/api/assignment/logout", logout);
-
-    passport.use(new LocalStrategy(localStrategy));
-    passport.serializeUser(serializeUser);
-    passport.deserializeUser(deserializeUser);
-
-    function localStrategy(username, password, done) {
-        userModel
-            .findUserByUsername(username)
-            .then(function (user) {
-                    if(user && bcrypt.compareSync(password, user.password)) {
-                        return done(null, user);
-                    } else {
-                        return done(null, false);
-                    }
-                },
-                function (err) {
-                    if (err) {
-                        return done(err);
-                    }
-                });
-    }
-
-    function serializeUser(user, done) {
-        done(null, user);
-    }
-
-    function deserializeUser(user, done) {
-        userModel
-            .findUserById(user._id)
-            .then(
-                function (user) {
-                    done(null, user);
-                },
-                function (err) {
-                    done(err, null);
-                }
-            );
-    }
 
     function user(req, res) {
         var username = req.query.username;
@@ -251,13 +213,10 @@ module.exports = function (app, userModel) {
     }
 
     function loggedin(req, res) {
-        //res.json(req.session.currentUser);
-        res.send(req.isAuthenticated() ? req.user : '0');
+        res.send(req.isAuthenticated() && req.user.type === "assignment" ? req.user : '0');
     }
 
     function logout(req, res) {
-        //req.session.destroy();
-        //res.send(200);
         req.logOut();
         res.send(200);
     }
@@ -276,4 +235,6 @@ module.exports = function (app, userModel) {
             next();
         }
     }
+
 }
+

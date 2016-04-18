@@ -40,8 +40,14 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
 
-require("./public/assignment/server/app.js")(app, db);
-require("./public/project/server/app.js")(app, db);
+
+var assignmentUserModel = require("./public/assignment/server/models/user.model")(db);
+var projectUserModel = require("./public/project/server/model/user.model.js")(db);
+var securityService = require("./public/common-service/security.js")(assignmentUserModel, projectUserModel);
+var passport = securityService.getPassport();
+
+require("./public/assignment/server/app.js")(app, passport, db, assignmentUserModel);
+require("./public/project/server/app.js")(app, passport, db, projectUserModel);
 
 app.listen(port, ipaddress);
 

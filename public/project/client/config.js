@@ -123,9 +123,11 @@
 
             UserService
                 .getCurrentUser()
-                .then(function(response){
+                .then(function (response) {
                     var currentUser = response.data;
-                    UserService.setCurrentUser(currentUser);
+                    if (currentUser) {
+                        UserService.setCurrentUser(currentUser);
+                    }
                     deferred.resolve();
                 });
 

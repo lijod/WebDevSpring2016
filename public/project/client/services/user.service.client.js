@@ -31,8 +31,12 @@
 
         return api;
 
+        //function findUserByCredentials (username, password) {
+        //    return $http.get("/api/gadgetguru/user?username=" + username + "&password=" + password);
+        //}
+
         function findUserByCredentials (username, password) {
-            return $http.get("/api/gadgetguru/user?username=" + username + "&password=" + password);
+            return $http.post("/api/gadgetguru/user/login", {username: username, password: password});
         }
 
         function findUserByUsername(username) {
@@ -104,8 +108,7 @@
         }
 
         function invalidateCurrentSession() {
-            $http.post("/api/gadgetguru/logout");
-            delete $rootScope.currentUser;
+            return $http.get("/api/gadgetguru/logout");
         }
     }
 

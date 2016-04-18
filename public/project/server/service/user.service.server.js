@@ -1,5 +1,7 @@
 "use strict";
-module.exports = function (app, userModel, gadgetModel) {
+
+//var bcrypt = require("bcrypt-nodejs");
+module.exports = function (app, userModel, gadgetModel, passport) {
 
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../../uploads'});
@@ -7,6 +9,7 @@ module.exports = function (app, userModel, gadgetModel) {
     app.post("/api/gadgetguru/user", register);
     app.get("/api/gadgetguru/user/:id", getUserById);
     app.get("/api/gadgetguru/user", user);
+    app.post("/api/gadgetguru/user/login", passport.authenticate('project'), login);
     app.get("/api/gadgetguru/userby", getUserByUsername);
     app.put("/api/gadgetguru/user/:id", updateUser);
     app.post("/api/gadgetguru/user/:id", upload.single('profileImg'), updateUserWithImage);
@@ -21,7 +24,7 @@ module.exports = function (app, userModel, gadgetModel) {
     app.get("/api/gadgetguru/user/:userId/likedgadgets", findLikedGadgets);
     app.delete("/api/gadgetguru/user/:id", deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
-    app.post("/api/gadgetguru/logout", logout);
+    app.get("/api/gadgetguru/logout", logout);
 
     function user(req, res) {
         var username = req.query.username;
@@ -38,13 +41,17 @@ module.exports = function (app, userModel, gadgetModel) {
 
     function register(req, res) {
         var user = req.body;
-        console.log("register");
         userModel.createUser(user)
-            .then(function (response) {
-                    console.log(response);
-                    user = response;
-                    req.session.currentUser = user;
-                    res.json(user);
+            .then(function (user) {
+                    if (user) {
+                        req.login(user, function (err) {
+                            if (err) {
+                                res.status(400).send(err);
+                            } else {
+                                res.json(user);
+                            }
+                        });
+                    }
                 },
                 function (err) {
                     res.status(400).send(err);
@@ -78,21 +85,8 @@ module.exports = function (app, userModel, gadgetModel) {
     }
 
     function login(req, res) {
-        var username = req.query.username;
-        var password = req.query.password;
-        var credentials = {
-            "username": username,
-            "password": password
-        }
-        userModel.findUserByCredentials(credentials)
-            .then(function (response) {
-                    var user = response;
-                    req.session.currentUser = user;
-                    res.json(user);
-                },
-                function (err) {
-                    res.status(400).send(err);
-                });
+        var user = req.user;
+        res.json(user);
     }
 
     function updateUser(req, res) {
@@ -305,11 +299,11 @@ module.exports = function (app, userModel, gadgetModel) {
     }
 
     function loggedin(req, res) {
-        res.json(req.session.currentUser);
+        res.send(req.isAuthenticated() && req.user.type === "project" ? req.user : null);
     }
 
     function logout(req, res) {
-        req.session.destroy();
+        req.logOut();
         res.send(200);
     }
 }
