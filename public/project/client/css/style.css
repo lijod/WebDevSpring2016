@@ -347,8 +347,12 @@ ul.profile-common-detail {
 
 .profile-common-detail-section {
     display: table-cell;
-    padding: 0;
+    padding-right: 25px;
     vertical-align: top;
+}
+
+.profile-common-detail-section:first-child {
+    padding-left: 12px;
 }
 
 .profile-common-detail-section a:hover {
