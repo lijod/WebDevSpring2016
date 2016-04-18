@@ -4,7 +4,7 @@
         <img class="img-responsive profile-img" ng-src="{{model.paramUser.imgUrl || '/project/client/img/no-user-img.png'}}"/>
         <ul class="nav nav-sidebar text-center lg-profile-sidebar-controller">
             <li ui-sref-active="active" ng-if="model.paramUser._id === model.loggedInUser._id">
-                <a ui-sref=".edit"><i class="fa fa-pencil"></i> Edit Profile</a>
+                <a ui-sref=".edit"> EDIT PROFILE</a>
             </li>
             <li ng-if="model.paramUser._id !== model.loggedInUser._id">
                 <div class="profile-follow-container">
@@ -12,10 +12,10 @@
                     <a href="" ng-click="model.unfollow()" ng-if="model.isFollowing" class="btn btn-warning btn-xs">UNFOLLOW</a>
                 </div>
             </li>
-            <li ui-sref-active="active"><a ui-sref=".review"><i class="glyphicon glyphicon-comment"></i> Review</a></li>
-            <li ui-sref-active="active"><a ui-sref=".follow-main.following"><i class="fa fa-users"></i> Following</a></li>
-            <li ui-sref-active="active"><a ui-sref=".follow-main.follower"><i class="fa fa-users"></i> Followers</a></li>
-            <li ui-sref-active="active"><a ui-sref=".like"><i class="glyphicon glyphicon-thumbs-up"></i> Likes</a></li>
+            <li ui-sref-active="active"><a ui-sref=".review"> REVIEW</a></li>
+            <li ui-sref-active="active"><a ui-sref=".follow-main.following"> FOLLOWING</a></li>
+            <li ui-sref-active="active"><a ui-sref=".follow-main.follower"> FOLLOWER</a></li>
+            <li ui-sref-active="active"><a ui-sref=".like"> LIKES</a></li>
         </ul>
     </div>
 
