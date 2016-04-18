@@ -4,6 +4,8 @@
         <p class="text-muted">{{searchDetailModel.gadget.manufacturer.length > 0 ? 'By' : ''}}
             {{searchDetailModel.gadget.manufacturer}} {{searchDetailModel.gadget.modelNumber.length > 0 ? '| Model:' :
             ''}} {{searchDetailModel.gadget.modelNumber}}</p>
+        <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
+                   stars-count="searchDetailModel.maxRating"></ng-rating>
     </div>
     <div class="row">
         <div class="col-sm-2"></div>
@@ -19,8 +21,8 @@
                             src="/project/client/img/bestbuy.png"></a>
                 </div>
                 <div class="col-xs-7 rating-like-container">
-                    <ng-rating ng-model="searchDetailModel.avgRating" editable="false"
-                               stars-count="searchDetailModel.maxRating"></ng-rating>
+                    <!--<ng-rating ng-model="searchDetailModel.avgRating" editable="false"-->
+                               <!--stars-count="searchDetailModel.maxRating"></ng-rating>-->
                     <div class="like-container">
                         <div ng-if="searchDetailModel.user">
                             <a href="" ng-if="!searchDetailModel.isLiked" ng-click="searchDetailModel.likeGadget()">
