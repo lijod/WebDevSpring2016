@@ -1,47 +1,47 @@
 <div class="table-responsive">
     <table class="table table-striped" ng-controller="UserController">
         <thead>
-        <tr>
-            <th>Username</th>
-            <th>Password</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th class="td-admin-user"></th>
-        </tr>
+            <tr>
+                <th>Username</th>
+                <th>Password</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th class="td-admin-user"></th>
+            </tr>
         </thead>
         <tbody>
-        <tr>
-            <td><input ng-model="user.username" type="text" class="form-control"/></td>
-            <td><input ng-model="user.password" type="password" class="form-control"/></td>
-            <td><input ng-model="user.firstName" type="text" class="form-control"/></td>
-            <td><input ng-model="user.lastName" type="text" class="form-control"/></td>
-            <td><input ng-model="user.email" type="email" class="form-control"/></td>
-            <td>
-                <select ng-model="user.role" class="form-control"
-                        ng-options="role.value as role.name for role in roles">
-                </select>
-            </td>
-            <th>
-                <button ng-click="addUser(user)" class="btn btn-sm btn-primary">Add</button>
-                <button ng-click="updateUser(user)" class="btn btn-sm btn-primary btn-success">Update</button>
-                <!--<button ng-click="addUser(user)" class="btn btn-xs visible-sm-block visible-xs-block btn-primary btn-admin">Add</button>-->
-                <!--<button ng-click="updateUser(user)" class="btn btn-xs visible-sm-block visible-xs-block btn-primary btn-success btn-admin">Update</button>-->
-            </th>
-        </tr>
-        <tr ng-repeat="usr in users">
-            <td>{{usr.username}}</td>
-            <td>*****</td>
-            <td>{{usr.firstName}}</td>
-            <td>{{usr.lastName}}</td>
-            <td>{{usr.email}}</td>
-            <td>{{usr.role}}</td>
-            <td>
-                <button ng-click="deleteUser(usr._id)" class="btn btn-sm btn-danger">Remove</button>
-                <button ng-click="selectUser($index)" class="btn btn-sm btn-info ">Select</button>
-            </td>
-        </tr>
+            <tr>
+                <td><input ng-model="user.username" ng-disabled="selected > -1" type="text" class="form-control"/></td>
+                <td><input ng-model="user.password" type="password" class="form-control"/></td>
+                <td><input ng-model="user.firstName" type="text" class="form-control"/></td>
+                <td><input ng-model="user.lastName" type="text" class="form-control"/></td>
+                <td><input ng-model="user.email" type="email" class="form-control"/></td>
+                <td>
+                    <select ng-model="user.role" class="form-control"
+                            ng-options="role.value as role.name for role in roles">
+                    </select>
+                </td>
+                <th>
+                    <button ng-click="addUser(user)" class="btn btn-sm btn-primary">Add</button>
+                    <button ng-click="updateUser(user)" class="btn btn-sm btn-primary btn-success">Update</button>
+                    <!--<button ng-click="addUser(user)" class="btn btn-xs visible-sm-block visible-xs-block btn-primary btn-admin">Add</button>-->
+                    <!--<button ng-click="updateUser(user)" class="btn btn-xs visible-sm-block visible-xs-block btn-primary btn-success btn-admin">Update</button>-->
+                </th>
+            </tr>
+            <tr ng-repeat="usr in users">
+                <td>{{usr.username}}</td>
+                <td>*****</td>
+                <td>{{usr.firstName}}</td>
+                <td>{{usr.lastName}}</td>
+                <td>{{usr.email}}</td>
+                <td>{{usr.role}}</td>
+                <td>
+                    <button ng-click="deleteUser(usr._id)" class="btn btn-sm btn-danger">Remove</button>
+                    <button ng-click="selectUser($index)" class="btn btn-sm btn-info ">Select</button>
+                </td>
+            </tr>
         </tbody>
     </table>
 </div>
