@@ -5,14 +5,14 @@ module.exports = function (app, userModel, gadgetModel, passport) {
 
     var multer = require('multer');
     var upload = multer({dest: __dirname + '/../../../uploads'});
-
+    var auth = authorized;
     app.post("/api/gadgetguru/user", register);
-    app.post("/api/gadgetguru/admin/user", createUser);
+    app.post("/api/gadgetguru/admin/user", auth, createUser);
     app.get("/api/gadgetguru/user/:id", getUserById);
     app.get("/api/gadgetguru/user", user);
     app.post("/api/gadgetguru/user/login", passport.authenticate('project'), login);
     app.get("/api/gadgetguru/userby", getUserByUsername);
-    app.put("/api/gadgetguru/user/:id", updateUser);
+    app.put("/api/gadgetguru/user/:id", auth, updateUser);
     app.post("/api/gadgetguru/user/:id", upload.single('profileImg'), updateUserWithImage);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/like", addLikedGadget);
     app.put("/api/gadgetguru/user/:userId/gadget/:gadgetId/undolike", undoLikedGadget);
@@ -23,7 +23,7 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     app.get("/api/gadgetguru/user/:userId/following", findFollowingUser);
     app.get("/api/gadgetguru/user/:userId/follower", findFollowerUser);
     app.get("/api/gadgetguru/user/:userId/likedgadgets", findLikedGadgets);
-    app.delete("/api/gadgetguru/user/:id", deleteUserById);
+    app.delete("/api/gadgetguru/user/:id", auth, deleteUserById);
     app.get("/api/gadgetguru/loggedin", loggedin);
     app.get("/api/gadgetguru/logout", logout);
 
@@ -60,10 +60,11 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     }
 
     function createUser(req, res) {
+        if (!isAdmin(req.user)) {
+            res.status(403);
+            return;
+        }
         var newUser = req.body;
-        //if (!newUser.role) {
-        //    newUser.role = "user";
-        //}
 
         userModel
             .findUserByUsername(newUser.username)
@@ -96,6 +97,10 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     }
 
     function getAllUser(req, res) {
+        if (!isAdmin(req.user)) {
+            res.status(403);
+            return;
+        }
         userModel.findAllUsers()
             .then(function (response) {
                     res.json(response);
@@ -133,6 +138,10 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     }
 
     function updateUser(req, res) {
+        if (!isAdmin(req.user)) {
+            res.status(403);
+            return;
+        }
         var userId = req.params.id;
         var user = req.body;
         userModel.updateUser(userId, user)
@@ -143,7 +152,7 @@ module.exports = function (app, userModel, gadgetModel, passport) {
                     res.status(400).send(err);
                 })
             .then(function (response) {
-                req.session.currentUser = response;
+                //req.session.currentUser = response;
                 res.json(response);
             }, function (err) {
                 res.status(400).send(err);
@@ -181,6 +190,10 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     }
 
     function deleteUserById(req, res) {
+        if (!isAdmin(req.user)) {
+            res.status(403);
+            return;
+        }
         var userId = req.params.id;
         userModel.deleteUserById(userId)
             .then(function (response) {
@@ -354,5 +367,20 @@ module.exports = function (app, userModel, gadgetModel, passport) {
     function logout(req, res) {
         req.logOut();
         res.send(200);
+    }
+
+    function isAdmin(user) {
+        if (user.role === "admin") {
+            return true
+        }
+        return false;
+    }
+
+    function authorized(req, res, next) {
+        if (!req.isAuthenticated()) {
+            res.send(401);
+        } else {
+            next();
+        }
     }
 }

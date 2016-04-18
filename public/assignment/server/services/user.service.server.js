@@ -185,8 +185,7 @@ module.exports = function (app, userModel, passport) {
                 },
                 function (err) {
                     res.status(400).send(err);
-                }
-            );
+                });
     }
 
     function deleteUser(req, res) {
@@ -205,8 +204,7 @@ module.exports = function (app, userModel, passport) {
                     },
                     function (err) {
                         res.status(400).send(err);
-                    }
-                );
+                    });
         } else {
             res.status(403);
         }

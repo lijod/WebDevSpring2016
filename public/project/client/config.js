@@ -7,7 +7,7 @@
     function configuration($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider) {
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/home/category');
-        $urlRouterProvider.when('/home', '/home/category    ');
+        $urlRouterProvider.when('/home', '/home/category');
         $urlRouterProvider.when('/profile/{userId}', '/profile/{userId}/review');
         $urlRouterProvider.when('/search-detail/{gadgetId}', '/search-detail/{gadgetId}/review');
 
@@ -114,7 +114,7 @@
                 templateUrl: 'views/admin/user.view.html',
                 controller: "UserController",
                 resolve: {
-                    checkLoggedIn: checkLoggedIn
+                    checkAdmin: checkAdmin
                 }
             });
 
@@ -153,5 +153,26 @@
 
             return deferred.promise;
         }
+
+        function checkAdmin ($q, UserService, $state) {
+            var deferred = $q.defer();
+
+            UserService
+                .getCurrentUser()
+                .then(function (response) {
+                    var user = response.data;
+                    console.log(user);
+                    // User is Authenticated
+                    if (user && user.role === "admin") {
+                        UserService.setCurrentUser(user);
+                        deferred.resolve();
+                    } else {
+                        deferred.reject();
+                        $state.go('home');
+                    }
+                });
+
+            return deferred.promise;
+        };
     }
 })();
