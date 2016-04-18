@@ -243,3 +243,7 @@ bt {
 #footer a.contact-icon i{
     margin-top: 40px;
 }
+
+.prof-img {
+    border-radius: 115px;
+}
