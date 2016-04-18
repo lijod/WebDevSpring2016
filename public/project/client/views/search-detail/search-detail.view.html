@@ -22,7 +22,7 @@
                 </div>
                 <div class="col-xs-7 rating-like-container">
                     <!--<ng-rating ng-model="searchDetailModel.avgRating" editable="false"-->
-                               <!--stars-count="searchDetailModel.maxRating"></ng-rating>-->
+                    <!--stars-count="searchDetailModel.maxRating"></ng-rating>-->
                     <div class="like-container">
                         <div ng-if="searchDetailModel.user">
                             <a href="" ng-if="!searchDetailModel.isLiked" ng-click="searchDetailModel.likeGadget()">
@@ -43,9 +43,11 @@
         </div>
     </div>
     <hr/>
-    <div class="text-justify">
-        {{searchDetailModel.gadget.longDescription}}
-    </div>
+    <!--<div>-->
+        <!--{{searchDetailModel.gadget.longDescription}}-->
+    <!--</div>-->
+    <output class="text-justify"
+            ng-bind-html="searchDetailModel.renderHtml(searchDetailModel.gadget.longDescription)"></output>
     <hr/>
     <div class="row">
         <div class="container-fluid no-padding">

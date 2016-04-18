@@ -4,7 +4,7 @@
         .module("GadgetGuruApp")
         .controller("SearchDetailController", SearchDetailController);
 
-    function SearchDetailController($state, $scope, $stateParams, GadgetService, UserService) {
+    function SearchDetailController($state, $sce, $stateParams, GadgetService, UserService) {
         console.log("SearchDetailController");
 
         var vm = this;
@@ -51,6 +51,7 @@
             vm.likeGadget = likeGadget;
             vm.undoLikeGadget = undoLikeGadget;
             vm.updateRating = updateRating;
+            vm.renderHtml = renderHtml;
         }
 
         init();
@@ -97,6 +98,10 @@
         function updateRating(rating) {
             console.log("update", rating)
             vm.avgRating = rating;
+        }
+
+        function renderHtml(unrendered) {
+            return $sce.trustAsHtml(unrendered);
         }
     }
 })();
