@@ -88,6 +88,10 @@
             </div>
 
             <hr/>
+            <flash-message ng-if="model.hasError" type="danger"
+                           header="Validation Error"
+                           msg="All review fields are mandatory.">
+            </flash-message>
             <div class="review-new-container well">
                 <h4>Write a Review:</h4>
                 <div class="form-group rating-container">

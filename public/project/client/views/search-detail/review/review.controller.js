@@ -12,6 +12,7 @@
             vm.selectedIndex = -1;
             vm.maxRating = 5;
             vm.gadgetId = $stateParams.gadgetId;
+            vm.hasError = false;
             $scope.searchDetailModel.maxRating = vm.maxRating;
 
             UserService.getCurrentUser()
@@ -51,6 +52,11 @@
 
         init();
         function addReview(review) {
+            console.log(review)
+            if(!review || !review.rating || !review.title || !review.review){
+                vm.hasError = true;
+                return;
+            }
             var gadgetToAdd = {
                 _id: $scope.searchDetailModel.gadget.productId + "",
                 title: $scope.searchDetailModel.gadget.name,
@@ -67,6 +73,7 @@
                             };
                             findUserByReviewUserId(vm.reviews);
                             updateAllRatings();
+                            vm.hasError = false;
                             return GadgetService.addGadget(gadgetToAdd);
                         } else {
                             alert("Error occurred while adding review");
