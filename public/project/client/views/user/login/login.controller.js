@@ -21,11 +21,13 @@
                         redirectUserToProfileIfValid(response.data);
                     },
                     function () {
-                        console.log("error LoginController->login->findUserByCredentials")
+                        console.log("error LoginController->login->findUserByCredentials");
+                        vm.hasError = true;
                     });
         }
 
         function redirectUserToProfileIfValid(user) {
+            console.log(user);
             console.log("Redirecting user: ");
             if(user != null){
                 UserService.setCurrentUser(user);
