@@ -15,7 +15,7 @@
         <div class="col-sm-9 container-profile-review">
             <div class="container">
                 <a href='' ui-sref='search-detail({gadgetId: review.gadget._id})'><h4>{{review.gadget.title}}</h4></a>
-                <h4>{{review.title | limitTo: 50}} {{review.review.length > 50 ? "..." : ""}}</h4>
+                <h4>{{review.title | limitTo: 50}} {{review.title.length > 50 ? "..." : ""}}</h4>
                 <small>On {{review.createdOn | date : "MMM dd, yyyy HH:mm"}}</small>
                 <br/>
                 <ng-rating ng-model="review.rating" editable="false"></ng-rating>
