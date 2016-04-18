@@ -10,12 +10,20 @@
         function init() {
             vm.register = register
             vm.hasError = false;
-            console.log($rootScope.currentUser);
+            vm.errorMessage = "";
+            //console.log($rootScope.currentUser);
         }
 
         init();
 
         function register(user) {
+            console.log(validateUser(user));
+            //return;
+            if(!validateUser(user)) {
+                vm.hasError = true;
+                vm.errorMessage = "Something is wrong with the data you entered.";
+                return;
+            }
             console.log("register");
             console.log(user);
             UserService.findUserByUsername(user.username)
@@ -33,6 +41,7 @@
             if (user) {
                 console.log("User Already Exists");
                 vm.hasError = true;
+                vm.errorMessage = "Username already exists, please try a different one.";
             } else {
                 UserService.createUser(currUser)
                     .then(function(respose){
@@ -56,6 +65,28 @@
                 UserService.setCurrentUser(user);
                 $state.go("home");
             }
+        }
+
+        function validateUser(user) {
+            var flag = true;
+
+            if (user) {
+                flag = flag && user.username;
+                flag = flag && user.password;
+                flag = flag && user.firstName;
+                flag = flag && user.lastName;
+                flag = flag && user.email;
+
+                if (user.password == user.verifyPassword)
+                    flag = flag && true;
+                else
+                    flag = flag && false;
+            }
+            else {
+                flag = flag && false;
+            }
+
+            return flag;
         }
     }
 

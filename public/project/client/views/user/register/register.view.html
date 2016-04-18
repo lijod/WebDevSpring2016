@@ -1,7 +1,7 @@
 <div class="container-fluid wrapper">
     <flash-message ng-if="model.hasError" type="danger"
                    header="Error"
-                   msg="Username already exists, please try a different one.">
+                   msg="{{model.errorMessage}}">
     </flash-message>
     <div class="row">
         <!--<div class="col-xs-1 col-md-3"></div>-->
@@ -43,7 +43,7 @@
                     <!--<label for="verifyPassword" class="col-sm-2">Verify Password</label>-->
                     <div class="col-xs-10 col-xs-offset-1 input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" id="verifyPassword" class="form-control" placeholder="Verify Password">
+                        <input type="password" ng-model="model.user.verifyPassword" id="verifyPassword" class="form-control" placeholder="Verify Password">
                     </div>
                 </div>
                 <div class="form-group">
