@@ -49,7 +49,7 @@
             UserService.createUser(user)
                 .then(function (response) {
                         var users = response.data;
-                        vm.selected = -1;
+                        //vm.selected = -1;
                         vm.user = {};
                         if (users) {
                             vm.users = users;
@@ -67,7 +67,7 @@
                         if (response.data) {
                             vm.users = response.data;
                             console.log("User Deleted:");
-                            vm.selected = -1;
+                            //vm.selected = -1;
                             vm.user = {};
                         }
                     },
@@ -76,10 +76,9 @@
                     });
         }
 
-        function selectUser(index) {
-            var editUser = JSON.parse(JSON.stringify(vm.users[index]));
+        function selectUser(user) {
+            var editUser = angular.copy(user);
             vm.user = editUser;
-            vm.selected = index;
         }
 
         function updateUser(user) {
@@ -92,7 +91,7 @@
                         if (response.data) {
                             console.log("User Updated:");
                             vm.users = response.data;
-                            vm.selected = -1;
+                            //vm.selected = -1;
                             vm.user = {};
                         }
                     },
