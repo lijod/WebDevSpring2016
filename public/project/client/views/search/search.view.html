@@ -3,9 +3,10 @@
         <div class="col-md-4"></div>
         <div class="col-md-4" style="margin-top: 60px;">
             <div class="input-group search-box">
-                <input type="text" placeholder="Search for latest tech..." class="form-control" ng-model="searchModel.gadgetName"/>
-                <!--ng-keydown="$event.which === 13 && model.search(gadgetName)"/>-->
-                <!--<a href="javascript:void(0)" ng-click="searchModel.search(gadgetName)" class="btn btn-primary btn-block">SEARCH</a>-->
+                <input type="text" placeholder="Search for latest tech..." class="form-control"
+                       ng-model="searchModel.gadgetName"
+                       ng-keydown="searchModel.search($event, searchModel.gadgetName)"/>
+
                 <span class="input-group-btn">
                     <a href="" ui-sref="home.result({keyword: searchModel.gadgetName, isCategory: false})"
                        class="btn btn-search btn-block"><i class="glyphicon glyphicon-search"></i></a>
